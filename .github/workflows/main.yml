@@ -25,4 +25,4 @@ jobs:
           PAGES_BRANCH: master
           BUILD_DIR: .
           TOKEN: ${{ secrets.PUBLIC_TOKEN }}
-          REPOSITORY: cola-tech/benx-guo.github.io
+          REPOSITORY: benx-guo/benx-guo.github.io
