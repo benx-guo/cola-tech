@@ -2,6 +2,7 @@
 title= "在Ubuntu 24.04 LTS上编译支持Rust的Linux内核"
 description= "详细指南：如何在Ubuntu 24.04 LTS上安装Rust工具链并编译支持Rust的Linux内核"
 date= 2025-07-13
+draft = false
 [taxonomies]
 categories = ["Rust For Linux"]
 tags = ["rust-for-linux", "内核开发", "Ubuntu 24.04 LTS"]
