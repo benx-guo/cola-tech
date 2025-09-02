@@ -33,6 +33,7 @@ after_dark_menu = [
     {url = "$BASE_URL/tags", name = "标签"},
 ]
 after_dark_title = "Cola Tech"
+sort_by = "date"
 
 # Nicer codeblocks with copy to clipboard 
 codeblock = true
