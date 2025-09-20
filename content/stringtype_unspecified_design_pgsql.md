@@ -30,8 +30,6 @@ JDBC 驱动呢？它有点像个中间人，默认情况下很谨慎：你说是
 
 但 `stringtype=unspecified` 这个小开关一开，JDBC 就像说："这回我不管了，PostgreSQL 你自己看着办吧。" 于是数据库一看，哦，目标字段是 jsonb，那我就当 JSON 处理。
 
----
-
 ### 驱动实现里的秘密
 
 如果你好奇 JDBC 驱动是怎么实现这个"不管了"的，可以看看源代码。在 PostgreSQL JDBC 驱动的 GitHub 仓库里，这个功能主要在几个关键文件中实现：
@@ -97,8 +95,6 @@ BIND
 
 这个 `type: 0` 就是关键。PostgreSQL 看到类型是 0（unspecified），就会根据目标字段的类型来决定怎么处理这个参数。
 
----
-
 ### PostgreSQL 的 JSON 解析魔法
 
 当 PostgreSQL 收到类型为 unspecified 的参数时，它会调用相应的类型转换函数。对于 jsonb 字段，会调用 `jsonb_in()` 函数。
@@ -146,8 +142,6 @@ pg_parse_json_or_errsave(JsonLexContext *lex, const JsonSemAction *sem,
 
 这就是为什么同样的字符串，有时候会报错，有时候又能成功的原因。
 
----
-
 ### 小参数，大世界
 
 说到底，这就是个参数的事儿。但仔细想想，还挺有意思的。
@@ -155,8 +149,6 @@ pg_parse_json_or_errsave(JsonLexContext *lex, const JsonSemAction *sem,
 一个参数，就能让两个系统之间的对话方式完全改变。JDBC 从"我帮你决定类型"变成"你自己看着办"，PostgreSQL 从"我不接受模糊"变成"我来推断一下"。
 
 这种设计上的小细节，有时候比那些宏大的架构图更有意思。
-
----
 
 ### 下次遇到，不妨会心一笑
 

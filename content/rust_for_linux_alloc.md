@@ -12,8 +12,6 @@ tags = ["rust", "allocator", "kmalloc", "krealloc", "kernel", "rust-for-linux"]
 
 <!--more-->
 
----
-
 ## 背景
 
 在用户态，Rust 的分配接口最终会落到 `malloc` / `realloc` 等系统调用。  

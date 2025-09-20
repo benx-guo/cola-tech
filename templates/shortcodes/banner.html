@@ -1,0 +1,44 @@
+<div class="banner-container" style="width: 100%; margin: 1em 0; text-align: center; position: relative;">
+  <img src="{{ src | safe }}" alt="{{ alt | safe }}" title="{{ alt | safe }}"
+       style="width: 100%; max-width: 100%; height: auto; display: block; margin: 0 auto; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.15); transition: transform 0.3s ease, box-shadow 0.3s ease;">
+  {% if caption %}
+  <div class="banner-caption" style="margin-top: 0.5em; text-align: center;">
+    <span class="banner-text">{{ caption | safe }}</span>
+  </div>
+  {% endif %}
+</div>
+
+<style>
+.banner-container {
+  background: linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.02) 100%);
+  border-radius: 16px;
+  padding: 1em;
+  border: 1px solid rgba(255,255,255,0.1);
+}
+
+.banner-container img:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+}
+
+.banner-text {
+  font-family: inherit;
+  font-size: 0.9em;
+  font-weight: 400;
+  color: var(--text-color, #fff);
+  text-align: center;
+  display: inline-block;
+  opacity: 0.8;
+  letter-spacing: 0.5px;
+}
+
+@media (max-width: 768px) {
+  .banner-container {
+    padding: 0.8em;
+  }
+  
+  .banner-text {
+    font-size: 0.85em !important;
+  }
+}
+</style>
