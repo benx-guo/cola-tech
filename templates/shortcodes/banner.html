@@ -1,5 +1,5 @@
 <div class="banner-container" style="width: 100%; margin: 1em 0; text-align: center; position: relative;">
-  <img src="{{ src | safe }}" alt="{{ alt | safe }}" title="{{ alt | safe }}"
+  <img src="{{ get_url(path=src) | safe }}" alt="{{ alt | safe }}" title="{{ alt | safe }}"
        style="width: 100%; max-width: 100%; height: auto; display: block; margin: 0 auto; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.15); transition: transform 0.3s ease, box-shadow 0.3s ease;">
   {% if caption %}
   <div class="banner-caption" style="margin-top: 0.5em; text-align: center;">
