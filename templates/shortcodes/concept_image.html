@@ -1,0 +1,81 @@
+<div class="concept-image-container">
+  <img src="{{ get_url(path=src) | safe }}" alt="{{ alt | safe }}" title="{{ alt | safe }}" class="concept-image">
+  {% if caption %}
+  <div class="concept-caption">
+    <span class="concept-text">{{ caption | safe }}</span>
+  </div>
+  {% endif %}
+</div>
+
+<style>
+.concept-image-container {
+  width: 100%;
+  max-width: 100%;
+  margin: 1.5em 0;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  position: relative;
+}
+
+.concept-image {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  object-fit: contain;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.concept-image:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+}
+
+.concept-caption {
+  margin-top: 0.8em;
+  text-align: center;
+}
+
+.concept-text {
+  font-family: inherit;
+  font-size: 0.9em;
+  font-weight: 400;
+  color: #ffffff;
+  text-align: center;
+  display: inline-block;
+  opacity: 1;
+  letter-spacing: 0.2px;
+  background: rgba(0,0,0,0.7);
+  padding: 0.4em 1em;
+  border-radius: 15px;
+  border: 1px solid rgba(255,255,255,0.3);
+}
+
+.concept-text::before {
+  content: "📊 ";
+  margin-right: 0.3em;
+}
+
+@media (max-width: 768px) {
+  .concept-image {
+    max-height: 60vh;
+  }
+  .concept-text {
+    font-size: 0.85em;
+    padding: 0.3em 0.8em;
+  }
+}
+
+/* 深色主题适配 */
+@media (prefers-color-scheme: dark) {
+  .concept-text {
+    color: #ffffff;
+    background: rgba(0,0,0,0.8);
+    border-color: rgba(255,255,255,0.4);
+  }
+}
+</style>

@@ -6,22 +6,22 @@ categories = ["Rust For Linux"]
 tags = ["rust", "allocator", "kmalloc", "krealloc", "kernel", "rust-for-linux"]
 +++
 
-本文尝试从 **Rust 层调用** → **FFI bindings** → **C helper** → **内核 API 宏/函数** → **实际分配器**  
-一步步梳理 Rust 在 Linux 内核里的内存分配调用链。  
+本文尝试从 **Rust 层调用** → **FFI bindings** → **C helper** → **内核 API 宏/函数** → **实际分配器**
+一步步梳理 Rust 在 Linux 内核里的内存分配调用链。
 以 `KVec::push` 触发扩容为例，串联 `krealloc` 的全过程。
 
 <!--more-->
 
 ## 背景
 
-在用户态，Rust 的分配接口最终会落到 `malloc` / `realloc` 等系统调用。  
-但在 **Linux 内核** 中，我们不能直接用 libc，而必须调用内核自己的分配器接口：`kmalloc`、`krealloc`、`kfree` 等。  
+在用户态，Rust 的分配接口最终会落到 `malloc` / `realloc` 等系统调用。
+但在 **Linux 内核** 中，我们不能直接用 libc，而必须调用内核自己的分配器接口：`kmalloc`、`krealloc`、`kfree` 等。
 
 Rust-for-Linux 为此定义了 **安全抽象层**：
 
-- `Allocator` trait：Rust 世界的分配器接口  
-- `Kmalloc`：面向内核的具体实现  
-- `KBox` / `KVec`：高层数据结构的封装，背后依赖分配器  
+- `Allocator` trait：Rust 世界的分配器接口
+- `Kmalloc`：面向内核的具体实现
+- `KBox` / `KVec`：高层数据结构的封装，背后依赖分配器
 
 ## 从 `KVec::push` 说起
 

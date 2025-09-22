@@ -109,7 +109,7 @@ jsonb_in(PG_FUNCTION_ARGS)
 {
     char       *json = PG_GETARG_CSTRING(0);
     // 1. 检查字符串是否是有效的 JSON
-    // 2. 解析 JSON 结构  
+    // 2. 解析 JSON 结构
     // 3. 转换成内部的 jsonb 格式
     return jsonb_from_cstring(json, strlen(json), false, fcinfo->context);
 }
@@ -154,4 +154,4 @@ pg_parse_json_or_errsave(JsonLexContext *lex, const JsonSemAction *sem,
 
 所以，下次再遇到 `stringtype=unspecified`，别急着吐槽"又出幺蛾子了"。也许，这正是数据库世界里的一点小幽默。
 
-毕竟，写代码嘛，除了让它跑起来，偶尔乐在其中，也挺好。 
+毕竟，写代码嘛，除了让它跑起来，偶尔乐在其中，也挺好。

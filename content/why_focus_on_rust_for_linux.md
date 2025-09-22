@@ -37,13 +37,13 @@ tags = ["rust-for-linux", "硬件", "操作系统", "学习"]
 impl Driver for GpioDriver {
     fn probe(dev: &mut Device) -> Result<()> {
         let gpio = GpioController::new(dev)?;
-        
+
         // 直接控制硬件引脚
         for pin in 0..32 {
             gpio.set_direction(pin, Direction::Output)?;
             gpio.set_value(pin, Value::Low)?;
         }
-        
+
         gpio.register()?;
         Ok(())
     }
@@ -293,4 +293,4 @@ Rust for Linux项目代表了内核开发的一个新方向。它不仅仅是技
 
 技术学习是一个永无止境的过程，而Rust for Linux项目为我提供了一个新的起点。我期待着在这个旅程中遇到的每一个挑战，每一次突破，以及每一个新的发现。
 
-*写在开始学习Rust for Linux项目之际，记录下这些想法，希望在未来的某一天回顾时，能够看到自己的成长和进步。* 
+*写在开始学习Rust for Linux项目之际，记录下这些想法，希望在未来的某一天回顾时，能够看到自己的成长和进步。*
