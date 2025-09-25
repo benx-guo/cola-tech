@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  
+  
+  <meta name="description" content="分享我开始关注Rust for Linux项目的个人动机和技术追求，从朋友提议到硬件控制能力，再到系统级技术能力的延伸" />
+  
+  
+
+  <title>
+    
+    为什么我开始关注Rust for Linux项目
+    
+</title>
+  <link rel="alternate" type="application/atom+xml" title="Cola Tech Atom Feed" href="https://benx-guo.github.io/cola-tech/atom.xml" />
+
+  
+  <link rel="stylesheet" href="https://benx-guo.github.io/cola-tech/site.css">
+  
+
+  
+  
+</head>
+
+<body class="hack dark main container">
+  
+    
+        
+  
+  <header class="nav-header">
+    <nav itemscope itemtype="http://schema.org/SiteNavigationElement" class="navbar">
+      <div class="nav-links">
+        
+        <a itemprop="url"
+          class=""
+          href="https://benx-guo.github.io/cola-tech/">
+          <span itemprop="name">首页</span></a>
+        
+        <a itemprop="url"
+          class=""
+          href="https://benx-guo.github.io/cola-tech//categories">
+          <span itemprop="name">分类</span></a>
+        
+        <a itemprop="url"
+          class=""
+          href="https://benx-guo.github.io/cola-tech//tags">
+          <span itemprop="name">标签</span></a>
+        
+      </div>
+    </nav>
+    
+    <div class="search-container">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" class="search-icon">
+        <path stroke-linecap="round" stroke-linejoin="round"
+          d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+      </svg>
+      <input type="text" id="search" placeholder="Search...">
+      <div class="search-results">
+        <div class="search-results__items"></div>
+      </div>
+    </div>
+    
+
+  </header>
+  
+  
+    
+
+<article itemscope itemtype="http://schema.org/BlogPosting">
+    <header>
+        <h1 itemprop="headline">为什么我开始关注Rust for Linux项目</h1>
+        <span class="muted">
+    <svg class="icon i-clock" viewBox="0 0 32 32"
+         width="16" height="16" fill="none" stroke="currentcolor"
+         stroke-linecap="round" stroke-linejoin="round" stroke-width="6.25%">
+        <circle cx="16" cy="16" r="14"/>
+        <path d="M16 8 L16 16 20 20"/>
+    </svg>
+    <span>11 minute read</span>
+    <svg class="icon i-edit" viewBox="0 0 32 32"
+         width="16" height="16" fill="none" stroke="currentcolor"
+         stroke-linecap="round" stroke-linejoin="round" stroke-width="6.25%">
+        <path d="M30 7 L25 2 5 22 3 29 10 27 Z M21 6 L26 11 Z M5 22 L10 27 Z"/>
+    </svg>
+
+    Published: 2025-07-01
+</span>
+    </header>
+    <div itemprop="articleBody">
+      <p>最近我开始深入关注Rust for Linux项目，这个决定背后有着几个重要的动机。让我分享一下为什么这个项目对我如此有吸引力。</p>
+<span id="continue-reading"></span><h2 id="peng-you-de-ti-yi-ji-shu-dao-lu-shang-de-zhong-yao-zhi-yin">朋友的提议：技术道路上的重要指引</h2>
+<p>一切始于一个朋友的提议。在一次技术讨论中，他提到了Rust for Linux项目，并认为这可能会是我感兴趣的方向。这个朋友了解我的技术背景和学习兴趣，他的建议让我开始重新审视自己的技术发展路径。</p>
+<p>朋友的原话是："既然你对系统编程感兴趣，为什么不看看Rust for Linux？这是一个正在改变内核开发方式的项目。"</p>
+<p>这个提议让我意识到，在技术学习的道路上，朋友的指引往往能帮助我们发现新的可能性。有时候，我们需要的不是详细的教程，而是一个方向性的建议，一个让我们重新思考技术选择的契机。</p>
+<h2 id="kong-zhi-ying-jian-de-neng-li-qu-dong-kai-fa-de-mei-li">控制硬件的能力：驱动开发的魅力</h2>
+<h3 id="ying-jian-kong-zhi-de-xi-yin-li">硬件控制的吸引力</h3>
+<p>我一直对硬件控制有着浓厚的兴趣。能够直接与硬件交互，理解设备的工作原理，这种能力让我着迷。在Rust for Linux项目中，驱动开发正是实现这种控制的核心途径。</p>
+<h3 id="cong-chou-xiang-dao-ju-ti">从抽象到具体</h3>
+<p>在大多数软件开发中，我们都在处理抽象的概念。但驱动开发不同，它让我们直接面对硬件的复杂性：</p>
+<pre data-lang="rust" style="background-color:#2b303b;color:#6c7079;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#abb2bf;">
+</span><span style="font-style:italic;color:#5f697a;">// 一个简单的GPIO驱动示例
+</span><span style="color:#abb2bf;">#[</span><span style="color:#eb6772;">module_driver</span><span style="color:#abb2bf;">]
+</span><span style="color:#cd74e8;">impl </span><span style="color:#abb2bf;">Driver </span><span style="color:#cd74e8;">for </span><span style="color:#abb2bf;">GpioDriver {
+</span><span style="color:#abb2bf;">    </span><span style="color:#cd74e8;">fn </span><span style="color:#5cb3fa;">probe</span><span style="color:#abb2bf;">(</span><span style="color:#eb6772;">dev</span><span style="color:#abb2bf;">: </span><span style="color:#adb7c9;">&amp;</span><span style="color:#cd74e8;">mut</span><span style="color:#abb2bf;"> Device) -&gt; Result&lt;()&gt; {
+</span><span style="color:#abb2bf;">        </span><span style="color:#cd74e8;">let</span><span style="color:#abb2bf;"> gpio </span><span style="color:#adb7c9;">= </span><span style="color:#abb2bf;">GpioController::new(dev)</span><span style="color:#adb7c9;">?</span><span style="color:#abb2bf;">;
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">        </span><span style="font-style:italic;color:#5f697a;">// 直接控制硬件引脚
+</span><span style="color:#abb2bf;">        </span><span style="color:#cd74e8;">for</span><span style="color:#abb2bf;"> pin </span><span style="color:#adb7c9;">in </span><span style="color:#db9d63;">0</span><span style="color:#adb7c9;">..</span><span style="color:#db9d63;">32 </span><span style="color:#abb2bf;">{
+</span><span style="color:#abb2bf;">            gpio.</span><span style="color:#5ebfcc;">set_direction</span><span style="color:#abb2bf;">(pin, Direction::Output)</span><span style="color:#adb7c9;">?</span><span style="color:#abb2bf;">;
+</span><span style="color:#abb2bf;">            gpio.</span><span style="color:#5ebfcc;">set_value</span><span style="color:#abb2bf;">(pin, Value::Low)</span><span style="color:#adb7c9;">?</span><span style="color:#abb2bf;">;
+</span><span style="color:#abb2bf;">        }
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">        gpio.</span><span style="color:#5ebfcc;">register</span><span style="color:#abb2bf;">()</span><span style="color:#adb7c9;">?</span><span style="color:#abb2bf;">;
+</span><span style="color:#abb2bf;">        Ok(())
+</span><span style="color:#abb2bf;">    }
+</span><span style="color:#abb2bf;">}
+</span></code></pre>
+<p>这种直接性让我感到兴奋。当你能够控制一个LED的亮灭，或者读取传感器的数据时，你会感受到代码与物理世界之间的直接联系。</p>
+<h3 id="ying-jian-li-jie-de-shen-du">硬件理解的深度</h3>
+<p>驱动开发不仅仅是编程，更是对硬件架构的深入理解。你需要了解：</p>
+<ul>
+<li>设备的工作原理</li>
+<li>寄存器的配置</li>
+<li>中断处理机制</li>
+<li>内存映射</li>
+<li>时序要求</li>
+</ul>
+<p>这种深度的硬件知识是其他编程领域难以获得的。</p>
+<h2 id="yan-shen-ji-shu-neng-li-xi-tong-ji-bian-cheng-de-tiao-zhan">延伸技术能力：系统级编程的挑战</h2>
+<h3 id="cong-ying-yong-ceng-dao-nei-he-ceng">从应用层到内核层</h3>
+<p>我的编程经历主要集中在上层应用开发。虽然这些经验很有价值，但我一直渴望深入到系统的核心层面。Rust for Linux项目提供了一个完美的机会，让我能够：</p>
+<ul>
+<li>理解操作系统的内部机制</li>
+<li>学习内核编程的思维方式</li>
+<li>掌握系统级调试技巧</li>
+<li>了解性能优化的底层原理</li>
+</ul>
+<h3 id="xi-tong-si-wei-de-pei-yang">系统思维的培养</h3>
+<p>系统级编程需要一种不同的思维方式。你需要考虑：</p>
+<p><strong>资源管理</strong></p>
+<pre data-lang="rust" style="background-color:#2b303b;color:#6c7079;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#abb2bf;">
+</span><span style="font-style:italic;color:#5f697a;">// 内核中的资源管理
+</span><span style="color:#cd74e8;">pub struct </span><span style="color:#abb2bf;">DriverData {
+</span><span style="color:#abb2bf;">    </span><span style="color:#eb6772;">buffer</span><span style="color:#abb2bf;">: Vec&lt;</span><span style="color:#cd74e8;">u8</span><span style="color:#abb2bf;">&gt;,
+</span><span style="color:#abb2bf;">    </span><span style="color:#eb6772;">config</span><span style="color:#abb2bf;">: Config,
+</span><span style="color:#abb2bf;">}
+</span><span style="color:#abb2bf;">
+</span><span style="color:#cd74e8;">impl </span><span style="color:#abb2bf;">Drop </span><span style="color:#cd74e8;">for </span><span style="color:#abb2bf;">DriverData {
+</span><span style="color:#abb2bf;">    </span><span style="color:#cd74e8;">fn </span><span style="color:#5cb3fa;">drop</span><span style="color:#abb2bf;">(</span><span style="color:#adb7c9;">&amp;</span><span style="color:#cd74e8;">mut </span><span style="color:#eb6772;">self</span><span style="color:#abb2bf;">) {
+</span><span style="color:#abb2bf;">        </span><span style="font-style:italic;color:#5f697a;">// 确保资源正确释放
+</span><span style="color:#abb2bf;">        </span><span style="color:#eb6772;">self</span><span style="color:#abb2bf;">.</span><span style="color:#5ebfcc;">cleanup</span><span style="color:#abb2bf;">();
+</span><span style="color:#abb2bf;">    }
+</span><span style="color:#abb2bf;">}
+</span></code></pre>
+<p><strong>并发安全</strong></p>
+<pre data-lang="rust" style="background-color:#2b303b;color:#6c7079;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#abb2bf;">
+</span><span style="font-style:italic;color:#5f697a;">// 内核中的并发处理
+</span><span style="color:#cd74e8;">use </span><span style="color:#abb2bf;">std::sync::{Arc, Mutex};
+</span><span style="color:#abb2bf;">
+</span><span style="color:#cd74e8;">struct </span><span style="color:#abb2bf;">SharedDriverState {
+</span><span style="color:#abb2bf;">    </span><span style="color:#eb6772;">data</span><span style="color:#abb2bf;">: Arc&lt;Mutex&lt;Vec&lt;</span><span style="color:#cd74e8;">u8</span><span style="color:#abb2bf;">&gt;&gt;&gt;,
+</span><span style="color:#abb2bf;">}
+</span><span style="color:#abb2bf;">
+</span><span style="color:#cd74e8;">impl </span><span style="color:#abb2bf;">SharedDriverState {
+</span><span style="color:#abb2bf;">    </span><span style="color:#cd74e8;">fn </span><span style="color:#5cb3fa;">add_data</span><span style="color:#abb2bf;">(</span><span style="color:#adb7c9;">&amp;</span><span style="color:#eb6772;">self</span><span style="color:#abb2bf;">, </span><span style="color:#eb6772;">item</span><span style="color:#abb2bf;">: </span><span style="color:#cd74e8;">u8</span><span style="color:#abb2bf;">) -&gt; Result&lt;()&gt; {
+</span><span style="color:#abb2bf;">        </span><span style="color:#cd74e8;">let mut</span><span style="color:#abb2bf;"> data </span><span style="color:#adb7c9;">= </span><span style="color:#eb6772;">self</span><span style="color:#abb2bf;">.data.</span><span style="color:#5ebfcc;">lock</span><span style="color:#abb2bf;">().</span><span style="color:#5ebfcc;">map_err</span><span style="color:#abb2bf;">(|_| Error::</span><span style="color:#db9d63;">EINVAL</span><span style="color:#abb2bf;">)</span><span style="color:#adb7c9;">?</span><span style="color:#abb2bf;">;
+</span><span style="color:#abb2bf;">        data.</span><span style="color:#5ebfcc;">push</span><span style="color:#abb2bf;">(item);
+</span><span style="color:#abb2bf;">        Ok(())
+</span><span style="color:#abb2bf;">    }
+</span><span style="color:#abb2bf;">}
+</span></code></pre>
+<p><strong>错误处理</strong></p>
+<pre data-lang="rust" style="background-color:#2b303b;color:#6c7079;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#abb2bf;">
+</span><span style="font-style:italic;color:#5f697a;">// 内核中的错误处理
+</span><span style="color:#cd74e8;">fn </span><span style="color:#5cb3fa;">device_probe</span><span style="color:#abb2bf;">(</span><span style="color:#eb6772;">dev</span><span style="color:#abb2bf;">: </span><span style="color:#adb7c9;">&amp;</span><span style="color:#cd74e8;">mut</span><span style="color:#abb2bf;"> Device) -&gt; Result&lt;()&gt; {
+</span><span style="color:#abb2bf;">    </span><span style="color:#cd74e8;">let</span><span style="color:#abb2bf;"> data </span><span style="color:#adb7c9;">= </span><span style="color:#abb2bf;">DriverData::new().</span><span style="color:#5ebfcc;">map_err</span><span style="color:#abb2bf;">(|</span><span style="color:#eb6772;">e</span><span style="color:#abb2bf;">| {
+</span><span style="color:#abb2bf;">        pr_err!(</span><span style="color:#9acc76;">&quot;Failed to create driver data: {}&quot;</span><span style="color:#abb2bf;">, e);
+</span><span style="color:#abb2bf;">        Error::</span><span style="color:#db9d63;">ENOMEM
+</span><span style="color:#abb2bf;">    })</span><span style="color:#adb7c9;">?</span><span style="color:#abb2bf;">;
+</span><span style="color:#abb2bf;">    
+</span><span style="color:#abb2bf;">    dev.</span><span style="color:#5ebfcc;">set_drvdata</span><span style="color:#abb2bf;">(data)</span><span style="color:#adb7c9;">?</span><span style="color:#abb2bf;">;
+</span><span style="color:#abb2bf;">    Ok(())
+</span><span style="color:#abb2bf;">}
+</span></code></pre>
+<h3 id="diao-shi-neng-li-de-ti-sheng">调试能力的提升</h3>
+<p>系统级编程的调试是一个完全不同的挑战。你需要学会：</p>
+<ul>
+<li>使用内核调试工具</li>
+<li>分析内核日志</li>
+<li>理解内存布局</li>
+<li>处理硬件故障</li>
+</ul>
+<p>这些技能不仅在驱动开发中有用，也会提升你在其他领域的调试能力。</p>
+<h2 id="4-rust-for-linuxxiang-mu-ji-shu-ge-xin-de-qian-yan">4. Rust for Linux项目：技术革新的前沿</h2>
+<h3 id="xiang-mu-de-chuang-xin-xing">项目的创新性</h3>
+<p>Rust for Linux项目代表了内核开发的一个新方向。它不仅仅是技术的改进，更是开发方式的革新：</p>
+<p><strong>现代化的开发体验</strong></p>
+<ul>
+<li>更好的错误处理机制</li>
+<li>编译时检查</li>
+<li>自动文档生成</li>
+<li>现代化的工具链</li>
+</ul>
+<p><strong>渐进式采用</strong></p>
+<ul>
+<li>不需要重写整个内核</li>
+<li>可以逐步迁移现有代码</li>
+<li>降低采用风险</li>
+<li>保持向后兼容</li>
+</ul>
+<h3 id="she-qu-de-li-liang">社区的力量</h3>
+<p>这个项目背后有一个活跃的社区，包括：</p>
+<ul>
+<li><strong>核心维护者</strong>：Miguel Ojeda、Wedson Almeida Filho等</li>
+<li><strong>企业支持</strong>：Google、Microsoft、Arm等公司的参与</li>
+<li><strong>开源贡献者</strong>：来自世界各地的开发者</li>
+</ul>
+<p>这种社区支持让我相信这个项目有长期的发展潜力。</p>
+<h3 id="xue-xi-zi-yuan-feng-fu">学习资源丰富</h3>
+<p>项目提供了丰富的学习资源：</p>
+<ul>
+<li>详细的文档和教程</li>
+<li>示例代码和测试用例</li>
+<li>活跃的邮件列表讨论</li>
+<li>定期的技术分享</li>
+</ul>
+<p>这些资源让学习过程变得更加顺畅。</p>
+<h2 id="ge-ren-cheng-chang-de-ji-shu-lu-jing">个人成长的技术路径</h2>
+<h3 id="ji-neng-shu-de-kuo-zhan">技能树的扩展</h3>
+<p>关注Rust for Linux项目让我意识到，技术学习不应该局限于单一领域。通过这个项目，我可以：</p>
+<p><strong>横向扩展</strong></p>
+<ul>
+<li>从应用开发到系统编程</li>
+<li>从用户空间到内核空间</li>
+<li>从软件抽象到硬件控制</li>
+</ul>
+<p><strong>纵向深入</strong></p>
+<ul>
+<li>理解操作系统的核心机制</li>
+<li>掌握底层编程技巧</li>
+<li>学习性能优化方法</li>
+</ul>
+<h3 id="ji-shu-shi-ye-de-tuo-kuan">技术视野的拓宽</h3>
+<p>这个项目让我看到了技术发展的新趋势：</p>
+<ul>
+<li><strong>系统软件的现代化</strong></li>
+<li><strong>安全性的重要性</strong></li>
+<li><strong>开源协作的力量</strong></li>
+<li><strong>技术创新的持续性</strong></li>
+</ul>
+<h3 id="zhi-ye-fa-zhan-de-si-kao">职业发展的思考</h3>
+<p>虽然我目前的工作可能不直接涉及内核开发，但学习这些技能对我的职业发展有着长远的价值：</p>
+<ul>
+<li><strong>技术深度</strong>：系统级知识让我能够更好地理解技术栈的各个层面</li>
+<li><strong>问题解决</strong>：内核编程的思维方式有助于解决复杂的技术问题</li>
+<li><strong>技术前瞻性</strong>：了解前沿技术趋势有助于做出更好的技术决策</li>
+</ul>
+<h2 id="shi-ji-de-xue-xi-ji-hua">实际的学习计划</h2>
+<h3 id="jie-duan-xing-mu-biao">阶段性目标</h3>
+<p>我为自己制定了分阶段的学习计划：</p>
+<p><strong>第一阶段：基础准备</strong></p>
+<ul>
+<li>学习Rust语言基础</li>
+<li>了解Linux内核架构</li>
+<li>熟悉开发环境搭建</li>
+</ul>
+<p><strong>第二阶段：驱动开发</strong></p>
+<ul>
+<li>从简单的字符设备驱动开始</li>
+<li>学习设备树和设备模型</li>
+<li>实践中断处理和DMA操作</li>
+</ul>
+<p><strong>第三阶段：系统集成</strong></p>
+<ul>
+<li>参与开源项目贡献</li>
+<li>学习性能优化技巧</li>
+<li>掌握调试和测试方法</li>
+</ul>
+<h3 id="shi-jian-xiang-mu">实践项目</h3>
+<p>我计划通过以下实践项目来巩固学习：</p>
+<ol>
+<li><strong>LED控制驱动</strong>：从最简单的GPIO控制开始</li>
+<li><strong>传感器驱动</strong>：学习I2C/SPI总线操作</li>
+<li><strong>网络设备驱动</strong>：理解网络协议栈</li>
+<li><strong>存储设备驱动</strong>：掌握块设备操作</li>
+</ol>
+<h3 id="she-qu-can-yu">社区参与</h3>
+<p>我计划积极参与社区活动：</p>
+<ul>
+<li>订阅邮件列表，了解项目动态</li>
+<li>参与技术讨论，分享学习心得</li>
+<li>贡献代码，哪怕是很小的改进</li>
+<li>帮助其他初学者，巩固自己的知识</li>
+</ul>
+<h2 id="dui-wei-lai-de-qi-dai">对未来的期待</h2>
+<h3 id="ji-shu-neng-li-de-ti-sheng">技术能力的提升</h3>
+<p>我希望通过这个项目能够：</p>
+<ul>
+<li><strong>掌握系统级编程技能</strong>：能够编写和维护内核代码</li>
+<li><strong>理解硬件工作原理</strong>：具备硬件调试和优化能力</li>
+<li><strong>提升问题解决能力</strong>：学会分析复杂的系统问题</li>
+<li><strong>培养工程思维</strong>：理解大规模软件项目的组织方式</li>
+</ul>
+<h3 id="ge-ren-jia-zhi-de-shi-xian">个人价值的实现</h3>
+<p>更重要的是，我希望能够：</p>
+<ul>
+<li><strong>创造有价值的技术</strong>：开发有用的驱动和工具</li>
+<li><strong>分享技术知识</strong>：帮助其他人学习系统编程</li>
+<li><strong>参与开源生态</strong>：为开源社区做出贡献</li>
+<li><strong>推动技术进步</strong>：参与技术创新的过程</li>
+</ul>
+<h3 id="chang-qi-yuan-jing">长期愿景</h3>
+<p>从长远来看，我希望能够：</p>
+<ul>
+<li>成为系统编程领域的专家</li>
+<li>在开源项目中发挥重要作用</li>
+<li>推动相关技术的发展和应用</li>
+<li>培养下一代系统程序员</li>
+</ul>
+<h2 id="zong-jie">总结</h2>
+<p>关注Rust for Linux项目对我来说不仅仅是一个技术选择，更是一个个人成长的机会。它让我能够：</p>
+<ol>
+<li><strong>探索新的技术领域</strong>：从应用开发延伸到系统编程</li>
+<li><strong>掌握硬件控制能力</strong>：通过驱动开发理解硬件工作原理</li>
+<li><strong>提升系统级技能</strong>：学习内核编程和系统优化</li>
+<li><strong>参与技术革新</strong>：成为技术发展的一部分</li>
+</ol>
+<p>这个项目代表了我对技术深度的追求，对硬件控制的渴望，以及对系统级编程的向往。我相信，通过持续的学习和实践，我能够在这个领域找到自己的位置，并为技术的发展做出贡献。</p>
+<p>技术学习是一个永无止境的过程，而Rust for Linux项目为我提供了一个新的起点。我期待着在这个旅程中遇到的每一个挑战，每一次突破，以及每一个新的发现。</p>
+<p><em>写在开始学习Rust for Linux项目之际，记录下这些想法，希望在未来的某一天回顾时，能够看到自己的成长和进步。</em></p>
+
+    </div>
+
+    
+        <footer>
+            <hr>
+            <p>
+                
+                    Published by Ben Guo
+                
+                
+                    
+                    in <a href="https://benx-guo.github.io/cola-tech/categories/rust-for-linux/">Rust For Linux</a>
+                
+                
+                    and
+                    tagged
+                    
+                        <a href="https://benx-guo.github.io/cola-tech/tags/rust-for-linux/">rust-for-linux</a>
+                        
+                            
+                                
+                                    ,
+                                
+                            
+                        
+                    
+                        <a href="https://benx-guo.github.io/cola-tech/tags/ying-jian/">硬件</a>
+                        
+                            
+                                
+                                    ,
+                                
+                            
+                        
+                    
+                        <a href="https://benx-guo.github.io/cola-tech/tags/cao-zuo-xi-tong/">操作系统</a>
+                        
+                            
+                                
+                                    and
+                                
+                            
+                        
+                    
+                        <a href="https://benx-guo.github.io/cola-tech/tags/xue-xi/">学习</a>
+                        
+                            
+                        
+                    
+                
+            </p>
+            
+            
+        </footer>
+    
+</article>
+
+
+
+  <!-- optional scripts -->
+  
+  
+  <script src="https://benx-guo.github.io/cola-tech/js/codeblock.js"></script>
+  
+
+  
+<!-- MathJax script for rendering LaTeX math equations -->
+<script>
+  MathJax = {
+    tex: {
+      inlineMath: [
+        ["$", "$"],
+        ["\\(", "\\)"],
+      ],
+      displayMath: [
+        ["$$", "$$"],
+        ["\\[", "\\]"],
+      ],
+    },
+  };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" async></script>
+
+
+  
+<script type="text/javascript" src="https://benx-guo.github.io/cola-tech/elasticlunr.min.js"></script>
+<script type="text/javascript" src="https://benx-guo.github.io/cola-tech/js/search.js"></script>
+
+
+  
+</body>
+
+</html>

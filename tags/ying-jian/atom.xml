@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+    <title>Cola Tech - 硬件</title>
+    <subtitle>A blog about technology</subtitle>
+    <link rel="self" type="application/atom+xml" href="https://benx-guo.github.io/cola-tech/tags/ying-jian/atom.xml"/>
+    <link rel="alternate" type="text/html" href="https://benx-guo.github.io/cola-tech/"/>
+    <generator uri="https://www.getzola.org/">Zola</generator>
+    <updated>2025-07-01T00:00:00+00:00</updated>
+    <id>https://benx-guo.github.io/cola-tech/tags/ying-jian/atom.xml</id>
+    <entry xml:lang="en">
+        <title>为什么我开始关注Rust for Linux项目</title>
+        <published>2025-07-01T00:00:00+00:00</published>
+        <updated>2025-07-01T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Unknown
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://benx-guo.github.io/cola-tech/why-focus-on-rust-for-linux/"/>
+        <id>https://benx-guo.github.io/cola-tech/why-focus-on-rust-for-linux/</id>
+        
+        <summary type="html">&lt;p&gt;最近我开始深入关注Rust for Linux项目，这个决定背后有着几个重要的动机。让我分享一下为什么这个项目对我如此有吸引力。&lt;&#x2F;p&gt;</summary>
+        
+    </entry>
+</feed>
