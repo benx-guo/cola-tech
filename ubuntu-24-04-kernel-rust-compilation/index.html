@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  
+  
+  <meta name="description" content="详细指南：如何在Ubuntu 24.04 LTS上安装Rust工具链并编译支持Rust的Linux内核" />
+  
+  
+
+  <title>
+    
+    在Ubuntu 24.04 LTS上编译支持Rust的Linux内核
+    
+</title>
+  <link rel="alternate" type="application/atom+xml" title="Cola Tech Atom Feed" href="https://benx-guo.github.io/cola-tech/atom.xml" />
+
+  
+  <link rel="stylesheet" href="https://benx-guo.github.io/cola-tech/site.css">
+  
+
+  
+  
+</head>
+
+<body class="hack dark main container">
+  
+    
+        
+  
+  <header class="nav-header">
+    <nav itemscope itemtype="http://schema.org/SiteNavigationElement" class="navbar">
+      <div class="nav-links">
+        
+        <a itemprop="url"
+          class=""
+          href="https://benx-guo.github.io/cola-tech/">
+          <span itemprop="name">首页</span></a>
+        
+        <a itemprop="url"
+          class=""
+          href="https://benx-guo.github.io/cola-tech//categories">
+          <span itemprop="name">分类</span></a>
+        
+        <a itemprop="url"
+          class=""
+          href="https://benx-guo.github.io/cola-tech//tags">
+          <span itemprop="name">标签</span></a>
+        
+      </div>
+    </nav>
+    
+    <div class="search-container">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" class="search-icon">
+        <path stroke-linecap="round" stroke-linejoin="round"
+          d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+      </svg>
+      <input type="text" id="search" placeholder="Search...">
+      <div class="search-results">
+        <div class="search-results__items"></div>
+      </div>
+    </div>
+    
+
+  </header>
+  
+  
+    
+
+<article itemscope itemtype="http://schema.org/BlogPosting">
+    <header>
+        <h1 itemprop="headline">在Ubuntu 24.04 LTS上编译支持Rust的Linux内核</h1>
+        <span class="muted">
+    <svg class="icon i-clock" viewBox="0 0 32 32"
+         width="16" height="16" fill="none" stroke="currentcolor"
+         stroke-linecap="round" stroke-linejoin="round" stroke-width="6.25%">
+        <circle cx="16" cy="16" r="14"/>
+        <path d="M16 8 L16 16 20 20"/>
+    </svg>
+    <span>6 minute read</span>
+    <svg class="icon i-edit" viewBox="0 0 32 32"
+         width="16" height="16" fill="none" stroke="currentcolor"
+         stroke-linecap="round" stroke-linejoin="round" stroke-width="6.25%">
+        <path d="M30 7 L25 2 5 22 3 29 10 27 Z M21 6 L26 11 Z M5 22 L10 27 Z"/>
+    </svg>
+
+    Published: 2025-07-13
+</span>
+    </header>
+    <div itemprop="articleBody">
+      <p>本文档详细介绍了如何在Ubuntu 24.04 LTS上安装Rust工具链并编译支持Rust的Linux内核。</p>
+<span id="continue-reading"></span><h2 id="zuo-zhe-huan-jing">作者环境</h2>
+<h3 id="zhu-ji-huan-jing-mac">主机环境（Mac）</h3>
+<ul>
+<li>芯片：Apple M4 Pro（ARM 架构，Apple Silicon）</li>
+<li>内存：24 GB</li>
+<li>启动磁盘：Macintosh HD</li>
+<li>操作系统：macOS Sequoia 15.5</li>
+</ul>
+<h3 id="xu-ni-ji-huan-jing">虚拟机环境</h3>
+<h4 id="xu-ni-hua-ping-tai">虚拟化平台</h4>
+<ul>
+<li>平台：UTM</li>
+<li>官方下载地址：<a href="https://mac.getutm.app/">https://mac.getutm.app/</a></li>
+</ul>
+<h4 id="ke-hu-ji-xi-tong">客户机系统</h4>
+<ul>
+<li>系统：Ubuntu 24.04 LTS（ARM64 架构）</li>
+<li>官方镜像下载：<a href="https://cdimage.ubuntu.com/releases/24.04/release/">https://cdimage.ubuntu.com/releases/24.04/release/</a></li>
+</ul>
+<h2 id="xia-zai-linuxnei-he-yuan-ma">下载Linux内核源码</h2>
+<h3 id="1-tong-guo-githubke-long-rust-for-linuxyuan-ma">1. 通过GitHub克隆Rust-For-Linux源码</h3>
+<p>你可以直接从GitHub获取Rust for Linux的最新开发源码：</p>
+<pre data-lang="bash" style="background-color:#2b303b;color:#6c7079;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#abb2bf;">
+</span><span style="color:#eb6772;">git</span><span style="color:#abb2bf;"> clone https://github.com/Rust-for-Linux/linux.git
+</span><span style="color:#5ebfcc;">cd</span><span style="color:#abb2bf;"> linux
+</span></code></pre>
+<blockquote>
+<p>官方仓库地址：<a href="https://github.com/Rust-for-Linux/linux">https://github.com/Rust-for-Linux/linux</a></p>
+</blockquote>
+<h2 id="gong-ju-lian-shuo-ming">工具链说明</h2>
+<p>本次实验所用工具链为 kernel.org 官方提供的 matching LLVM + Rust 预编译包，适用于 ARM64 架构，具体版本为：</p>
+<ul>
+<li>llvm-18.1.8-rust-1.81.0-aarch64.tar.gz</li>
+</ul>
+<p>下载地址：<a href="https://kernel.org/pub/tools/llvm/rust/">https://kernel.org/pub/tools/llvm/rust/</a></p>
+<p>下载并解压：</p>
+<pre data-lang="bash" style="background-color:#2b303b;color:#6c7079;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#abb2bf;">
+</span><span style="color:#eb6772;">wget</span><span style="color:#abb2bf;"> https://mirrors.edge.kernel.org/pub/tools/llvm/rust/files/llvm-18.1.8-rust-1.81.0-aarch64.tar.gz
+</span><span style="color:#eb6772;">mkdir -p </span><span style="color:#abb2bf;">$</span><span style="color:#eb6772;">HOME</span><span style="color:#abb2bf;">/llvm-rust
+</span><span style="color:#eb6772;">tar -xf</span><span style="color:#abb2bf;"> llvm-18.1.8-rust-1.81.0-aarch64.tar.gz</span><span style="color:#eb6772;"> -C </span><span style="color:#abb2bf;">$</span><span style="color:#eb6772;">HOME</span><span style="color:#abb2bf;">/llvm-rust</span><span style="color:#eb6772;"> --strip-components</span><span style="color:#adb7c9;">=</span><span style="color:#abb2bf;">1
+</span><span style="color:#eb6772;">cat </span><span style="color:#adb7c9;">&lt;&lt; </span><span style="color:#9acc76;">&#39;</span><span style="color:#cd74e8;">EOF</span><span style="color:#9acc76;">&#39; </span><span style="color:#adb7c9;">&gt;&gt; </span><span style="color:#eb6772;">~</span><span style="color:#abb2bf;">/.bashrc
+</span><span style="color:#9acc76;"># Rust for Linux toolchain
+</span><span style="color:#9acc76;">llvm_prefix=$HOME/llvm-rust
+</span><span style="color:#9acc76;">export PATH=$llvm_prefix/bin:$PATH
+</span><span style="color:#9acc76;">export LIBCLANG_PATH=$llvm_prefix/lib/libclang.so
+</span><span style="color:#9acc76;">export RUST_LIB_SRC=$llvm_prefix/lib/rustlib/src/rust/library
+</span><span style="color:#cd74e8;">EOF
+</span><span style="color:#5ebfcc;">source </span><span style="color:#eb6772;">~</span><span style="color:#abb2bf;">/.bashrc
+</span></code></pre>
+<p>进入源码根目录，安装 bindgen：</p>
+<pre data-lang="bash" style="background-color:#2b303b;color:#6c7079;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#abb2bf;">
+</span><span style="color:#eb6772;">sudo</span><span style="color:#abb2bf;"> apt update
+</span><span style="color:#eb6772;">sudo</span><span style="color:#abb2bf;"> apt install build-essential libncurses-dev libssl-dev bc flex bison libelf-dev
+</span><span style="color:#eb6772;">cargo</span><span style="color:#abb2bf;"> install</span><span style="color:#eb6772;"> --locked --root </span><span style="color:#abb2bf;">$</span><span style="color:#eb6772;">llvm_prefix --version </span><span style="color:#abb2bf;">$(</span><span style="color:#eb6772;">scripts/min-tool-version.sh</span><span style="color:#abb2bf;"> bindgen) bindgen-cli
+</span></code></pre>
+<p>验证工具链版本：</p>
+<pre data-lang="bash" style="background-color:#2b303b;color:#6c7079;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#abb2bf;">
+</span><span style="color:#eb6772;">clang --version
+</span><span style="color:#eb6772;">cargo --version
+</span><span style="color:#eb6772;">rustc --version
+</span><span style="color:#eb6772;">bindgen --version
+</span><span style="color:#5ebfcc;">echo </span><span style="color:#abb2bf;">$</span><span style="color:#eb6772;">RUST_LIB_SRC
+</span></code></pre>
+<p>示例输出：</p>
+<pre data-lang="bash" style="background-color:#2b303b;color:#6c7079;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#abb2bf;">
+</span><span style="color:#eb6772;">ClangBuiltLinux</span><span style="color:#abb2bf;"> clang version 18.1.8 (https://github.com/llvm/llvm-project.git 3b5b5c1ec4a3095ab096dd780e84d7ab81f3d7ff)
+</span><span style="color:#eb6772;">Target:</span><span style="color:#abb2bf;"> aarch64-unknown-linux-gnu
+</span><span style="color:#eb6772;">Thread</span><span style="color:#abb2bf;"> model: posix
+</span><span style="color:#eb6772;">InstalledDir:</span><span style="color:#abb2bf;"> /home/ben/llvm-rust/bin
+</span><span style="color:#eb6772;">cargo</span><span style="color:#abb2bf;"> 1.81.0 (2dbb1af80 2024-08-20)
+</span><span style="color:#eb6772;">rustc</span><span style="color:#abb2bf;"> 1.81.0 (eeb90cda1 2024-09-04)
+</span><span style="color:#eb6772;">bindgen</span><span style="color:#abb2bf;"> 0.65.1
+</span><span style="color:#eb6772;">/home/ben/llvm-rust/lib/rustlib/src/rust/library
+</span></code></pre>
+<blockquote>
+<p>详细说明和最新下载包请参考：<a href="https://kernel.org/pub/tools/llvm/rust/">https://kernel.org/pub/tools/llvm/rust/</a></p>
+</blockquote>
+<h2 id="jian-cha-rust-gong-ju-lian-ke-yong-xing">检查 Rust 工具链可用性</h2>
+<p>在 Rust-For-Linux 源码根目录下，执行：</p>
+<pre data-lang="bash" style="background-color:#2b303b;color:#6c7079;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#abb2bf;">
+</span><span style="color:#eb6772;">make</span><span style="color:#abb2bf;"> LLVM=1 rustavailable
+</span></code></pre>
+<p>该命令会触发 Kconfig 的检测逻辑，判断当前环境下 Rust 工具链是否满足内核编译需求，并输出详细的检测结果。</p>
+<p>示例输出：</p>
+<pre style="background-color:#2b303b;color:#6c7079;"><code><span style="color:#abb2bf;">Rust is available!
+</span></code></pre>
+<p>如果有报错，根据具体报错信息排查及解决。</p>
+<h2 id="sheng-cheng-nei-he-pei-zhi-wen-jian">生成内核配置文件</h2>
+<p>在确认 Rust 工具链可用后，接下来需要生成内核配置文件。执行以下命令：</p>
+<pre data-lang="bash" style="background-color:#2b303b;color:#6c7079;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#abb2bf;">
+</span><span style="color:#eb6772;">make</span><span style="color:#abb2bf;"> LLVM=1 defconfig
+</span></code></pre>
+<p>该命令会：</p>
+<ul>
+<li>使用 LLVM 工具链（而不是 GCC）</li>
+<li>生成默认的内核配置文件 <code>.config</code></li>
+<li>启用基本的 Rust 支持选项</li>
+</ul>
+<p>执行完成后，会在源码根目录生成 <code>.config</code> 文件，这是内核编译的配置文件。</p>
+<h2 id="pei-zhi-nei-he-xuan-xiang">配置内核选项</h2>
+<p>生成默认配置文件后，你可能需要根据具体需求调整内核选项。使用以下命令启动交互式配置界面：</p>
+<pre data-lang="bash" style="background-color:#2b303b;color:#6c7079;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#abb2bf;">
+</span><span style="color:#eb6772;">make</span><span style="color:#abb2bf;"> LLVM=1 menuconfig
+</span></code></pre>
+<h3 id="zhong-yao-de-rust-xiang-guan-pei-zhi">重要的 Rust 相关配置</h3>
+<p>在配置界面中，确保以下 Rust 相关选项已启用：</p>
+<ol>
+<li>
+<p><strong>Rust support</strong> (<code>CONFIG_RUST=y</code>)</p>
+<ul>
+<li>位置：<code>General setup</code> → <code>Rust support</code></li>
+<li>这是启用 Rust 支持的核心选项</li>
+</ul>
+</li>
+<li>
+<p><strong>Rust samples</strong> (<code>CONFIG_SAMPLES_RUST=y</code>)</p>
+<ul>
+<li>位置：<code>Kernel hacking</code> → <code>Sample kernel code</code> → <code>Rust samples</code></li>
+<li>用于编译 Rust 示例代码</li>
+</ul>
+</li>
+</ol>
+<h3 id="bao-cun-pei-zhi">保存配置</h3>
+<p>完成配置后：</p>
+<ul>
+<li>按 <code>S</code> 保存配置到 <code>.config</code> 文件</li>
+<li>按 <code>Q</code> 退出配置界面</li>
+</ul>
+<h2 id="bian-yi-nei-he">编译内核</h2>
+<p>配置完成后，开始编译内核。使用以下命令：</p>
+<pre data-lang="bash" style="background-color:#2b303b;color:#6c7079;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#abb2bf;">
+</span><span style="color:#eb6772;">make</span><span style="color:#abb2bf;"> LLVM=1</span><span style="color:#eb6772;"> -j$(nproc)
+</span></code></pre>
+<h3 id="ming-ling-can-shu-shuo-ming">命令参数说明</h3>
+<ul>
+<li><code>LLVM=1</code>：使用 LLVM 工具链进行编译</li>
+<li><code>-j$(nproc)</code>：使用所有可用的 CPU 核心进行并行编译，<code>$(nproc)</code> 会自动检测 CPU 核心数</li>
+</ul>
+<h3 id="bian-yi-guo-cheng">编译过程</h3>
+<p>编译过程可能需要较长时间（通常 30 分钟到 2 小时，取决于硬件配置），期间会显示：</p>
+<ol>
+<li><strong>配置检查</strong>：验证工具链和配置</li>
+<li><strong>Rust 代码编译</strong>：编译 Rust 编写的内核代码</li>
+<li><strong>C 代码编译</strong>：编译传统的 C 语言内核代码</li>
+<li><strong>链接阶段</strong>：将所有目标文件链接成最终的内核镜像</li>
+</ol>
+<h3 id="bian-yi-shu-chu">编译输出</h3>
+<p>编译成功后，会在以下位置生成关键文件：</p>
+<ul>
+<li><strong>内核镜像</strong>：<code>arch/arm64/boot/Image</code>（ARM64 架构）</li>
+<li><strong>内核模块</strong>：<code>*.ko</code> 文件在相应目录中</li>
+<li><strong>编译日志</strong>：详细的编译信息会显示在终端</li>
+</ul>
+<h3 id="chang-jian-wen-ti-chu-li">常见问题处理</h3>
+<p>如果编译过程中出现错误：</p>
+<ol>
+<li><strong>内存不足</strong>：减少并行编译数量，使用 <code>-j2</code> 或 <code>-j4</code></li>
+<li><strong>依赖缺失</strong>：根据错误信息安装缺失的开发包</li>
+<li><strong>配置冲突</strong>：重新运行 <code>make LLVM=1 menuconfig</code> 调整配置</li>
+</ol>
+<blockquote>
+<p><strong>提示</strong>：编译过程中请保持网络连接，因为可能需要下载额外的依赖包。</p>
+</blockquote>
+<h2 id="yan-zheng-bian-yi-jie-guo">验证编译结果</h2>
+<p>编译完成后，验证内核镜像是否成功生成：</p>
+<pre data-lang="bash" style="background-color:#2b303b;color:#6c7079;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#abb2bf;">
+</span><span style="color:#eb6772;">ls -alF</span><span style="color:#abb2bf;"> arch/arm64/boot/Image
+</span></code></pre>
+<h3 id="yu-qi-shu-chu">预期输出</h3>
+<p>如果编译成功，应该看到类似以下输出：</p>
+<pre data-lang="bash" style="background-color:#2b303b;color:#6c7079;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#abb2bf;">
+</span><span style="color:#eb6772;">-rwxrwxr-x</span><span style="color:#abb2bf;"> 1 ben ben 40417792 Jul 13 13:09 arch/arm64/boot/Image</span><span style="color:#adb7c9;">*
+</span></code></pre>
+<h3 id="qi-ta-zhong-yao-wen-jian">其他重要文件</h3>
+<p>编译成功后，还可以检查以下文件：</p>
+<pre data-lang="bash" style="background-color:#2b303b;color:#6c7079;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#abb2bf;">
+</span><span style="font-style:italic;color:#5f697a;"># 检查编译日志
+</span><span style="color:#eb6772;">ls -la</span><span style="color:#abb2bf;"> .config
+</span><span style="color:#abb2bf;">
+</span><span style="font-style:italic;color:#5f697a;"># 检查内核版本信息
+</span><span style="color:#eb6772;">cat</span><span style="color:#abb2bf;"> include/config/kernel.release
+</span></code></pre>
+<blockquote>
+<p><strong>成功标志</strong>：如果能看到 <code>arch/arm64/boot/Image</code> 文件且大小正常（通常 30-50 MB），说明内核编译成功。</p>
+</blockquote>
+
+    </div>
+
+    
+        <footer>
+            <hr>
+            <p>
+                
+                    Published by Ben Guo
+                
+                
+                    
+                    in <a href="https://benx-guo.github.io/cola-tech/categories/rust-for-linux/">Rust For Linux</a>
+                
+                
+                    and
+                    tagged
+                    
+                        <a href="https://benx-guo.github.io/cola-tech/tags/rust-for-linux/">rust-for-linux</a>
+                        
+                            
+                                
+                                    ,
+                                
+                            
+                        
+                    
+                        <a href="https://benx-guo.github.io/cola-tech/tags/nei-he-kai-fa/">内核开发</a>
+                        
+                            
+                                
+                                    and
+                                
+                            
+                        
+                    
+                        <a href="https://benx-guo.github.io/cola-tech/tags/ubuntu-24-04-lts/">Ubuntu 24.04 LTS</a>
+                        
+                            
+                        
+                    
+                
+            </p>
+            
+            
+        </footer>
+    
+</article>
+
+
+
+  <!-- optional scripts -->
+  
+  
+  <script src="https://benx-guo.github.io/cola-tech/js/codeblock.js"></script>
+  
+
+  
+<!-- MathJax script for rendering LaTeX math equations -->
+<script>
+  MathJax = {
+    tex: {
+      inlineMath: [
+        ["$", "$"],
+        ["\\(", "\\)"],
+      ],
+      displayMath: [
+        ["$$", "$$"],
+        ["\\[", "\\]"],
+      ],
+    },
+  };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" async></script>
+
+
+  
+<script type="text/javascript" src="https://benx-guo.github.io/cola-tech/elasticlunr.min.js"></script>
+<script type="text/javascript" src="https://benx-guo.github.io/cola-tech/js/search.js"></script>
+
+
+  
+</body>
+
+</html>

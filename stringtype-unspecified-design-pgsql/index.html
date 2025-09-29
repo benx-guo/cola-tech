@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  
+  
+  <meta name="description" content="分享一个JDBC驱动有趣的小彩蛋：JDBC 的 stringtype=unspecified 参数和 PostgreSQL 类型系统的奇妙互动。" />
+  
+  
+
+  <title>
+    
+    PostgreSQL JDBC 中 stringtype=unspecified 背后的设计趣事
+    
+</title>
+  <link rel="alternate" type="application/atom+xml" title="Cola Tech Atom Feed" href="https://benx-guo.github.io/cola-tech/atom.xml" />
+
+  
+  <link rel="stylesheet" href="https://benx-guo.github.io/cola-tech/site.css">
+  
+
+  
+  
+</head>
+
+<body class="hack dark main container">
+  
+    
+        
+  
+  <header class="nav-header">
+    <nav itemscope itemtype="http://schema.org/SiteNavigationElement" class="navbar">
+      <div class="nav-links">
+        
+        <a itemprop="url"
+          class=""
+          href="https://benx-guo.github.io/cola-tech/">
+          <span itemprop="name">首页</span></a>
+        
+        <a itemprop="url"
+          class=""
+          href="https://benx-guo.github.io/cola-tech//categories">
+          <span itemprop="name">分类</span></a>
+        
+        <a itemprop="url"
+          class=""
+          href="https://benx-guo.github.io/cola-tech//tags">
+          <span itemprop="name">标签</span></a>
+        
+      </div>
+    </nav>
+    
+    <div class="search-container">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" class="search-icon">
+        <path stroke-linecap="round" stroke-linejoin="round"
+          d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+      </svg>
+      <input type="text" id="search" placeholder="Search...">
+      <div class="search-results">
+        <div class="search-results__items"></div>
+      </div>
+    </div>
+    
+
+  </header>
+  
+  
+    
+
+<article itemscope itemtype="http://schema.org/BlogPosting">
+    <header>
+        <h1 itemprop="headline">PostgreSQL JDBC 中 stringtype=unspecified 背后的设计趣事</h1>
+        <span class="muted">
+    <svg class="icon i-clock" viewBox="0 0 32 32"
+         width="16" height="16" fill="none" stroke="currentcolor"
+         stroke-linecap="round" stroke-linejoin="round" stroke-width="6.25%">
+        <circle cx="16" cy="16" r="14"/>
+        <path d="M16 8 L16 16 20 20"/>
+    </svg>
+    <span>5 minute read</span>
+    <svg class="icon i-edit" viewBox="0 0 32 32"
+         width="16" height="16" fill="none" stroke="currentcolor"
+         stroke-linecap="round" stroke-linejoin="round" stroke-width="6.25%">
+        <path d="M30 7 L25 2 5 22 3 29 10 27 Z M21 6 L26 11 Z M5 22 L10 27 Z"/>
+    </svg>
+
+    Published: 2025-08-05
+</span>
+    </header>
+    <div itemprop="articleBody">
+      <p>有时候，写代码就像在解谜。你以为一切都按部就班，结果 PostgreSQL 给你来一句：</p>
+<pre style="background-color:#2b303b;color:#6c7079;"><code><span style="color:#abb2bf;">ERROR: column &quot;meta&quot; is of type jsonb but expression is of type character varying
+</span></code></pre>
+<p>这时候，网上一搜，大家都在说：在 JDBC 连接串里加上 <code>stringtype=unspecified</code> 就好了。</p>
+<p>你试一试，果然，世界安静了。</p>
+<p>这事儿有点意思。明明只是多了一个参数，数据库和驱动之间的气氛就突然变得融洽起来。你有没有好奇过，这背后到底发生了什么？</p>
+<span id="continue-reading"></span><h3 id="lei-xing-de-zhi-ao-yu-mo-qi">类型的"执拗"与"默契"</h3>
+<p>PostgreSQL 是个很有原则的家伙。它对类型的执着，像极了老派工匠：jsonb 就是 jsonb，varchar 就是 varchar，别想糊弄过去。哪怕你传进去的字符串长得再像 JSON，也得明说"我这是 JSON"。</p>
+<p>JDBC 驱动呢？它有点像个中间人，默认情况下很谨慎：你说是 String，我就发 varchar，绝不自作主张。</p>
+<p>但 <code>stringtype=unspecified</code> 这个小开关一开，JDBC 就像说："这回我不管了，PostgreSQL 你自己看着办吧。" 于是数据库一看，哦，目标字段是 jsonb，那我就当 JSON 处理。</p>
+<h3 id="qu-dong-shi-xian-li-de-mi-mi">驱动实现里的秘密</h3>
+<p>如果你好奇 JDBC 驱动是怎么实现这个"不管了"的，可以看看源代码。在 PostgreSQL JDBC 驱动的 GitHub 仓库里，这个功能主要在几个关键文件中实现：</p>
+<p><strong>1. 连接参数处理</strong> (<a href="https://github.com/pgjdbc/pgjdbc/blob/master/pgjdbc/src/main/java/org/postgresql/jdbc/PgConnection.java#L327">PgConnection.java</a>)</p>
+<pre data-lang="java" style="background-color:#2b303b;color:#6c7079;" class="language-java "><code class="language-java" data-lang="java"><span style="color:#abb2bf;">
+</span><span style="color:#f0c678;">String</span><span style="color:#abb2bf;"> stringType </span><span style="color:#adb7c9;">= </span><span style="color:#f0c678;">PGProperty</span><span style="color:#abb2bf;">.</span><span style="color:#db9d63;">STRING_TYPE</span><span style="color:#abb2bf;">.</span><span style="color:#eb6772;">getOrDefault</span><span style="color:#abb2bf;">(info);
+</span><span style="color:#cd74e8;">if </span><span style="color:#abb2bf;">(stringType </span><span style="color:#adb7c9;">!= </span><span style="color:#db9d63;">null</span><span style="color:#abb2bf;">) {
+</span><span style="color:#abb2bf;">    </span><span style="color:#cd74e8;">if </span><span style="color:#abb2bf;">(</span><span style="color:#9acc76;">&quot;unspecified&quot;</span><span style="color:#abb2bf;">.</span><span style="color:#eb6772;">equalsIgnoreCase</span><span style="color:#abb2bf;">(stringType)) {
+</span><span style="color:#abb2bf;">        bindStringAsVarchar </span><span style="color:#adb7c9;">= </span><span style="color:#db9d63;">false</span><span style="color:#abb2bf;">;
+</span><span style="color:#abb2bf;">    } </span><span style="color:#cd74e8;">else if </span><span style="color:#abb2bf;">(</span><span style="color:#9acc76;">&quot;varchar&quot;</span><span style="color:#abb2bf;">.</span><span style="color:#eb6772;">equalsIgnoreCase</span><span style="color:#abb2bf;">(stringType)) {
+</span><span style="color:#abb2bf;">        bindStringAsVarchar </span><span style="color:#adb7c9;">= </span><span style="color:#db9d63;">true</span><span style="color:#abb2bf;">;
+</span><span style="color:#abb2bf;">    } </span><span style="color:#cd74e8;">else </span><span style="color:#abb2bf;">{
+</span><span style="color:#abb2bf;">        </span><span style="color:#cd74e8;">throw new </span><span style="color:#f0c678;">PSQLException</span><span style="color:#abb2bf;">(
+</span><span style="color:#abb2bf;">            </span><span style="color:#db9d63;">GT</span><span style="color:#abb2bf;">.</span><span style="color:#eb6772;">tr</span><span style="color:#abb2bf;">(</span><span style="color:#9acc76;">&quot;Unsupported value for stringtype parameter: {0}&quot;</span><span style="color:#abb2bf;">, stringType),
+</span><span style="color:#abb2bf;">            </span><span style="color:#f0c678;">PSQLState</span><span style="color:#abb2bf;">.</span><span style="color:#db9d63;">INVALID_PARAMETER_VALUE</span><span style="color:#abb2bf;">);
+</span><span style="color:#abb2bf;">    }
+</span><span style="color:#abb2bf;">} </span><span style="color:#cd74e8;">else </span><span style="color:#abb2bf;">{
+</span><span style="color:#abb2bf;">    bindStringAsVarchar </span><span style="color:#adb7c9;">= </span><span style="color:#db9d63;">true</span><span style="color:#abb2bf;">;
+</span><span style="color:#abb2bf;">}
+</span></code></pre>
+<p><strong>2. 参数类型设置</strong> (<a href="https://github.com/pgjdbc/pgjdbc/blob/master/pgjdbc/src/main/java/org/postgresql/jdbc/PgPreparedStatement.java#L388">PgPreparedStatement.java</a>)</p>
+<pre data-lang="java" style="background-color:#2b303b;color:#6c7079;" class="language-java "><code class="language-java" data-lang="java"><span style="color:#abb2bf;">
+</span><span style="color:#cd74e8;">public</span><span style="color:#abb2bf;"> void </span><span style="color:#eb6772;">setString</span><span style="color:#abb2bf;">(@</span><span style="color:#f0c678;">Positive </span><span style="color:#cd74e8;">int</span><span style="color:#abb2bf;"> parameterIndex, @</span><span style="color:#f0c678;">Nullable String</span><span style="color:#abb2bf;"> x) throws </span><span style="color:#f0c678;">SQLException </span><span style="color:#abb2bf;">{
+</span><span style="color:#abb2bf;">    </span><span style="color:#eb6772;">checkClosed</span><span style="color:#abb2bf;">();
+</span><span style="color:#abb2bf;">    </span><span style="color:#eb6772;">setString</span><span style="color:#abb2bf;">(parameterIndex, x, </span><span style="color:#eb6772;">getStringType</span><span style="color:#abb2bf;">());
+</span><span style="color:#abb2bf;">}
+</span><span style="color:#abb2bf;">
+</span><span style="color:#cd74e8;">private int </span><span style="color:#eb6772;">getStringType</span><span style="color:#abb2bf;">() {
+</span><span style="color:#abb2bf;">    </span><span style="color:#cd74e8;">return</span><span style="color:#abb2bf;"> connection.</span><span style="color:#eb6772;">getStringVarcharFlag</span><span style="color:#abb2bf;">() </span><span style="color:#adb7c9;">? </span><span style="color:#f0c678;">Oid</span><span style="color:#abb2bf;">.</span><span style="color:#db9d63;">VARCHAR </span><span style="color:#adb7c9;">: </span><span style="color:#f0c678;">Oid</span><span style="color:#abb2bf;">.</span><span style="color:#db9d63;">UNSPECIFIED</span><span style="color:#abb2bf;">;
+</span><span style="color:#abb2bf;">}
+</span></code></pre>
+<p><strong>3. 协议层实现</strong> (<a href="https://github.com/pgjdbc/pgjdbc/blob/master/pgjdbc/src/main/java/org/postgresql/core/v3/QueryExecutorImpl.java#L1659">QueryExecutorImpl.java</a>)</p>
+<pre data-lang="java" style="background-color:#2b303b;color:#6c7079;" class="language-java "><code class="language-java" data-lang="java"><span style="color:#abb2bf;">
+</span><span style="color:#cd74e8;">private</span><span style="color:#abb2bf;"> void </span><span style="color:#eb6772;">sendBind</span><span style="color:#abb2bf;">(</span><span style="color:#f0c678;">SimpleQuery</span><span style="color:#abb2bf;"> query, </span><span style="color:#f0c678;">SimpleParameterList</span><span style="color:#abb2bf;"> params, @</span><span style="color:#f0c678;">Nullable Portal</span><span style="color:#abb2bf;"> portal,
+</span><span style="color:#abb2bf;">	 </span><span style="color:#cd74e8;">boolean</span><span style="color:#abb2bf;"> noBinaryTransfer) throws </span><span style="color:#f0c678;">IOException </span><span style="color:#abb2bf;">{
+</span><span style="color:#abb2bf;">    </span><span style="font-style:italic;color:#5f697a;">// Send Bind.
+</span><span style="color:#abb2bf;">    </span><span style="font-style:italic;color:#5f697a;">// 当参数类型为 Oid.UNSPECIFIED (0) 时
+</span><span style="color:#abb2bf;">    </span><span style="font-style:italic;color:#5f697a;">// PostgreSQL 会根据目标字段类型自动推断
+</span><span style="color:#abb2bf;">}
+</span></code></pre>
+<p>默认情况下，当你调用 <code>ps.setString(1, "{\"name\": \"Ben\"}")</code> 时，驱动会发送：</p>
+<pre style="background-color:#2b303b;color:#6c7079;"><code><span style="color:#abb2bf;">BIND
+</span><span style="color:#abb2bf;">  parameter: 1
+</span><span style="color:#abb2bf;">  type: 1043 (varchar)
+</span><span style="color:#abb2bf;">  value: {&quot;name&quot;: &quot;Ben&quot;}
+</span></code></pre>
+<p>但设置了 <code>stringtype=unspecified</code> 后，驱动会发送：</p>
+<pre style="background-color:#2b303b;color:#6c7079;"><code><span style="color:#abb2bf;">BIND
+</span><span style="color:#abb2bf;">  parameter: 1
+</span><span style="color:#abb2bf;">  type: 0 (unspecified)
+</span><span style="color:#abb2bf;">  value: {&quot;name&quot;: &quot;Ben&quot;}
+</span></code></pre>
+<p>这个 <code>type: 0</code> 就是关键。PostgreSQL 看到类型是 0（unspecified），就会根据目标字段的类型来决定怎么处理这个参数。</p>
+<h3 id="postgresql-de-json-jie-xi-mo-fa">PostgreSQL 的 JSON 解析魔法</h3>
+<p>当 PostgreSQL 收到类型为 unspecified 的参数时，它会调用相应的类型转换函数。对于 jsonb 字段，会调用 <code>jsonb_in()</code> 函数。</p>
+<p>在 PostgreSQL 的源码中，这个处理过程主要在以下文件中：</p>
+<p><strong>1. JSON 解析实现</strong> (<a href="https://github.com/postgres/postgres/blob/master/src/backend/utils/adt/jsonb.c#L73">jsonb.c</a>)</p>
+<pre data-lang="c" style="background-color:#2b303b;color:#6c7079;" class="language-c "><code class="language-c" data-lang="c"><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">Datum
+</span><span style="color:#5cb3fa;">jsonb_in</span><span style="color:#abb2bf;">(</span><span style="color:#eb6772;">PG_FUNCTION_ARGS</span><span style="color:#abb2bf;">)
+</span><span style="color:#abb2bf;">{
+</span><span style="color:#abb2bf;">    </span><span style="color:#cd74e8;">char       </span><span style="color:#adb7c9;">*</span><span style="color:#abb2bf;">json </span><span style="color:#adb7c9;">= </span><span style="color:#eb6772;">PG_GETARG_CSTRING</span><span style="color:#abb2bf;">(</span><span style="color:#db9d63;">0</span><span style="color:#abb2bf;">);
+</span><span style="color:#abb2bf;">    </span><span style="font-style:italic;color:#5f697a;">// 1. 检查字符串是否是有效的 JSON
+</span><span style="color:#abb2bf;">    </span><span style="font-style:italic;color:#5f697a;">// 2. 解析 JSON 结构
+</span><span style="color:#abb2bf;">    </span><span style="font-style:italic;color:#5f697a;">// 3. 转换成内部的 jsonb 格式
+</span><span style="color:#abb2bf;">    </span><span style="color:#cd74e8;">return </span><span style="color:#eb6772;">jsonb_from_cstring</span><span style="color:#abb2bf;">(json, </span><span style="color:#5ebfcc;">strlen</span><span style="color:#abb2bf;">(json), </span><span style="color:#db9d63;">false</span><span style="color:#abb2bf;">, fcinfo-&gt;context);
+</span><span style="color:#abb2bf;">}
+</span></code></pre>
+<p><strong>2. 类型转换逻辑</strong> (<a href="https://github.com/postgres/postgres/blob/master/src/backend/utils/adt/jsonfuncs.c#L518">jsonfuncs.c</a>)</p>
+<pre data-lang="c" style="background-color:#2b303b;color:#6c7079;" class="language-c "><code class="language-c" data-lang="c"><span style="color:#abb2bf;">
+</span><span style="color:#cd74e8;">bool
+</span><span style="color:#5cb3fa;">pg_parse_json_or_errsave</span><span style="color:#abb2bf;">(JsonLexContext </span><span style="color:#adb7c9;">*</span><span style="color:#eb6772;">lex</span><span style="color:#abb2bf;">, </span><span style="color:#cd74e8;">const</span><span style="color:#abb2bf;"> JsonSemAction </span><span style="color:#adb7c9;">*</span><span style="color:#eb6772;">sem</span><span style="color:#abb2bf;">,
+</span><span style="color:#abb2bf;">						 Node </span><span style="color:#adb7c9;">*</span><span style="color:#eb6772;">escontext</span><span style="color:#abb2bf;">)
+</span><span style="color:#abb2bf;">{
+</span><span style="color:#abb2bf;">	JsonParseErrorType result;
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">	result </span><span style="color:#adb7c9;">= </span><span style="color:#eb6772;">pg_parse_json</span><span style="color:#abb2bf;">(lex, sem);
+</span><span style="color:#abb2bf;">	</span><span style="color:#cd74e8;">if </span><span style="color:#abb2bf;">(result </span><span style="color:#adb7c9;">!=</span><span style="color:#abb2bf;"> JSON_SUCCESS)
+</span><span style="color:#abb2bf;">	{
+</span><span style="color:#abb2bf;">		</span><span style="color:#eb6772;">json_errsave_error</span><span style="color:#abb2bf;">(result, lex, escontext);
+</span><span style="color:#abb2bf;">		</span><span style="color:#cd74e8;">return </span><span style="color:#db9d63;">false</span><span style="color:#abb2bf;">;
+</span><span style="color:#abb2bf;">	}
+</span><span style="color:#abb2bf;">	</span><span style="color:#cd74e8;">return </span><span style="color:#db9d63;">true</span><span style="color:#abb2bf;">;
+</span><span style="color:#abb2bf;">}
+</span></code></pre>
+<p>所以当你传入 <code>"{\"name\": \"Ben\"}"</code> 时，PostgreSQL 会：</p>
+<ul>
+<li>发现目标字段是 jsonb</li>
+<li>调用 jsonb_in() 解析这个字符串</li>
+<li>验证 JSON 格式正确</li>
+<li>成功插入</li>
+</ul>
+<p>这就是为什么同样的字符串，有时候会报错，有时候又能成功的原因。</p>
+<h3 id="xiao-can-shu-da-shi-jie">小参数，大世界</h3>
+<p>说到底，这就是个参数的事儿。但仔细想想，还挺有意思的。</p>
+<p>一个参数，就能让两个系统之间的对话方式完全改变。JDBC 从"我帮你决定类型"变成"你自己看着办"，PostgreSQL 从"我不接受模糊"变成"我来推断一下"。</p>
+<p>这种设计上的小细节，有时候比那些宏大的架构图更有意思。</p>
+<h3 id="xia-ci-yu-dao-bu-fang-hui-xin-yi-xiao">下次遇到，不妨会心一笑</h3>
+<p>所以，下次再遇到 <code>stringtype=unspecified</code>，别急着吐槽"又出幺蛾子了"。也许，这正是数据库世界里的一点小幽默。</p>
+<p>毕竟，写代码嘛，除了让它跑起来，偶尔乐在其中，也挺好。</p>
+
+    </div>
+
+    
+        <footer>
+            <hr>
+            <p>
+                
+                    Published by Ben Guo
+                
+                
+                    
+                    in <a href="https://benx-guo.github.io/cola-tech/categories/ji-shu-za-tan/">技术杂谈</a>
+                
+                
+                    and
+                    tagged
+                    
+                        <a href="https://benx-guo.github.io/cola-tech/tags/postgresql/">PostgreSQL</a>
+                        
+                            
+                                
+                                    ,
+                                
+                            
+                        
+                    
+                        <a href="https://benx-guo.github.io/cola-tech/tags/jdbc/">JDBC</a>
+                        
+                            
+                                
+                                    ,
+                                
+                            
+                        
+                    
+                        <a href="https://benx-guo.github.io/cola-tech/tags/qu-shi/">趣事</a>
+                        
+                            
+                                
+                                    ,
+                                
+                            
+                        
+                    
+                        <a href="https://benx-guo.github.io/cola-tech/tags/lei-xing-xi-tong/">类型系统</a>
+                        
+                            
+                                
+                                    ,
+                                
+                            
+                        
+                    
+                        <a href="https://benx-guo.github.io/cola-tech/tags/she-ji-li-nian/">设计理念</a>
+                        
+                            
+                                
+                                    and
+                                
+                            
+                        
+                    
+                        <a href="https://benx-guo.github.io/cola-tech/tags/qu-dong/">驱动</a>
+                        
+                            
+                        
+                    
+                
+            </p>
+            
+            
+        </footer>
+    
+</article>
+
+
+
+  <!-- optional scripts -->
+  
+  
+  <script src="https://benx-guo.github.io/cola-tech/js/codeblock.js"></script>
+  
+
+  
+<!-- MathJax script for rendering LaTeX math equations -->
+<script>
+  MathJax = {
+    tex: {
+      inlineMath: [
+        ["$", "$"],
+        ["\\(", "\\)"],
+      ],
+      displayMath: [
+        ["$$", "$$"],
+        ["\\[", "\\]"],
+      ],
+    },
+  };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" async></script>
+
+
+  
+<script type="text/javascript" src="https://benx-guo.github.io/cola-tech/elasticlunr.min.js"></script>
+<script type="text/javascript" src="https://benx-guo.github.io/cola-tech/js/search.js"></script>
+
+
+  
+</body>
+
+</html>

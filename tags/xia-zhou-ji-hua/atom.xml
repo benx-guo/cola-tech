@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+    <title>Cola Tech - 下周计划</title>
+    <subtitle>A blog about technology</subtitle>
+    <link rel="self" type="application/atom+xml" href="https://benx-guo.github.io/cola-tech/tags/xia-zhou-ji-hua/atom.xml"/>
+    <link rel="alternate" type="text/html" href="https://benx-guo.github.io/cola-tech/"/>
+    <generator uri="https://www.getzola.org/">Zola</generator>
+    <updated>2025-09-28T00:00:00+00:00</updated>
+    <id>https://benx-guo.github.io/cola-tech/tags/xia-zhou-ji-hua/atom.xml</id>
+    <entry xml:lang="en">
+        <title>Day 14 下周计划</title>
+        <published>2025-09-28T00:00:00+00:00</published>
+        <updated>2025-09-28T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Unknown
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://benx-guo.github.io/cola-tech/oscamp/oscamp-20250928/"/>
+        <id>https://benx-guo.github.io/cola-tech/oscamp/oscamp-20250928/</id>
+        
+        <content type="html" xml:base="https://benx-guo.github.io/cola-tech/oscamp/oscamp-20250928/">&lt;div class=&quot;banner-container&quot; style=&quot;width: 100%; margin: 1em 0; text-align: center; position: relative;&quot;&gt;
+  
+  &lt;a href=&quot;https:&#x2F;&#x2F;opencamp.cn&#x2F;os2edu&#x2F;camp&#x2F;2025fall&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot; style=&quot;text-decoration: none; display: block; cursor: pointer; outline: none;&quot;&gt;
+  
+    &lt;img src=&quot;https:&#x2F;&#x2F;benx-guo.github.io&#x2F;cola-tech&#x2F;oscamp_header.png&quot; alt=&quot;2025 秋冬季开源操作系统训练营 Day 14&quot; title=&quot;2025 秋冬季开源操作系统训练营 Day 14&quot;
+         style=&quot;width: 100%; max-width: 100%; height: auto; display: block; margin: 0 auto; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.15); transition: transform 0.3s ease, box-shadow 0.3s ease;&quot;&gt;
+    
+    &lt;div class=&quot;banner-caption&quot; style=&quot;margin-top: 0.5em; text-align: center;&quot;&gt;
+      &lt;span class=&quot;banner-text&quot;&gt;Day 14&lt;&#x2F;span&gt;
+    &lt;&#x2F;div&gt;
+    
+  
+  &lt;&#x2F;a&gt;
+  
+&lt;&#x2F;div&gt;
+
+&lt;style&gt;
+.banner-container {
+  background: linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.02) 100%);
+  border-radius: 16px;
+  padding: 1em;
+  border: 1px solid rgba(255,255,255,0.1);
+}
+
+.banner-container img:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+}
+
+.banner-text {
+  font-family: inherit;
+  font-size: 0.9em;
+  font-weight: 400;
+  color: var(--text-color, #fff);
+  text-align: center;
+  display: inline-block;
+  opacity: 0.8;
+  letter-spacing: 0.5px;
+}
+
+&#x2F;* 移除链接的所有视觉效果 *&#x2F;
+.banner-container a {
+  outline: none !important;
+  border: none !important;
+  -webkit-tap-highlight-color: transparent;
+  text-decoration: none !important;
+  box-shadow: none !important;
+}
+
+&#x2F;* 移除外部链接图标 *&#x2F;
+.banner-container a::after {
+  content: none !important;
+  display: none !important;
+}
+
+.banner-container a::before {
+  content: none !important;
+  display: none !important;
+}
+
+&#x2F;* 移除所有可能的图标和装饰 *&#x2F;
+.banner-container a *::after {
+  content: none !important;
+  display: none !important;
+}
+
+.banner-container a *::before {
+  content: none !important;
+  display: none !important;
+}
+
+&#x2F;* 移除可能的背景图标 *&#x2F;
+.banner-container a {
+  background-image: none !important;
+  background: none !important;
+}
+
+.banner-container a:focus {
+  outline: none !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.banner-container a:active {
+  outline: none !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.banner-container a:hover {
+  outline: none !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.banner-container a:visited {
+  outline: none !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+@media (max-width: 768px) {
+  .banner-container {
+    padding: 0.8em;
+  }
+  
+  .banner-text {
+    font-size: 0.85em !important;
+  }
+}
+&lt;&#x2F;style&gt;
+&lt;h1 id=&quot;dang-qian-gan-shou&quot;&gt;当前感受&lt;&#x2F;h1&gt;
+&lt;h2 id=&quot;guan-yu-dai-ma-shi-xian-bu-fen&quot;&gt;关于代码实现部分&lt;&#x2F;h2&gt;
+&lt;p&gt;实现ch3的功能，从实现难度来讲，不算很高。需要在task结构中维护一个task级别的syscall统计结构。&lt;&#x2F;p&gt;
+&lt;p&gt;但是，从ch1-ch3整个系统底座涉及到的知识点比较多，尤其是risc-v指令集部分，由于第一次接触，理解上需要一些时间成本。&lt;&#x2F;p&gt;
+&lt;p&gt;后续仍需要加强，补足这一部分的缺失。&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;guan-yu-wen-dang-bu-fen&quot;&gt;关于文档部分&lt;&#x2F;h2&gt;
+&lt;p&gt;关于问答题部分，目前没有办法流畅地给出答案，主要原因还是对已经实现的部分没有完全吃透，仍需要在不影响整体进度的前提下，吃透所有的知识点。&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;xia-zhou-ji-hua&quot;&gt;下周计划&lt;&#x2F;h1&gt;
+&lt;p&gt;针对 &lt;a href=&quot;https:&#x2F;&#x2F;rcore-os.cn&#x2F;rCore-Tutorial-Book-v3&#x2F;chapter0&#x2F;2os-interface.html&quot;&gt;rCore-Tutorial-Book 第三版&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;ol&gt;
+&lt;li&gt;熟悉第四章 &lt;code&gt;ch4&lt;&#x2F;code&gt; 章节的内容&lt;&#x2F;li&gt;
+&lt;li&gt;回顾第零章到第三章的内容以及代码实现细节&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+</content>
+        
+    </entry>
+</feed>

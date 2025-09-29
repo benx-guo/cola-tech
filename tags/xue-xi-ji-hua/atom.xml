@@ -1,0 +1,718 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+    <title>Cola Tech - 学习计划</title>
+    <subtitle>A blog about technology</subtitle>
+    <link rel="self" type="application/atom+xml" href="https://benx-guo.github.io/cola-tech/tags/xue-xi-ji-hua/atom.xml"/>
+    <link rel="alternate" type="text/html" href="https://benx-guo.github.io/cola-tech/"/>
+    <generator uri="https://www.getzola.org/">Zola</generator>
+    <updated>2025-09-28T00:00:00+00:00</updated>
+    <id>https://benx-guo.github.io/cola-tech/tags/xue-xi-ji-hua/atom.xml</id>
+    <entry xml:lang="en">
+        <title>Day 14 下周计划</title>
+        <published>2025-09-28T00:00:00+00:00</published>
+        <updated>2025-09-28T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Unknown
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://benx-guo.github.io/cola-tech/oscamp/oscamp-20250928/"/>
+        <id>https://benx-guo.github.io/cola-tech/oscamp/oscamp-20250928/</id>
+        
+        <content type="html" xml:base="https://benx-guo.github.io/cola-tech/oscamp/oscamp-20250928/">&lt;div class=&quot;banner-container&quot; style=&quot;width: 100%; margin: 1em 0; text-align: center; position: relative;&quot;&gt;
+  
+  &lt;a href=&quot;https:&#x2F;&#x2F;opencamp.cn&#x2F;os2edu&#x2F;camp&#x2F;2025fall&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot; style=&quot;text-decoration: none; display: block; cursor: pointer; outline: none;&quot;&gt;
+  
+    &lt;img src=&quot;https:&#x2F;&#x2F;benx-guo.github.io&#x2F;cola-tech&#x2F;oscamp_header.png&quot; alt=&quot;2025 秋冬季开源操作系统训练营 Day 14&quot; title=&quot;2025 秋冬季开源操作系统训练营 Day 14&quot;
+         style=&quot;width: 100%; max-width: 100%; height: auto; display: block; margin: 0 auto; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.15); transition: transform 0.3s ease, box-shadow 0.3s ease;&quot;&gt;
+    
+    &lt;div class=&quot;banner-caption&quot; style=&quot;margin-top: 0.5em; text-align: center;&quot;&gt;
+      &lt;span class=&quot;banner-text&quot;&gt;Day 14&lt;&#x2F;span&gt;
+    &lt;&#x2F;div&gt;
+    
+  
+  &lt;&#x2F;a&gt;
+  
+&lt;&#x2F;div&gt;
+
+&lt;style&gt;
+.banner-container {
+  background: linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.02) 100%);
+  border-radius: 16px;
+  padding: 1em;
+  border: 1px solid rgba(255,255,255,0.1);
+}
+
+.banner-container img:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+}
+
+.banner-text {
+  font-family: inherit;
+  font-size: 0.9em;
+  font-weight: 400;
+  color: var(--text-color, #fff);
+  text-align: center;
+  display: inline-block;
+  opacity: 0.8;
+  letter-spacing: 0.5px;
+}
+
+&#x2F;* 移除链接的所有视觉效果 *&#x2F;
+.banner-container a {
+  outline: none !important;
+  border: none !important;
+  -webkit-tap-highlight-color: transparent;
+  text-decoration: none !important;
+  box-shadow: none !important;
+}
+
+&#x2F;* 移除外部链接图标 *&#x2F;
+.banner-container a::after {
+  content: none !important;
+  display: none !important;
+}
+
+.banner-container a::before {
+  content: none !important;
+  display: none !important;
+}
+
+&#x2F;* 移除所有可能的图标和装饰 *&#x2F;
+.banner-container a *::after {
+  content: none !important;
+  display: none !important;
+}
+
+.banner-container a *::before {
+  content: none !important;
+  display: none !important;
+}
+
+&#x2F;* 移除可能的背景图标 *&#x2F;
+.banner-container a {
+  background-image: none !important;
+  background: none !important;
+}
+
+.banner-container a:focus {
+  outline: none !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.banner-container a:active {
+  outline: none !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.banner-container a:hover {
+  outline: none !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.banner-container a:visited {
+  outline: none !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+@media (max-width: 768px) {
+  .banner-container {
+    padding: 0.8em;
+  }
+  
+  .banner-text {
+    font-size: 0.85em !important;
+  }
+}
+&lt;&#x2F;style&gt;
+&lt;h1 id=&quot;dang-qian-gan-shou&quot;&gt;当前感受&lt;&#x2F;h1&gt;
+&lt;h2 id=&quot;guan-yu-dai-ma-shi-xian-bu-fen&quot;&gt;关于代码实现部分&lt;&#x2F;h2&gt;
+&lt;p&gt;实现ch3的功能，从实现难度来讲，不算很高。需要在task结构中维护一个task级别的syscall统计结构。&lt;&#x2F;p&gt;
+&lt;p&gt;但是，从ch1-ch3整个系统底座涉及到的知识点比较多，尤其是risc-v指令集部分，由于第一次接触，理解上需要一些时间成本。&lt;&#x2F;p&gt;
+&lt;p&gt;后续仍需要加强，补足这一部分的缺失。&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;guan-yu-wen-dang-bu-fen&quot;&gt;关于文档部分&lt;&#x2F;h2&gt;
+&lt;p&gt;关于问答题部分，目前没有办法流畅地给出答案，主要原因还是对已经实现的部分没有完全吃透，仍需要在不影响整体进度的前提下，吃透所有的知识点。&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;xia-zhou-ji-hua&quot;&gt;下周计划&lt;&#x2F;h1&gt;
+&lt;p&gt;针对 &lt;a href=&quot;https:&#x2F;&#x2F;rcore-os.cn&#x2F;rCore-Tutorial-Book-v3&#x2F;chapter0&#x2F;2os-interface.html&quot;&gt;rCore-Tutorial-Book 第三版&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;ol&gt;
+&lt;li&gt;熟悉第四章 &lt;code&gt;ch4&lt;&#x2F;code&gt; 章节的内容&lt;&#x2F;li&gt;
+&lt;li&gt;回顾第零章到第三章的内容以及代码实现细节&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+</content>
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>Day 12 完成实验Lab3</title>
+        <published>2025-09-26T00:00:00+00:00</published>
+        <updated>2025-09-26T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Unknown
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://benx-guo.github.io/cola-tech/oscamp/oscamp-20250926/"/>
+        <id>https://benx-guo.github.io/cola-tech/oscamp/oscamp-20250926/</id>
+        
+        <content type="html" xml:base="https://benx-guo.github.io/cola-tech/oscamp/oscamp-20250926/">&lt;div class=&quot;banner-container&quot; style=&quot;width: 100%; margin: 1em 0; text-align: center; position: relative;&quot;&gt;
+  
+  &lt;a href=&quot;https:&#x2F;&#x2F;opencamp.cn&#x2F;os2edu&#x2F;camp&#x2F;2025fall&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot; style=&quot;text-decoration: none; display: block; cursor: pointer; outline: none;&quot;&gt;
+  
+    &lt;img src=&quot;https:&#x2F;&#x2F;benx-guo.github.io&#x2F;cola-tech&#x2F;oscamp_header.png&quot; alt=&quot;2025 秋冬季开源操作系统训练营 Day 12&quot; title=&quot;2025 秋冬季开源操作系统训练营 Day 12&quot;
+         style=&quot;width: 100%; max-width: 100%; height: auto; display: block; margin: 0 auto; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.15); transition: transform 0.3s ease, box-shadow 0.3s ease;&quot;&gt;
+    
+    &lt;div class=&quot;banner-caption&quot; style=&quot;margin-top: 0.5em; text-align: center;&quot;&gt;
+      &lt;span class=&quot;banner-text&quot;&gt;Day 12&lt;&#x2F;span&gt;
+    &lt;&#x2F;div&gt;
+    
+  
+  &lt;&#x2F;a&gt;
+  
+&lt;&#x2F;div&gt;
+
+&lt;style&gt;
+.banner-container {
+  background: linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.02) 100%);
+  border-radius: 16px;
+  padding: 1em;
+  border: 1px solid rgba(255,255,255,0.1);
+}
+
+.banner-container img:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+}
+
+.banner-text {
+  font-family: inherit;
+  font-size: 0.9em;
+  font-weight: 400;
+  color: var(--text-color, #fff);
+  text-align: center;
+  display: inline-block;
+  opacity: 0.8;
+  letter-spacing: 0.5px;
+}
+
+&#x2F;* 移除链接的所有视觉效果 *&#x2F;
+.banner-container a {
+  outline: none !important;
+  border: none !important;
+  -webkit-tap-highlight-color: transparent;
+  text-decoration: none !important;
+  box-shadow: none !important;
+}
+
+&#x2F;* 移除外部链接图标 *&#x2F;
+.banner-container a::after {
+  content: none !important;
+  display: none !important;
+}
+
+.banner-container a::before {
+  content: none !important;
+  display: none !important;
+}
+
+&#x2F;* 移除所有可能的图标和装饰 *&#x2F;
+.banner-container a *::after {
+  content: none !important;
+  display: none !important;
+}
+
+.banner-container a *::before {
+  content: none !important;
+  display: none !important;
+}
+
+&#x2F;* 移除可能的背景图标 *&#x2F;
+.banner-container a {
+  background-image: none !important;
+  background: none !important;
+}
+
+.banner-container a:focus {
+  outline: none !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.banner-container a:active {
+  outline: none !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.banner-container a:hover {
+  outline: none !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.banner-container a:visited {
+  outline: none !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+@media (max-width: 768px) {
+  .banner-container {
+    padding: 0.8em;
+  }
+  
+  .banner-text {
+    font-size: 0.85em !important;
+  }
+}
+&lt;&#x2F;style&gt;
+&lt;h1 id=&quot;gong-neng-shi-xian&quot;&gt;功能实现&lt;&#x2F;h1&gt;
+&lt;h2 id=&quot;ru-guo-trace-request-wei-0-ze-id-ying-bei-shi-zuo-const-u8-biao-shi-du-qu-dang-qian-ren-wu-id-di-zhi-chu-yi-ge-zi-jie-de-wu-fu-hao-zheng-shu-zhi-ci-shi-ying-hu-lue-data-can-shu-fan-hui-zhi-wei-id-di-zhi-chu-de-zhi&quot;&gt;如果 trace_request 为 0，则 id 应被视作 *const u8 ，表示读取当前任务 id 地址处一个字节的无符号整数值。此时应忽略 data 参数。返回值为 id 地址处的值&lt;&#x2F;h2&gt;
+&lt;p&gt;将 &lt;code&gt;id&lt;&#x2F;code&gt; 视为内存地址，使用 &lt;code&gt;*&lt;&#x2F;code&gt; 解引用读取 1 字节。&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;ru-guo-trace-request-wei-1-ze-id-ying-bei-shi-zuo-mut-u8-biao-shi-xie-ru-data-zuo-wei-u8-ji-zhi-kao-lu-zui-di-wei-de-yi-ge-zi-jie-dao-gai-yong-hu-cheng-xu-id-di-zhi-chu-fan-hui-zhi-ying-wei-0&quot;&gt;如果 trace_request 为 1，则 id 应被视作 *mut u8 ，表示写入 data （作为 u8，即只考虑最低位的一个字节）到该用户程序 id 地址处。返回值应为0。&lt;&#x2F;h2&gt;
+&lt;p&gt;将 &lt;code&gt;id&lt;&#x2F;code&gt; 视为内存地址，使用 &lt;code&gt;write_volatile&lt;&#x2F;code&gt; 写入 1 字节。&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;ru-guo-trace-request-wei-2-biao-shi-cha-xun-dang-qian-ren-wu-diao-yong-bian-hao-wei-id-de-xi-tong-diao-yong-de-ci-shu-fan-hui-zhi-wei-zhe-ge-diao-yong-ci-shu-ben-ci-diao-yong-ye-ji-ru-tong-ji&quot;&gt;如果 trace_request 为 2，表示查询当前任务调用编号为 id 的系统调用的次数，返回值为这个调用次数。本次调用也计入统计 。&lt;&#x2F;h2&gt;
+&lt;p&gt;统计当前任务的系统调用次数。&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;code&gt;task&lt;&#x2F;code&gt; 即 &lt;code&gt;TaskControlBlock&lt;&#x2F;code&gt;。在其中维护字段 &lt;code&gt;syscall_times: [SyscallCounter; SYSCALL_COUNT]&lt;&#x2F;code&gt; 记录各 &lt;code&gt;syscall&lt;&#x2F;code&gt; 的调用次数。&lt;&#x2F;p&gt;
+&lt;p&gt;由于当前没有提供哈希结构，采用定长数组，通过索引与 &lt;code&gt;syscall&lt;&#x2F;code&gt; 编号建立映射。整体流程：&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;获取当前 &lt;code&gt;task&lt;&#x2F;code&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;在 &lt;code&gt;syscall_times&lt;&#x2F;code&gt; 中定位对应编号的计数器并执行 &lt;code&gt;+1&lt;&#x2F;code&gt;&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h3 id=&quot;syscall-yu-suo-yin-ying-she-bu-fen&quot;&gt;syscall 与索引映射部分&lt;&#x2F;h3&gt;
+&lt;p&gt;为了避免硬编码，实现思路：&lt;&#x2F;p&gt;
+&lt;p&gt;提供一个 &lt;code&gt;SyscallCounter&lt;&#x2F;code&gt; 查找匹配的能力。&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;如果不存在和 &lt;code&gt;syscall_id&lt;&#x2F;code&gt; 一样的元素&lt;&#x2F;strong&gt;：匹配到第一个 &lt;code&gt;syscall_id&lt;&#x2F;code&gt; 是 0 的 &lt;code&gt;SyscallCounter&lt;&#x2F;code&gt; 元素，并且把 &lt;code&gt;syscall_id&lt;&#x2F;code&gt; 赋值为当前调用的 &lt;code&gt;syscall_id&lt;&#x2F;code&gt;，执行 +1 操作。&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;如果存在和 &lt;code&gt;syscall_id&lt;&#x2F;code&gt; 一样的元素&lt;&#x2F;strong&gt;：执行 +1 操作。&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h1 id=&quot;wen-da-ti&quot;&gt;问答题&lt;&#x2F;h1&gt;
+&lt;h2 id=&quot;1-yong-hu-tai-cheng-xu-te-zheng-ce-shi&quot;&gt;1. 用户态程序特征测试&lt;&#x2F;h2&gt;
+&lt;p&gt;&lt;strong&gt;问题：&lt;&#x2F;strong&gt; 正确进入 U 态后，程序的特征还应有：使用 S 态特权指令，访问 S 态寄存器后会报错。请同学们可以自行测试这些内容（运行三个 bad 测例 &lt;code&gt;ch2b_bad_*.rs&lt;&#x2F;code&gt;），描述程序出错行为，同时注意注明你使用的 sbi 及其版本。&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;strong&gt;回答：&lt;&#x2F;strong&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;strong&gt;使用的 SBI 及其版本：&lt;&#x2F;strong&gt;&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;bash&quot; style=&quot;background-color:#2b303b;color:#6c7079;&quot; class=&quot;language-bash &quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span style=&quot;color:#abb2bf;&quot;&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#eb6772;&quot;&gt;[rustsbi]&lt;&#x2F;span&gt;&lt;span style=&quot;color:#abb2bf;&quot;&gt; RustSBI version 0.3.0-alpha.2, adapting to RISC-V SBI v1.0.0
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#eb6772;&quot;&gt;.______&lt;&#x2F;span&gt;&lt;span style=&quot;color:#abb2bf;&quot;&gt;       __    __      _______.___________.  _______..______   __
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#adb7c9;&quot;&gt;|   &lt;&#x2F;span&gt;&lt;span style=&quot;color:#eb6772;&quot;&gt;_  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#5ebfcc;&quot;&gt;\     &lt;&#x2F;span&gt;&lt;span style=&quot;color:#adb7c9;&quot;&gt;|  |  |  |    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#eb6772;&quot;&gt;&#x2F;       &lt;&#x2F;span&gt;&lt;span style=&quot;color:#adb7c9;&quot;&gt;|           | &lt;&#x2F;span&gt;&lt;span style=&quot;color:#eb6772;&quot;&gt;&#x2F;       &lt;&#x2F;span&gt;&lt;span style=&quot;color:#adb7c9;&quot;&gt;||   &lt;&#x2F;span&gt;&lt;span style=&quot;color:#eb6772;&quot;&gt;_  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#5ebfcc;&quot;&gt;\ &lt;&#x2F;span&gt;&lt;span style=&quot;color:#adb7c9;&quot;&gt;|  |
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#adb7c9;&quot;&gt;|  |&lt;&#x2F;span&gt;&lt;span style=&quot;color:#eb6772;&quot;&gt;_&lt;&#x2F;span&gt;&lt;span style=&quot;color:#abb2bf;&quot;&gt;)  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#adb7c9;&quot;&gt;|    |  |  |  |   |   &lt;&#x2F;span&gt;&lt;span style=&quot;color:#abb2bf;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#eb6772;&quot;&gt;----&lt;&#x2F;span&gt;&lt;span style=&quot;color:#abb2bf;&quot;&gt;`&lt;&#x2F;span&gt;&lt;span style=&quot;color:#eb6772;&quot;&gt;---&lt;&#x2F;span&gt;&lt;span style=&quot;color:#adb7c9;&quot;&gt;|  |&lt;&#x2F;span&gt;&lt;span style=&quot;color:#eb6772;&quot;&gt;----&lt;&#x2F;span&gt;&lt;span style=&quot;color:#abb2bf;&quot;&gt;`&lt;&#x2F;span&gt;&lt;span style=&quot;color:#adb7c9;&quot;&gt;|   &lt;&#x2F;span&gt;&lt;span style=&quot;color:#abb2bf;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#eb6772;&quot;&gt;----&lt;&#x2F;span&gt;&lt;span style=&quot;color:#abb2bf;&quot;&gt;`&lt;&#x2F;span&gt;&lt;span style=&quot;color:#adb7c9;&quot;&gt;|  |&lt;&#x2F;span&gt;&lt;span style=&quot;color:#eb6772;&quot;&gt;_&lt;&#x2F;span&gt;&lt;span style=&quot;color:#abb2bf;&quot;&gt;)  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#adb7c9;&quot;&gt;||  |
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#adb7c9;&quot;&gt;|      &lt;&#x2F;span&gt;&lt;span style=&quot;color:#eb6772;&quot;&gt;&#x2F;     &lt;&#x2F;span&gt;&lt;span style=&quot;color:#adb7c9;&quot;&gt;|  |  |  |    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#5ebfcc;&quot;&gt;\   \       &lt;&#x2F;span&gt;&lt;span style=&quot;color:#adb7c9;&quot;&gt;|  |      &lt;&#x2F;span&gt;&lt;span style=&quot;color:#5ebfcc;&quot;&gt;\   \    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#adb7c9;&quot;&gt;|   &lt;&#x2F;span&gt;&lt;span style=&quot;color:#eb6772;&quot;&gt;_  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#adb7c9;&quot;&gt;&amp;lt; |  |
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#adb7c9;&quot;&gt;|  |&lt;&#x2F;span&gt;&lt;span style=&quot;color:#5ebfcc;&quot;&gt;\  \-&lt;&#x2F;span&gt;&lt;span style=&quot;color:#eb6772;&quot;&gt;---.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#adb7c9;&quot;&gt;|  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#abb2bf;&quot;&gt;`--&lt;&#x2F;span&gt;&lt;span style=&quot;color:#9acc76;&quot;&gt;&amp;#39;  |.----)   |      |  |  .----)   |   |  |_)  ||  |
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#9acc76;&quot;&gt;| _| `._____| \______&#x2F; |_______&#x2F;       |__|  |_______&#x2F;    |______&#x2F; |__|
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#9acc76;&quot;&gt;[rustsbi] Implementation     : RustSBI-QEMU Version 0.2.0-alpha.2
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;&lt;strong&gt;测试 &lt;code&gt;ch2b_bad_register&lt;&#x2F;code&gt; 的错误行为：&lt;&#x2F;strong&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;用户态程序无法访问 S 态特权寄存器（如 &lt;code&gt;sstatus&lt;&#x2F;code&gt;），同样会触发 &lt;code&gt;IllegalInstruction&lt;&#x2F;code&gt; 异常。&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;strong&gt;测试 &lt;code&gt;ch2b_bad_instructions&lt;&#x2F;code&gt; 的错误行为：&lt;&#x2F;strong&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;用户态程序无法执行 S 态特权指令（如 &lt;code&gt;sret&lt;&#x2F;code&gt;），会触发 &lt;code&gt;IllegalInstruction&lt;&#x2F;code&gt; 异常。&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;strong&gt;测试 &lt;code&gt;ch2b_bad_address&lt;&#x2F;code&gt; 的错误行为：&lt;&#x2F;strong&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;用户态程序无法访问无效地址，会触发 &lt;code&gt;PageFault&lt;&#x2F;code&gt; 异常。&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;2-shen-ru-li-jie-trap-s-zhong-liang-ge-han-shu-de-zuo-yong&quot;&gt;2. 深入理解 trap.S 中两个函数的作用&lt;&#x2F;h2&gt;
+&lt;p&gt;&lt;strong&gt;问题：&lt;&#x2F;strong&gt; 深入理解 &lt;code&gt;trap.S&lt;&#x2F;code&gt; 中两个函数 &lt;code&gt;__alltraps&lt;&#x2F;code&gt; 和 &lt;code&gt;__restore&lt;&#x2F;code&gt; 的作用，并回答如下问题：&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;2-1-l40-wen-ti&quot;&gt;2.1 L40 问题&lt;&#x2F;h3&gt;
+&lt;p&gt;&lt;strong&gt;问题：&lt;&#x2F;strong&gt; 刚进入 &lt;code&gt;__restore&lt;&#x2F;code&gt; 时，&lt;code&gt;sp&lt;&#x2F;code&gt; 代表了什么值。请指出 &lt;code&gt;__restore&lt;&#x2F;code&gt; 的两种使用情景。&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;strong&gt;回答：&lt;&#x2F;strong&gt;&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;sp&lt;&#x2F;code&gt; 指向内核栈&lt;&#x2F;li&gt;
+&lt;li&gt;两种使用情景：
+&lt;ol&gt;
+&lt;li&gt;从内核态返回用户态&lt;&#x2F;li&gt;
+&lt;li&gt;从 switch 任务进入用户态&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h3 id=&quot;2-2-l43-l48-ji-cun-qi-chu-li&quot;&gt;2.2 L43-L48 寄存器处理&lt;&#x2F;h3&gt;
+&lt;p&gt;&lt;strong&gt;问题：&lt;&#x2F;strong&gt; 这几行汇编代码特殊处理了哪些寄存器？这些寄存器的值对于进入用户态有何意义？请分别解释。&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;asm&quot; style=&quot;background-color:#2b303b;color:#6c7079;&quot; class=&quot;language-asm &quot;&gt;&lt;code class=&quot;language-asm&quot; data-lang=&quot;asm&quot;&gt;&lt;span style=&quot;color:#5cb3fa;&quot;&gt;ld t0&lt;&#x2F;span&gt;&lt;span style=&quot;color:#abb2bf;&quot;&gt;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#db9d63;&quot;&gt;32&lt;&#x2F;span&gt;&lt;span style=&quot;color:#abb2bf;&quot;&gt;*&lt;&#x2F;span&gt;&lt;span style=&quot;color:#db9d63;&quot;&gt;8&lt;&#x2F;span&gt;&lt;span style=&quot;color:#5cb3fa;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#eb6772;&quot;&gt;sp&lt;&#x2F;span&gt;&lt;span style=&quot;color:#5cb3fa;&quot;&gt;)
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#5cb3fa;&quot;&gt;ld t1&lt;&#x2F;span&gt;&lt;span style=&quot;color:#abb2bf;&quot;&gt;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#db9d63;&quot;&gt;33&lt;&#x2F;span&gt;&lt;span style=&quot;color:#abb2bf;&quot;&gt;*&lt;&#x2F;span&gt;&lt;span style=&quot;color:#db9d63;&quot;&gt;8&lt;&#x2F;span&gt;&lt;span style=&quot;color:#5cb3fa;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#eb6772;&quot;&gt;sp&lt;&#x2F;span&gt;&lt;span style=&quot;color:#5cb3fa;&quot;&gt;)
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#5cb3fa;&quot;&gt;ld t2&lt;&#x2F;span&gt;&lt;span style=&quot;color:#abb2bf;&quot;&gt;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#db9d63;&quot;&gt;2&lt;&#x2F;span&gt;&lt;span style=&quot;color:#abb2bf;&quot;&gt;*&lt;&#x2F;span&gt;&lt;span style=&quot;color:#db9d63;&quot;&gt;8&lt;&#x2F;span&gt;&lt;span style=&quot;color:#5cb3fa;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#eb6772;&quot;&gt;sp&lt;&#x2F;span&gt;&lt;span style=&quot;color:#5cb3fa;&quot;&gt;)
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#5cb3fa;&quot;&gt;csrw sstatus&lt;&#x2F;span&gt;&lt;span style=&quot;color:#abb2bf;&quot;&gt;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#5cb3fa;&quot;&gt;t0
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#5cb3fa;&quot;&gt;csrw sepc&lt;&#x2F;span&gt;&lt;span style=&quot;color:#abb2bf;&quot;&gt;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#5cb3fa;&quot;&gt;t1
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#5cb3fa;&quot;&gt;csrw sscratch&lt;&#x2F;span&gt;&lt;span style=&quot;color:#abb2bf;&quot;&gt;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#5cb3fa;&quot;&gt;t2
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;&lt;strong&gt;回答：&lt;&#x2F;strong&gt;&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;sstatus&lt;&#x2F;strong&gt;: 设置用户模式，确保 &lt;code&gt;sret&lt;&#x2F;code&gt; 指令返回用户态&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;sepc&lt;&#x2F;strong&gt;: 中断&#x2F;异常时的 PC 或者任务切换时，用户程序的入口地址，确保 &lt;code&gt;sret&lt;&#x2F;code&gt; 指令跳转到用户程序地址&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;sscratch&lt;&#x2F;strong&gt;: 用户栈 SP&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h3 id=&quot;2-3-l50-l56-tiao-guo-ji-cun-qi&quot;&gt;2.3 L50-L56 跳过寄存器&lt;&#x2F;h3&gt;
+&lt;p&gt;&lt;strong&gt;问题：&lt;&#x2F;strong&gt; 为何跳过了 &lt;code&gt;x2&lt;&#x2F;code&gt; 和 &lt;code&gt;x4&lt;&#x2F;code&gt;？&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;asm&quot; style=&quot;background-color:#2b303b;color:#6c7079;&quot; class=&quot;language-asm &quot;&gt;&lt;code class=&quot;language-asm&quot; data-lang=&quot;asm&quot;&gt;&lt;span style=&quot;color:#5cb3fa;&quot;&gt;ld x1&lt;&#x2F;span&gt;&lt;span style=&quot;color:#abb2bf;&quot;&gt;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#db9d63;&quot;&gt;1&lt;&#x2F;span&gt;&lt;span style=&quot;color:#abb2bf;&quot;&gt;*&lt;&#x2F;span&gt;&lt;span style=&quot;color:#db9d63;&quot;&gt;8&lt;&#x2F;span&gt;&lt;span style=&quot;color:#5cb3fa;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#eb6772;&quot;&gt;sp&lt;&#x2F;span&gt;&lt;span style=&quot;color:#5cb3fa;&quot;&gt;)
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#5cb3fa;&quot;&gt;ld x3&lt;&#x2F;span&gt;&lt;span style=&quot;color:#abb2bf;&quot;&gt;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#db9d63;&quot;&gt;3&lt;&#x2F;span&gt;&lt;span style=&quot;color:#abb2bf;&quot;&gt;*&lt;&#x2F;span&gt;&lt;span style=&quot;color:#db9d63;&quot;&gt;8&lt;&#x2F;span&gt;&lt;span style=&quot;color:#5cb3fa;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#eb6772;&quot;&gt;sp&lt;&#x2F;span&gt;&lt;span style=&quot;color:#5cb3fa;&quot;&gt;)
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#5cb3fa;&quot;&gt;.set n&lt;&#x2F;span&gt;&lt;span style=&quot;color:#abb2bf;&quot;&gt;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#db9d63;&quot;&gt;5
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#5cb3fa;&quot;&gt;.rept &lt;&#x2F;span&gt;&lt;span style=&quot;color:#db9d63;&quot;&gt;27
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#5cb3fa;&quot;&gt;    LOAD_GP %n
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#5cb3fa;&quot;&gt;    .set n&lt;&#x2F;span&gt;&lt;span style=&quot;color:#abb2bf;&quot;&gt;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#5cb3fa;&quot;&gt;n&lt;&#x2F;span&gt;&lt;span style=&quot;color:#abb2bf;&quot;&gt;+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#db9d63;&quot;&gt;1
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#5cb3fa;&quot;&gt;.endr
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;&lt;strong&gt;回答：&lt;&#x2F;strong&gt;&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;x2&lt;&#x2F;strong&gt;: 当前指向内核栈，如果在恢复其他寄存器之前，恢复 x2 的话，后续都会基于用户栈&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;x4&lt;&#x2F;strong&gt;: 应用程序不使用&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h3 id=&quot;2-4-l60-zhi-ling-yi-yi&quot;&gt;2.4 L60 指令意义&lt;&#x2F;h3&gt;
+&lt;p&gt;&lt;strong&gt;问题：&lt;&#x2F;strong&gt; 该指令之后，&lt;code&gt;sp&lt;&#x2F;code&gt; 和 &lt;code&gt;sscratch&lt;&#x2F;code&gt; 中的值分别有什么意义？&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;asm&quot; style=&quot;background-color:#2b303b;color:#6c7079;&quot; class=&quot;language-asm &quot;&gt;&lt;code class=&quot;language-asm&quot; data-lang=&quot;asm&quot;&gt;&lt;span style=&quot;color:#5cb3fa;&quot;&gt;csrrw &lt;&#x2F;span&gt;&lt;span style=&quot;color:#eb6772;&quot;&gt;sp&lt;&#x2F;span&gt;&lt;span style=&quot;color:#abb2bf;&quot;&gt;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#5cb3fa;&quot;&gt;sscratch&lt;&#x2F;span&gt;&lt;span style=&quot;color:#abb2bf;&quot;&gt;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#eb6772;&quot;&gt;sp
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;&lt;strong&gt;回答：&lt;&#x2F;strong&gt;&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;sp&lt;&#x2F;code&gt; 指向用户栈&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;code&gt;sscratch&lt;&#x2F;code&gt; 指向内核栈&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h3 id=&quot;2-5-zhuang-tai-qie-huan&quot;&gt;2.5 状态切换&lt;&#x2F;h3&gt;
+&lt;p&gt;&lt;strong&gt;问题：&lt;&#x2F;strong&gt; &lt;code&gt;__restore&lt;&#x2F;code&gt; 中发生状态切换在哪一条指令？为何该指令执行之后会进入用户态？&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;strong&gt;回答：&lt;&#x2F;strong&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;code&gt;sret&lt;&#x2F;code&gt; 指令。&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;特权切换到用户态&lt;&#x2F;li&gt;
+&lt;li&gt;PC 跳到 &lt;code&gt;sepc&lt;&#x2F;code&gt; 指向的地方&lt;&#x2F;li&gt;
+&lt;li&gt;SP 已经指向用户栈&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h3 id=&quot;2-6-l13-zhi-ling-yi-yi&quot;&gt;2.6 L13 指令意义&lt;&#x2F;h3&gt;
+&lt;p&gt;&lt;strong&gt;问题：&lt;&#x2F;strong&gt; 该指令之后，&lt;code&gt;sp&lt;&#x2F;code&gt; 和 &lt;code&gt;sscratch&lt;&#x2F;code&gt; 中的值分别有什么意义？&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;asm&quot; style=&quot;background-color:#2b303b;color:#6c7079;&quot; class=&quot;language-asm &quot;&gt;&lt;code class=&quot;language-asm&quot; data-lang=&quot;asm&quot;&gt;&lt;span style=&quot;color:#5cb3fa;&quot;&gt;csrrw &lt;&#x2F;span&gt;&lt;span style=&quot;color:#eb6772;&quot;&gt;sp&lt;&#x2F;span&gt;&lt;span style=&quot;color:#abb2bf;&quot;&gt;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#5cb3fa;&quot;&gt;sscratch&lt;&#x2F;span&gt;&lt;span style=&quot;color:#abb2bf;&quot;&gt;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#eb6772;&quot;&gt;sp
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;&lt;strong&gt;回答：&lt;&#x2F;strong&gt;&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;sp&lt;&#x2F;code&gt; 指向用户栈&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;code&gt;sscratch&lt;&#x2F;code&gt; 指向内核栈&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h3 id=&quot;2-7-u-tai-dao-s-tai-qie-huan&quot;&gt;2.7 U 态到 S 态切换&lt;&#x2F;h3&gt;
+&lt;p&gt;&lt;strong&gt;问题：&lt;&#x2F;strong&gt; 从 U 态进入 S 态是哪一条指令发生的？&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;strong&gt;回答：&lt;&#x2F;strong&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;code&gt;ecall&lt;&#x2F;code&gt; 指令。&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;rong-yu-zhun-ze&quot;&gt;荣誉准则&lt;&#x2F;h1&gt;
+&lt;h2 id=&quot;1-jiao-liu-ji-lu&quot;&gt;1. 交流记录&lt;&#x2F;h2&gt;
+&lt;p&gt;在完成本次实验的过程（含此前学习的过程）中，我曾分别与以下各位就（与本次实验相关的）以下方面做过交流，还在代码中对应的位置以注释形式记录了具体的交流对象及内容：&lt;&#x2F;p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;暂无&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;h2 id=&quot;2-can-kao-zi-liao&quot;&gt;2. 参考资料&lt;&#x2F;h2&gt;
+&lt;p&gt;此外，我也参考了以下资料，还在代码中对应的位置以注释形式记录了具体的参考来源及内容：&lt;&#x2F;p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;暂无&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;h2 id=&quot;3-du-li-wan-cheng-sheng-ming&quot;&gt;3. 独立完成声明&lt;&#x2F;h2&gt;
+&lt;p&gt;我独立完成了本次实验除以上方面之外的所有工作，包括代码与文档。我清楚地知道，从以上方面获得的信息在一定程度上降低了实验难度，可能会影响起评分。&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;4-dai-ma-shi-yong-sheng-ming&quot;&gt;4. 代码使用声明&lt;&#x2F;h2&gt;
+&lt;p&gt;我从未使用过他人的代码，不管是原封不动地复制，还是经过了某些等价转换。我未曾也不会向他人（含此后各届同学）复制或公开我的实验代码，我有义务妥善保管好它们。我提交至本实验的评测系统的代码，均无意于破坏或妨碍任何计算机系统的正常运转。我清楚地知道，以上情况均为本课程纪律所禁止，若违反，对应的实验成绩将按&quot;-100&quot;分计。&lt;&#x2F;p&gt;
+</content>
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>[WIP]Day 4 搭建rCore Ubuntu 20.04 环境</title>
+        <published>2025-09-18T00:00:00+00:00</published>
+        <updated>2025-09-18T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Unknown
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://benx-guo.github.io/cola-tech/oscamp/oscamp-20250918/"/>
+        <id>https://benx-guo.github.io/cola-tech/oscamp/oscamp-20250918/</id>
+        
+        <content type="html" xml:base="https://benx-guo.github.io/cola-tech/oscamp/oscamp-20250918/">&lt;div class=&quot;banner-container&quot; style=&quot;width: 100%; margin: 1em 0; text-align: center; position: relative;&quot;&gt;
+  
+  &lt;a href=&quot;https:&#x2F;&#x2F;opencamp.cn&#x2F;os2edu&#x2F;camp&#x2F;2025fall&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot; style=&quot;text-decoration: none; display: block; cursor: pointer; outline: none;&quot;&gt;
+  
+    &lt;img src=&quot;https:&#x2F;&#x2F;benx-guo.github.io&#x2F;cola-tech&#x2F;oscamp_header.png&quot; alt=&quot;2025 秋冬季开源操作系统训练营 Day 4&quot; title=&quot;2025 秋冬季开源操作系统训练营 Day 4&quot;
+         style=&quot;width: 100%; max-width: 100%; height: auto; display: block; margin: 0 auto; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.15); transition: transform 0.3s ease, box-shadow 0.3s ease;&quot;&gt;
+    
+    &lt;div class=&quot;banner-caption&quot; style=&quot;margin-top: 0.5em; text-align: center;&quot;&gt;
+      &lt;span class=&quot;banner-text&quot;&gt;Day 4&lt;&#x2F;span&gt;
+    &lt;&#x2F;div&gt;
+    
+  
+  &lt;&#x2F;a&gt;
+  
+&lt;&#x2F;div&gt;
+
+&lt;style&gt;
+.banner-container {
+  background: linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.02) 100%);
+  border-radius: 16px;
+  padding: 1em;
+  border: 1px solid rgba(255,255,255,0.1);
+}
+
+.banner-container img:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+}
+
+.banner-text {
+  font-family: inherit;
+  font-size: 0.9em;
+  font-weight: 400;
+  color: var(--text-color, #fff);
+  text-align: center;
+  display: inline-block;
+  opacity: 0.8;
+  letter-spacing: 0.5px;
+}
+
+&#x2F;* 移除链接的所有视觉效果 *&#x2F;
+.banner-container a {
+  outline: none !important;
+  border: none !important;
+  -webkit-tap-highlight-color: transparent;
+  text-decoration: none !important;
+  box-shadow: none !important;
+}
+
+&#x2F;* 移除外部链接图标 *&#x2F;
+.banner-container a::after {
+  content: none !important;
+  display: none !important;
+}
+
+.banner-container a::before {
+  content: none !important;
+  display: none !important;
+}
+
+&#x2F;* 移除所有可能的图标和装饰 *&#x2F;
+.banner-container a *::after {
+  content: none !important;
+  display: none !important;
+}
+
+.banner-container a *::before {
+  content: none !important;
+  display: none !important;
+}
+
+&#x2F;* 移除可能的背景图标 *&#x2F;
+.banner-container a {
+  background-image: none !important;
+  background: none !important;
+}
+
+.banner-container a:focus {
+  outline: none !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.banner-container a:active {
+  outline: none !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.banner-container a:hover {
+  outline: none !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.banner-container a:visited {
+  outline: none !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+@media (max-width: 768px) {
+  .banner-container {
+    padding: 0.8em;
+  }
+  
+  .banner-text {
+    font-size: 0.85em !important;
+  }
+}
+&lt;&#x2F;style&gt;
+</content>
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>Day 0 为什么参加训练营</title>
+        <published>2025-09-14T00:00:00+00:00</published>
+        <updated>2025-09-14T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Unknown
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://benx-guo.github.io/cola-tech/oscamp/oscamp-20250914/"/>
+        <id>https://benx-guo.github.io/cola-tech/oscamp/oscamp-20250914/</id>
+        
+        <content type="html" xml:base="https://benx-guo.github.io/cola-tech/oscamp/oscamp-20250914/">&lt;p&gt;&lt;div class=&quot;banner-container&quot; style=&quot;width: 100%; margin: 1em 0; text-align: center; position: relative;&quot;&gt;
+  
+  &lt;a href=&quot;https:&#x2F;&#x2F;opencamp.cn&#x2F;os2edu&#x2F;camp&#x2F;2025fall&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot; style=&quot;text-decoration: none; display: block; cursor: pointer; outline: none;&quot;&gt;
+  
+    &lt;img src=&quot;https:&#x2F;&#x2F;benx-guo.github.io&#x2F;cola-tech&#x2F;oscamp_header.png&quot; alt=&quot;2025 秋冬季开源操作系统训练营 Day 0&quot; title=&quot;2025 秋冬季开源操作系统训练营 Day 0&quot;
+         style=&quot;width: 100%; max-width: 100%; height: auto; display: block; margin: 0 auto; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.15); transition: transform 0.3s ease, box-shadow 0.3s ease;&quot;&gt;
+    
+    &lt;div class=&quot;banner-caption&quot; style=&quot;margin-top: 0.5em; text-align: center;&quot;&gt;
+      &lt;span class=&quot;banner-text&quot;&gt;Day 0&lt;&#x2F;span&gt;
+    &lt;&#x2F;div&gt;
+    
+  
+  &lt;&#x2F;a&gt;
+  
+&lt;&#x2F;div&gt;
+
+&lt;style&gt;
+.banner-container {
+  background: linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.02) 100%);
+  border-radius: 16px;
+  padding: 1em;
+  border: 1px solid rgba(255,255,255,0.1);
+}
+
+.banner-container img:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+}
+
+.banner-text {
+  font-family: inherit;
+  font-size: 0.9em;
+  font-weight: 400;
+  color: var(--text-color, #fff);
+  text-align: center;
+  display: inline-block;
+  opacity: 0.8;
+  letter-spacing: 0.5px;
+}
+
+&#x2F;* 移除链接的所有视觉效果 *&#x2F;
+.banner-container a {
+  outline: none !important;
+  border: none !important;
+  -webkit-tap-highlight-color: transparent;
+  text-decoration: none !important;
+  box-shadow: none !important;
+}
+
+&#x2F;* 移除外部链接图标 *&#x2F;
+.banner-container a::after {
+  content: none !important;
+  display: none !important;
+}
+
+.banner-container a::before {
+  content: none !important;
+  display: none !important;
+}
+
+&#x2F;* 移除所有可能的图标和装饰 *&#x2F;
+.banner-container a *::after {
+  content: none !important;
+  display: none !important;
+}
+
+.banner-container a *::before {
+  content: none !important;
+  display: none !important;
+}
+
+&#x2F;* 移除可能的背景图标 *&#x2F;
+.banner-container a {
+  background-image: none !important;
+  background: none !important;
+}
+
+.banner-container a:focus {
+  outline: none !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.banner-container a:active {
+  outline: none !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.banner-container a:hover {
+  outline: none !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.banner-container a:visited {
+  outline: none !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+@media (max-width: 768px) {
+  .banner-container {
+    padding: 0.8em;
+  }
+  
+  .banner-text {
+    font-size: 0.85em !important;
+  }
+}
+&lt;&#x2F;style&gt;
+
+通过微信公众号&quot;开源内核安全修炼&quot;了解到这个修炼营项目（&lt;a href=&quot;https:&#x2F;&#x2F;opencamp.cn&#x2F;os2edu&#x2F;camp&#x2F;2025fall&quot;&gt;2025 秋冬季开源操作系统训练营&lt;&#x2F;a&gt;），决定参加这个挑战。本文记录我当前的技能现状以及接下来的学习计划。&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;dang-qian-ji-neng-xian-zhuang&quot;&gt;当前技能现状&lt;&#x2F;h2&gt;
+&lt;h3 id=&quot;rust-yu-yan-zhang-wo-qing-kuang&quot;&gt;Rust 语言掌握情况&lt;&#x2F;h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;学习时长&lt;&#x2F;strong&gt;：接触 Rust 已经几个月&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;理论知识&lt;&#x2F;strong&gt;：对 Rust 的基本语法、所有权系统、生命周期等概念有一定了解&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;实践经验&lt;&#x2F;strong&gt;：缺乏实际项目经验，主要停留在理论学习阶段&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;问题&lt;&#x2F;strong&gt;：理论与实践脱节，缺乏在真实项目中应用 Rust 的经验&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h3 id=&quot;cao-zuo-xi-tong-zhi-shi-zhang-wo-qing-kuang&quot;&gt;操作系统知识掌握情况&lt;&#x2F;h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;学习背景&lt;&#x2F;strong&gt;：一直有接触操作系统相关知识&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;学习方式&lt;&#x2F;strong&gt;：碎片化学习，缺乏系统化&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;知识深度&lt;&#x2F;strong&gt;：对操作系统的基本概念有了解，但缺乏深入理解，尤其是实践&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;问题&lt;&#x2F;strong&gt;：知识体系不够完整，缺乏系统性学习&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h2 id=&quot;can-jia-xiu-lian-ying-de-mu-de&quot;&gt;参加修炼营的目的&lt;&#x2F;h2&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;技能检验&lt;&#x2F;strong&gt;：通过实际项目检验长期学习操作系统和 Rust 的掌握程度&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;实践能力提升&lt;&#x2F;strong&gt;：从理论学习转向实际项目开发&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;知识体系完善&lt;&#x2F;strong&gt;：系统化学习操作系统相关知识&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;项目经验积累&lt;&#x2F;strong&gt;：获得真实的 Rust 项目开发经验&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;h2 id=&quot;yu-qi-shou-huo&quot;&gt;预期收获&lt;&#x2F;h2&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;技术能力&lt;&#x2F;strong&gt;：掌握 Rust 在系统编程中的应用，提升操作系统理解深度&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;项目经验&lt;&#x2F;strong&gt;：获得真实的开源项目参与经验&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;学习方法&lt;&#x2F;strong&gt;：建立系统化的学习方法和知识体系&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;社区参与&lt;&#x2F;strong&gt;：融入开源社区，建立技术人脉&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;h2 id=&quot;zong-jie&quot;&gt;总结&lt;&#x2F;h2&gt;
+&lt;p&gt;虽然我在 Rust 和操作系统方面有一定基础，但缺乏实践经验。通过参加2025 秋冬季开源操作系统训练营，我希望能够：&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;将理论知识转化为实践能力&lt;&#x2F;li&gt;
+&lt;li&gt;建立完整的知识体系&lt;&#x2F;li&gt;
+&lt;li&gt;获得宝贵的项目经验&lt;&#x2F;li&gt;
+&lt;li&gt;为未来的技术发展打下坚实基础&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;接下来的几个月，我将重心放在这个修炼营中，记录每一个学习阶段的心得体会，期待在技术道路上取得新的突破。&lt;&#x2F;p&gt;
+</content>
+        
+    </entry>
+</feed>

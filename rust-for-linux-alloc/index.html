@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  
+  
+  <meta name="description" content="A blog about technology" />
+  
+  
+
+  <title>
+    
+    Rust 在 Linux Kernel 中 alloc 的链路分析
+    
+</title>
+  <link rel="alternate" type="application/atom+xml" title="Cola Tech Atom Feed" href="https://benx-guo.github.io/cola-tech/atom.xml" />
+
+  
+  <link rel="stylesheet" href="https://benx-guo.github.io/cola-tech/site.css">
+  
+
+  
+  
+</head>
+
+<body class="hack dark main container">
+  
+    
+        
+  
+  <header class="nav-header">
+    <nav itemscope itemtype="http://schema.org/SiteNavigationElement" class="navbar">
+      <div class="nav-links">
+        
+        <a itemprop="url"
+          class=""
+          href="https://benx-guo.github.io/cola-tech/">
+          <span itemprop="name">首页</span></a>
+        
+        <a itemprop="url"
+          class=""
+          href="https://benx-guo.github.io/cola-tech//categories">
+          <span itemprop="name">分类</span></a>
+        
+        <a itemprop="url"
+          class=""
+          href="https://benx-guo.github.io/cola-tech//tags">
+          <span itemprop="name">标签</span></a>
+        
+      </div>
+    </nav>
+    
+    <div class="search-container">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" class="search-icon">
+        <path stroke-linecap="round" stroke-linejoin="round"
+          d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+      </svg>
+      <input type="text" id="search" placeholder="Search...">
+      <div class="search-results">
+        <div class="search-results__items"></div>
+      </div>
+    </div>
+    
+
+  </header>
+  
+  
+    
+
+<article itemscope itemtype="http://schema.org/BlogPosting">
+    <header>
+        <h1 itemprop="headline">Rust 在 Linux Kernel 中 alloc 的链路分析</h1>
+        <span class="muted">
+    <svg class="icon i-clock" viewBox="0 0 32 32"
+         width="16" height="16" fill="none" stroke="currentcolor"
+         stroke-linecap="round" stroke-linejoin="round" stroke-width="6.25%">
+        <circle cx="16" cy="16" r="14"/>
+        <path d="M16 8 L16 16 20 20"/>
+    </svg>
+    <span>3 minute read</span>
+    <svg class="icon i-edit" viewBox="0 0 32 32"
+         width="16" height="16" fill="none" stroke="currentcolor"
+         stroke-linecap="round" stroke-linejoin="round" stroke-width="6.25%">
+        <path d="M30 7 L25 2 5 22 3 29 10 27 Z M21 6 L26 11 Z M5 22 L10 27 Z"/>
+    </svg>
+
+    Published: 2025-09-02
+</span>
+    </header>
+    <div itemprop="articleBody">
+      <p>本文尝试从 <strong>Rust 层调用</strong> → <strong>FFI bindings</strong> → <strong>C helper</strong> → <strong>内核 API 宏/函数</strong> → <strong>实际分配器</strong>
+一步步梳理 Rust 在 Linux 内核里的内存分配调用链。
+以 <code>KVec::push</code> 触发扩容为例，串联 <code>krealloc</code> 的全过程。</p>
+<span id="continue-reading"></span><h2 id="bei-jing">背景</h2>
+<p>在用户态，Rust 的分配接口最终会落到 <code>malloc</code> / <code>realloc</code> 等系统调用。
+但在 <strong>Linux 内核</strong> 中，我们不能直接用 libc，而必须调用内核自己的分配器接口：<code>kmalloc</code>、<code>krealloc</code>、<code>kfree</code> 等。</p>
+<p>Rust-for-Linux 为此定义了 <strong>安全抽象层</strong>：</p>
+<ul>
+<li><code>Allocator</code> trait：Rust 世界的分配器接口</li>
+<li><code>Kmalloc</code>：面向内核的具体实现</li>
+<li><code>KBox</code> / <code>KVec</code>：高层数据结构的封装，背后依赖分配器</li>
+</ul>
+<h2 id="cong-kvec-push-shuo-qi">从 <code>KVec::push</code> 说起</h2>
+<p><strong>文件路径：</strong> <a href="https://github.com/Rust-for-Linux/linux/blob/1b237f190eb3d36f52dffe07a40b5eb210280e00/rust/kernel/alloc/kvec.rs#L312-L318"><code>rust/kernel/alloc/kvec.rs</code></a></p>
+<pre data-lang="rust" style="background-color:#2b303b;color:#6c7079;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">    </span><span style="color:#cd74e8;">pub fn </span><span style="color:#5cb3fa;">push</span><span style="color:#abb2bf;">(</span><span style="color:#adb7c9;">&amp;</span><span style="color:#cd74e8;">mut </span><span style="color:#eb6772;">self</span><span style="color:#abb2bf;">, </span><span style="color:#eb6772;">v</span><span style="color:#abb2bf;">: T, </span><span style="color:#eb6772;">flags</span><span style="color:#abb2bf;">: Flags) -&gt; Result&lt;(), AllocError&gt; {
+</span><span style="color:#abb2bf;">        </span><span style="color:#eb6772;">self</span><span style="color:#abb2bf;">.</span><span style="color:#5ebfcc;">reserve</span><span style="color:#abb2bf;">(</span><span style="color:#db9d63;">1</span><span style="color:#abb2bf;">, flags)</span><span style="color:#adb7c9;">?</span><span style="color:#abb2bf;">;
+</span><span style="color:#abb2bf;">        </span><span style="font-style:italic;color:#5f697a;">// SAFETY: The call to `reserve` was successful, so the capacity is at least one greater
+</span><span style="color:#abb2bf;">        </span><span style="font-style:italic;color:#5f697a;">// than the length.
+</span><span style="color:#abb2bf;">        </span><span style="color:#cd74e8;">unsafe </span><span style="color:#abb2bf;">{ </span><span style="color:#eb6772;">self</span><span style="color:#abb2bf;">.</span><span style="color:#5ebfcc;">push_within_capacity_unchecked</span><span style="color:#abb2bf;">(v) };
+</span><span style="color:#abb2bf;">        Ok(())
+</span><span style="color:#abb2bf;">    }
+</span></code></pre>
+<p><strong>执行流程：</strong></p>
+<ol>
+<li><code>reserve(1, flags)</code> 检查容量，不够则触发扩容</li>
+<li>扩容路径进入 <code>Kmalloc::realloc</code>，核心就是走到 C 侧的 <code>krealloc</code></li>
+<li><code>push_within_capacity_unchecked</code> 只是写入数据，不涉及分配</li>
+</ol>
+<h2 id="rust-ce-allocator-ffi">Rust 侧：Allocator → FFI</h2>
+<p><strong>文件路径：</strong> <a href="https://github.com/Rust-for-Linux/linux/blob/1b237f190eb3d36f52dffe07a40b5eb210280e00/rust/kernel/alloc/allocator.rs#L130-L143"><code>rust/kernel/alloc/allocator.rs</code></a></p>
+<pre data-lang="rust" style="background-color:#2b303b;color:#6c7079;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#abb2bf;">
+</span><span style="color:#cd74e8;">unsafe impl </span><span style="color:#abb2bf;">Allocator </span><span style="color:#cd74e8;">for </span><span style="color:#abb2bf;">Kmalloc {
+</span><span style="color:#abb2bf;">    #[</span><span style="color:#eb6772;">inline</span><span style="color:#abb2bf;">]
+</span><span style="color:#abb2bf;">    </span><span style="color:#cd74e8;">unsafe fn </span><span style="color:#5cb3fa;">realloc</span><span style="color:#abb2bf;">(
+</span><span style="color:#abb2bf;">        </span><span style="color:#eb6772;">ptr</span><span style="color:#abb2bf;">: Option&lt;NonNull&lt;</span><span style="color:#cd74e8;">u8</span><span style="color:#abb2bf;">&gt;&gt;,
+</span><span style="color:#abb2bf;">        </span><span style="color:#eb6772;">layout</span><span style="color:#abb2bf;">: Layout,
+</span><span style="color:#abb2bf;">        </span><span style="color:#eb6772;">old_layout</span><span style="color:#abb2bf;">: Layout,
+</span><span style="color:#abb2bf;">        </span><span style="color:#eb6772;">flags</span><span style="color:#abb2bf;">: Flags,
+</span><span style="color:#abb2bf;">    ) -&gt; Result&lt;NonNull&lt;[</span><span style="color:#cd74e8;">u8</span><span style="color:#abb2bf;">]&gt;, AllocError&gt; {
+</span><span style="color:#abb2bf;">        </span><span style="color:#cd74e8;">let</span><span style="color:#abb2bf;"> layout </span><span style="color:#adb7c9;">= </span><span style="color:#abb2bf;">Kmalloc::aligned_layout(layout);
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">        </span><span style="font-style:italic;color:#5f697a;">// SAFETY: `ReallocFunc::call` has the same safety requirements as `Allocator::realloc`.
+</span><span style="color:#abb2bf;">        </span><span style="color:#cd74e8;">unsafe </span><span style="color:#abb2bf;">{ ReallocFunc::</span><span style="color:#db9d63;">KREALLOC</span><span style="color:#abb2bf;">.</span><span style="color:#5ebfcc;">call</span><span style="color:#abb2bf;">(ptr, layout, old_layout, flags) }
+</span><span style="color:#abb2bf;">    }
+</span><span style="color:#abb2bf;">}
+</span><span style="color:#abb2bf;">
+</span><span style="font-style:italic;color:#5f697a;">// 自动生成
+</span><span style="color:#cd74e8;">extern </span><span style="color:#9acc76;">&quot;C&quot; </span><span style="color:#abb2bf;">{
+</span><span style="color:#abb2bf;">    #[</span><span style="color:#eb6772;">must_use</span><span style="color:#abb2bf;">]
+</span><span style="color:#abb2bf;">    #[</span><span style="color:#eb6772;">link_name</span><span style="color:#adb7c9;">=</span><span style="color:#9acc76;">&quot;rust_helper_krealloc&quot;</span><span style="color:#abb2bf;">]
+</span><span style="color:#abb2bf;">    </span><span style="color:#cd74e8;">pub fn </span><span style="color:#5cb3fa;">krealloc</span><span style="color:#abb2bf;">(
+</span><span style="color:#abb2bf;">        </span><span style="color:#eb6772;">objp</span><span style="color:#abb2bf;">: </span><span style="color:#cd74e8;">*const </span><span style="color:#abb2bf;">ffi::c_void,
+</span><span style="color:#abb2bf;">        </span><span style="color:#eb6772;">new_size</span><span style="color:#abb2bf;">: </span><span style="color:#cd74e8;">usize</span><span style="color:#abb2bf;">,
+</span><span style="color:#abb2bf;">        </span><span style="color:#eb6772;">flags</span><span style="color:#abb2bf;">: gfp_t,
+</span><span style="color:#abb2bf;">    ) -&gt; </span><span style="color:#cd74e8;">*mut </span><span style="color:#abb2bf;">ffi::c_void;
+</span><span style="color:#abb2bf;">}
+</span></code></pre>
+<p><strong>关键点：</strong></p>
+<ul>
+<li><code>extern "C"</code>：告诉 Rust 这个函数在 C 世界里实现</li>
+<li><code>#[link_name="rust_helper_krealloc"]</code>：实际链接的符号名</li>
+</ul>
+<h2 id="c-ce-helper">C 侧 Helper</h2>
+<p>Rust 无法直接绑定 <code>krealloc</code> 宏（它是个宏/inline，不是符号）。所以内核提供一个 helper：</p>
+<p><strong>文件路径：</strong> <a href="https://github.com/Rust-for-Linux/linux/blob/1b237f190eb3d36f52dffe07a40b5eb210280e00/rust/helpers/slab.c#L5-L9"><code>rust/helpers/slab.c</code></a></p>
+<pre data-lang="c" style="background-color:#2b303b;color:#6c7079;" class="language-c "><code class="language-c" data-lang="c"><span style="color:#abb2bf;">
+</span><span style="color:#cd74e8;">void </span><span style="color:#adb7c9;">*</span><span style="color:#abb2bf;"> __must_check </span><span style="color:#5cb3fa;">__realloc_size</span><span style="color:#abb2bf;">(</span><span style="color:#db9d63;">2</span><span style="color:#abb2bf;">)
+</span><span style="color:#eb6772;">rust_helper_krealloc</span><span style="color:#abb2bf;">(</span><span style="color:#cd74e8;">const void </span><span style="color:#adb7c9;">*</span><span style="color:#abb2bf;">objp, size_t new_size, gfp_t flags)
+</span><span style="color:#abb2bf;">{
+</span><span style="color:#abb2bf;">	</span><span style="color:#cd74e8;">return </span><span style="color:#eb6772;">krealloc</span><span style="color:#abb2bf;">(objp, new_size, flags);
+</span><span style="color:#abb2bf;">}
+</span></code></pre>
+<p>这里 <code>krealloc(...)</code> 宏会在 C 里展开为：</p>
+<p><strong>文件路径：</strong> <a href="https://github.com/Rust-for-Linux/linux/blob/1b237f190eb3d36f52dffe07a40b5eb210280e00/include/linux/slab.h#L468C1-L470C67"><code>include/linux/slab.h</code></a></p>
+<pre data-lang="c" style="background-color:#2b303b;color:#6c7079;" class="language-c "><code class="language-c" data-lang="c"><span style="color:#abb2bf;">
+</span><span style="color:#cd74e8;">void </span><span style="color:#adb7c9;">*</span><span style="color:#abb2bf;"> __must_check </span><span style="color:#5cb3fa;">krealloc_noprof</span><span style="color:#abb2bf;">(</span><span style="color:#cd74e8;">const void </span><span style="color:#adb7c9;">*</span><span style="color:#eb6772;">objp</span><span style="color:#abb2bf;">, size_t </span><span style="color:#eb6772;">new_size</span><span style="color:#abb2bf;">,
+</span><span style="color:#abb2bf;">				    gfp_t </span><span style="color:#eb6772;">flags</span><span style="color:#abb2bf;">) </span><span style="color:#eb6772;">__realloc_size</span><span style="color:#abb2bf;">(</span><span style="color:#db9d63;">2</span><span style="color:#abb2bf;">);
+</span><span style="color:#cd74e8;">#define </span><span style="color:#5cb3fa;">krealloc</span><span style="color:#abb2bf;">(</span><span style="color:#adb7c9;">...</span><span style="color:#abb2bf;">)				</span><span style="color:#eb6772;">alloc_hooks</span><span style="color:#abb2bf;">(</span><span style="color:#eb6772;">krealloc_noprof</span><span style="color:#abb2bf;">(__VA_ARGS__))
+</span></code></pre>
+<h2 id="nei-he-ce-hong-zhen-zheng-fen-pei-qi">内核侧：宏 → 真正分配器</h2>
+<ol>
+<li>
+<p><strong><code>krealloc</code> 宏</strong>：加上 <code>alloc_hooks(...)</code>，触发 KASAN、KFENCE、memcg、trace 等调试与统计逻辑</p>
+</li>
+<li>
+<p><strong><code>krealloc_noprof</code> 函数</strong>：这是实际分配函数。行为：</p>
+<ul>
+<li>若 <code>objp == NULL</code> → 相当于 <code>kmalloc(new_size, flags)</code></li>
+<li>若能原地扩展 → 直接扩大</li>
+<li>否则 → 新分配 + memcpy 拷贝旧数据 + 释放旧块</li>
+</ul>
+</li>
+<li>
+<p><strong>底层分配器</strong>：最终由 SLAB / SLUB / SLOB 或 vmalloc 等实现，取决于大小、flags 和内核配置</p>
+</li>
+</ol>
+<h2 id="xiao-jie">小结</h2>
+<h3 id="wei-shen-me-yao-helper">为什么要 helper？</h3>
+<p>因为很多内核 API 是宏/内联函数，没有符号；Rust 必须绑定一个"稳定符号"，所以需要 C helper。</p>
+<h3 id="bindings-vs-helper">bindings vs helper</h3>
+<ul>
+<li><strong>bindings</strong>：Rust 端的 FFI 声明</li>
+<li><strong>helper</strong>：C 端的薄封装，确保能链接，并走对的内核路径</li>
+</ul>
+<h3 id="luo-di-lu-jing">落地路径</h3>
+<pre style="background-color:#2b303b;color:#6c7079;"><code><span style="color:#abb2bf;">Rust 抽象（KVec/KBox）
+</span><span style="color:#abb2bf;">    ↓
+</span><span style="color:#abb2bf;">分配器 trait (Allocator)
+</span><span style="color:#abb2bf;">    ↓
+</span><span style="color:#abb2bf;">FFI (extern &quot;C&quot;)
+</span><span style="color:#abb2bf;">    ↓
+</span><span style="color:#abb2bf;">C helper (rust_helper_*)
+</span><span style="color:#abb2bf;">    ↓
+</span><span style="color:#abb2bf;">内核 API 宏/函数
+</span><span style="color:#abb2bf;">    ↓
+</span><span style="color:#abb2bf;">实际的 slab/vmalloc 分配器
+</span></code></pre>
+
+    </div>
+
+    
+        <footer>
+            <hr>
+            <p>
+                
+                    Published by Ben Guo
+                
+                
+                    
+                    in <a href="https://benx-guo.github.io/cola-tech/categories/rust-for-linux/">Rust For Linux</a>
+                
+                
+                    and
+                    tagged
+                    
+                        <a href="https://benx-guo.github.io/cola-tech/tags/rust/">rust</a>
+                        
+                            
+                                
+                                    ,
+                                
+                            
+                        
+                    
+                        <a href="https://benx-guo.github.io/cola-tech/tags/allocator/">allocator</a>
+                        
+                            
+                                
+                                    ,
+                                
+                            
+                        
+                    
+                        <a href="https://benx-guo.github.io/cola-tech/tags/kmalloc/">kmalloc</a>
+                        
+                            
+                                
+                                    ,
+                                
+                            
+                        
+                    
+                        <a href="https://benx-guo.github.io/cola-tech/tags/krealloc/">krealloc</a>
+                        
+                            
+                                
+                                    ,
+                                
+                            
+                        
+                    
+                        <a href="https://benx-guo.github.io/cola-tech/tags/kernel/">kernel</a>
+                        
+                            
+                                
+                                    and
+                                
+                            
+                        
+                    
+                        <a href="https://benx-guo.github.io/cola-tech/tags/rust-for-linux/">rust-for-linux</a>
+                        
+                            
+                        
+                    
+                
+            </p>
+            
+            
+        </footer>
+    
+</article>
+
+
+
+  <!-- optional scripts -->
+  
+  
+  <script src="https://benx-guo.github.io/cola-tech/js/codeblock.js"></script>
+  
+
+  
+<!-- MathJax script for rendering LaTeX math equations -->
+<script>
+  MathJax = {
+    tex: {
+      inlineMath: [
+        ["$", "$"],
+        ["\\(", "\\)"],
+      ],
+      displayMath: [
+        ["$$", "$$"],
+        ["\\[", "\\]"],
+      ],
+    },
+  };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" async></script>
+
+
+  
+<script type="text/javascript" src="https://benx-guo.github.io/cola-tech/elasticlunr.min.js"></script>
+<script type="text/javascript" src="https://benx-guo.github.io/cola-tech/js/search.js"></script>
+
+
+  
+</body>
+
+</html>

@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+    <title>Cola Tech - 系列文章</title>
+    <subtitle>A blog about technology</subtitle>
+    <link rel="self" type="application/atom+xml" href="https://benx-guo.github.io/cola-tech/tags/xi-lie-wen-zhang/atom.xml"/>
+    <link rel="alternate" type="text/html" href="https://benx-guo.github.io/cola-tech/"/>
+    <generator uri="https://www.getzola.org/">Zola</generator>
+    <updated>2025-09-13T00:00:00+00:00</updated>
+    <id>https://benx-guo.github.io/cola-tech/tags/xi-lie-wen-zhang/atom.xml</id>
+    <entry xml:lang="en">
+        <title>2025 秋冬季开源操作系统训练营</title>
+        <published>2025-09-13T00:00:00+00:00</published>
+        <updated>2025-09-13T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Unknown
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://benx-guo.github.io/cola-tech/oscamp-series-intro/"/>
+        <id>https://benx-guo.github.io/cola-tech/oscamp-series-intro/</id>
+        
+        <summary type="html">&lt;div class=&quot;banner-container&quot; style=&quot;width: 100%; margin: 1em 0; text-align: center; position: relative;&quot;&gt;
+  
+  &lt;a href=&quot;https:&#x2F;&#x2F;opencamp.cn&#x2F;os2edu&#x2F;camp&#x2F;2025fall&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot; style=&quot;text-decoration: none; display: block; cursor: pointer; outline: none;&quot;&gt;
+  
+    &lt;img src=&quot;https:&#x2F;&#x2F;benx-guo.github.io&#x2F;cola-tech&#x2F;oscamp_header.png&quot; alt=&quot;2025 秋冬季开源操作系统训练营&quot; title=&quot;2025 秋冬季开源操作系统训练营&quot;
+         style=&quot;width: 100%; max-width: 100%; height: auto; display: block; margin: 0 auto; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.15); transition: transform 0.3s ease, box-shadow 0.3s ease;&quot;&gt;
+    
+    &lt;div class=&quot;banner-caption&quot; style=&quot;margin-top: 0.5em; text-align: center;&quot;&gt;
+      &lt;span class=&quot;banner-text&quot;&gt;开启你的操作系统学习之旅&lt;&#x2F;span&gt;
+    &lt;&#x2F;div&gt;
+    
+  
+  &lt;&#x2F;a&gt;
+  
+&lt;&#x2F;div&gt;
+
+&lt;style&gt;
+.banner-container {
+  background: linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.02) 100%);
+  border-radius: 16px;
+  padding: 1em;
+  border: 1px solid rgba(255,255,255,0.1);
+}
+
+.banner-container img:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+}
+
+.banner-text {
+  font-family: inherit;
+  font-size: 0.9em;
+  font-weight: 400;
+  color: var(--text-color, #fff);
+  text-align: center;
+  display: inline-block;
+  opacity: 0.8;
+  letter-spacing: 0.5px;
+}
+
+&#x2F;* 移除链接的所有视觉效果 *&#x2F;
+.banner-container a {
+  outline: none !important;
+  border: none !important;
+  -webkit-tap-highlight-color: transparent;
+  text-decoration: none !important;
+  box-shadow: none !important;
+}
+
+&#x2F;* 移除外部链接图标 *&#x2F;
+.banner-container a::after {
+  content: none !important;
+  display: none !important;
+}
+
+.banner-container a::before {
+  content: none !important;
+  display: none !important;
+}
+
+&#x2F;* 移除所有可能的图标和装饰 *&#x2F;
+.banner-container a *::after {
+  content: none !important;
+  display: none !important;
+}
+
+.banner-container a *::before {
+  content: none !important;
+  display: none !important;
+}
+
+&#x2F;* 移除可能的背景图标 *&#x2F;
+.banner-container a {
+  background-image: none !important;
+  background: none !important;
+}
+
+.banner-container a:focus {
+  outline: none !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.banner-container a:active {
+  outline: none !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.banner-container a:hover {
+  outline: none !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.banner-container a:visited {
+  outline: none !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+@media (max-width: 768px) {
+  .banner-container {
+    padding: 0.8em;
+  }
+  
+  .banner-text {
+    font-size: 0.85em !important;
+  }
+}
+&lt;&#x2F;style&gt;
+&lt;p&gt;欢迎来到 &lt;strong&gt;&lt;a href=&quot;https:&#x2F;&#x2F;opencamp.cn&#x2F;os2edu&#x2F;camp&#x2F;2025fall&quot;&gt;2025 秋冬季开源操作系统训练营&lt;&#x2F;a&gt;&lt;&#x2F;strong&gt;！&lt;&#x2F;p&gt;
+&lt;p&gt;这个系列将记录我在参加开源操作系统训练营过程中的学习历程、技术收获和实践经验。&lt;&#x2F;p&gt;</summary>
+        
+    </entry>
+</feed>

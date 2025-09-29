@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  
+  
+  <meta name="description" content="2025操作系统训练营记录 rustlings 100&#x2F;110" />
+  
+  
+
+  <title>
+    
+    Day 1 rustlings 100&#x2F;110
+    
+</title>
+  <link rel="alternate" type="application/atom+xml" title="Cola Tech Atom Feed" href="https://benx-guo.github.io/cola-tech/atom.xml" />
+
+  
+  <link rel="stylesheet" href="https://benx-guo.github.io/cola-tech/site.css">
+  
+
+  
+  
+</head>
+
+<body class="hack dark main container">
+  
+    
+        
+  
+  <header class="nav-header">
+    <nav itemscope itemtype="http://schema.org/SiteNavigationElement" class="navbar">
+      <div class="nav-links">
+        
+        <a itemprop="url"
+          class=""
+          href="https://benx-guo.github.io/cola-tech/">
+          <span itemprop="name">首页</span></a>
+        
+        <a itemprop="url"
+          class=""
+          href="https://benx-guo.github.io/cola-tech//categories">
+          <span itemprop="name">分类</span></a>
+        
+        <a itemprop="url"
+          class=""
+          href="https://benx-guo.github.io/cola-tech//tags">
+          <span itemprop="name">标签</span></a>
+        
+      </div>
+    </nav>
+    
+    <div class="search-container">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" class="search-icon">
+        <path stroke-linecap="round" stroke-linejoin="round"
+          d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+      </svg>
+      <input type="text" id="search" placeholder="Search...">
+      <div class="search-results">
+        <div class="search-results__items"></div>
+      </div>
+    </div>
+    
+
+  </header>
+  
+  
+    
+
+<article itemscope itemtype="http://schema.org/BlogPosting">
+    <header>
+        <h1 itemprop="headline">Day 1 rustlings 100&#x2F;110</h1>
+        <span class="muted">
+    <svg class="icon i-clock" viewBox="0 0 32 32"
+         width="16" height="16" fill="none" stroke="currentcolor"
+         stroke-linecap="round" stroke-linejoin="round" stroke-width="6.25%">
+        <circle cx="16" cy="16" r="14"/>
+        <path d="M16 8 L16 16 20 20"/>
+    </svg>
+    <span>3 minute read</span>
+    <svg class="icon i-edit" viewBox="0 0 32 32"
+         width="16" height="16" fill="none" stroke="currentcolor"
+         stroke-linecap="round" stroke-linejoin="round" stroke-width="6.25%">
+        <path d="M30 7 L25 2 5 22 3 29 10 27 Z M21 6 L26 11 Z M5 22 L10 27 Z"/>
+    </svg>
+
+    Published: 2025-09-15
+</span>
+    </header>
+    <div itemprop="articleBody">
+      <div class="banner-container" style="width: 100%; margin: 1em 0; text-align: center; position: relative;">
+  
+  <a href="https://opencamp.cn/os2edu/camp/2025fall" target="_blank" rel="noopener noreferrer" style="text-decoration: none; display: block; cursor: pointer; outline: none;">
+  
+    <img src="https://benx-guo.github.io/cola-tech/oscamp_header.png" alt="2025 秋冬季开源操作系统训练营 Day 1" title="2025 秋冬季开源操作系统训练营 Day 1"
+         style="width: 100%; max-width: 100%; height: auto; display: block; margin: 0 auto; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.15); transition: transform 0.3s ease, box-shadow 0.3s ease;">
+    
+    <div class="banner-caption" style="margin-top: 0.5em; text-align: center;">
+      <span class="banner-text">Day 1</span>
+    </div>
+    
+  
+  </a>
+  
+</div>
+
+<style>
+.banner-container {
+  background: linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.02) 100%);
+  border-radius: 16px;
+  padding: 1em;
+  border: 1px solid rgba(255,255,255,0.1);
+}
+
+.banner-container img:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+}
+
+.banner-text {
+  font-family: inherit;
+  font-size: 0.9em;
+  font-weight: 400;
+  color: var(--text-color, #fff);
+  text-align: center;
+  display: inline-block;
+  opacity: 0.8;
+  letter-spacing: 0.5px;
+}
+
+/* 移除链接的所有视觉效果 */
+.banner-container a {
+  outline: none !important;
+  border: none !important;
+  -webkit-tap-highlight-color: transparent;
+  text-decoration: none !important;
+  box-shadow: none !important;
+}
+
+/* 移除外部链接图标 */
+.banner-container a::after {
+  content: none !important;
+  display: none !important;
+}
+
+.banner-container a::before {
+  content: none !important;
+  display: none !important;
+}
+
+/* 移除所有可能的图标和装饰 */
+.banner-container a *::after {
+  content: none !important;
+  display: none !important;
+}
+
+.banner-container a *::before {
+  content: none !important;
+  display: none !important;
+}
+
+/* 移除可能的背景图标 */
+.banner-container a {
+  background-image: none !important;
+  background: none !important;
+}
+
+.banner-container a:focus {
+  outline: none !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.banner-container a:active {
+  outline: none !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.banner-container a:hover {
+  outline: none !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.banner-container a:visited {
+  outline: none !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+@media (max-width: 768px) {
+  .banner-container {
+    padding: 0.8em;
+  }
+  
+  .banner-text {
+    font-size: 0.85em !important;
+  }
+}
+</style>
+<h2 id="jin-ri-mu-biao">今日目标</h2>
+<ul>
+<li><input disabled="" type="checkbox" checked=""/>
+完成100项 rustlings 任务</li>
+</ul>
+<h2 id="xue-xi-zong-jie">学习总结</h2>
+<p>通过今天的 rustlings 练习，深入理解了 Rust 的核心概念：内存管理、所有权系统和堆栈机制。这些基础概念是后续学习操作系统内核开发的重要基石。</p>
+<h2 id="zhong-dian-nei-rong-hui-gu">重点内容回顾</h2>
+<h3 id="nei-cun-bu-ju">内存布局</h3>
+<div class="concept-image-container">
+  <img src="https://benx-guo.github.io/cola-tech/stack_heap.png" alt="栈内存布局示意图" title="栈内存布局示意图" class="concept-image">
+  
+  <div class="concept-caption">
+    <span class="concept-text">图1：进程内存布局示意图 - 栈向下生长，堆向上生长</span>
+  </div>
+  
+</div>
+
+<style>
+.concept-image-container {
+  width: 100%;
+  max-width: 100%;
+  margin: 1.5em 0;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  position: relative;
+}
+
+.concept-image {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  object-fit: contain;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.concept-image:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+}
+
+.concept-caption {
+  margin-top: 0.8em;
+  text-align: center;
+}
+
+.concept-text {
+  font-family: inherit;
+  font-size: 0.9em;
+  font-weight: 400;
+  color: #ffffff;
+  text-align: center;
+  display: inline-block;
+  opacity: 1;
+  letter-spacing: 0.2px;
+  background: rgba(0,0,0,0.7);
+  padding: 0.4em 1em;
+  border-radius: 15px;
+  border: 1px solid rgba(255,255,255,0.3);
+}
+
+.concept-text::before {
+  content: "📊 ";
+  margin-right: 0.3em;
+}
+
+@media (max-width: 768px) {
+  .concept-image {
+    max-height: 60vh;
+  }
+  .concept-text {
+    font-size: 0.85em;
+    padding: 0.3em 0.8em;
+  }
+}
+
+/* 深色主题适配 */
+@media (prefers-color-scheme: dark) {
+  .concept-text {
+    color: #ffffff;
+    background: rgba(0,0,0,0.8);
+    border-color: rgba(255,255,255,0.4);
+  }
+}
+</style>
+<p>典型进程内存布局：低地址处是代码段与只读数据，其后是已初始化/未初始化数据段；中间为堆（向高地址增长）与映射区（mmap）；高地址处为栈（向低地址增长）。这种设计使堆与栈相向生长，便于按需扩展，最大化利用虚拟地址空间。</p>
+<h3 id="zhan-stack">栈（Stack）</h3>
+<div class="concept-image-container">
+  <img src="https://benx-guo.github.io/cola-tech/method_stack.png" alt="栈示意图" title="栈示意图" class="concept-image">
+  
+  <div class="concept-caption">
+    <span class="concept-text">图2：方法调用栈变化示意图</span>
+  </div>
+  
+</div>
+
+<style>
+.concept-image-container {
+  width: 100%;
+  max-width: 100%;
+  margin: 1.5em 0;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  position: relative;
+}
+
+.concept-image {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  object-fit: contain;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.concept-image:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+}
+
+.concept-caption {
+  margin-top: 0.8em;
+  text-align: center;
+}
+
+.concept-text {
+  font-family: inherit;
+  font-size: 0.9em;
+  font-weight: 400;
+  color: #ffffff;
+  text-align: center;
+  display: inline-block;
+  opacity: 1;
+  letter-spacing: 0.2px;
+  background: rgba(0,0,0,0.7);
+  padding: 0.4em 1em;
+  border-radius: 15px;
+  border: 1px solid rgba(255,255,255,0.3);
+}
+
+.concept-text::before {
+  content: "📊 ";
+  margin-right: 0.3em;
+}
+
+@media (max-width: 768px) {
+  .concept-image {
+    max-height: 60vh;
+  }
+  .concept-text {
+    font-size: 0.85em;
+    padding: 0.3em 0.8em;
+  }
+}
+
+/* 深色主题适配 */
+@media (prefers-color-scheme: dark) {
+  .concept-text {
+    color: #ffffff;
+    background: rgba(0,0,0,0.8);
+    border-color: rgba(255,255,255,0.4);
+  }
+}
+</style>
+<p>栈遵循后进先出（LIFO）原则。函数调用时压入返回地址、参数和局部变量，栈指针随之向低地址移动；返回时栈帧整体弹出，指针复位，内存自动回收。适合编译期大小固定的数据，如基本类型、引用等。</p>
+<pre data-lang="rust" style="background-color:#2b303b;color:#6c7079;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#abb2bf;">
+</span><span style="color:#cd74e8;">fn </span><span style="color:#5cb3fa;">example</span><span style="color:#abb2bf;">() {
+</span><span style="color:#abb2bf;">    </span><span style="color:#cd74e8;">let</span><span style="color:#abb2bf;"> x </span><span style="color:#adb7c9;">= </span><span style="color:#db9d63;">5</span><span style="color:#abb2bf;">;        </span><span style="font-style:italic;color:#5f697a;">// 局部变量 x 入栈
+</span><span style="color:#abb2bf;">    </span><span style="color:#cd74e8;">let</span><span style="color:#abb2bf;"> y </span><span style="color:#adb7c9;">= </span><span style="color:#db9d63;">5</span><span style="color:#abb2bf;">;       </span><span style="font-style:italic;color:#5f697a;">// 局部变量 y 入栈
+</span><span style="color:#abb2bf;">    </span><span style="font-style:italic;color:#5f697a;">// 函数结束时，x 和 y 自动出栈
+</span><span style="color:#abb2bf;">}
+</span></code></pre>
+<h3 id="dui-heap">堆（Heap）</h3>
+<div class="concept-image-container">
+  <img src="https://benx-guo.github.io/cola-tech/heap.png" alt="堆内存布局示意图" title="堆内存布局示意图" class="concept-image">
+  
+  <div class="concept-caption">
+    <span class="concept-text">图3：堆内存分配示意图</span>
+  </div>
+  
+</div>
+
+<style>
+.concept-image-container {
+  width: 100%;
+  max-width: 100%;
+  margin: 1.5em 0;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  position: relative;
+}
+
+.concept-image {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  object-fit: contain;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.concept-image:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+}
+
+.concept-caption {
+  margin-top: 0.8em;
+  text-align: center;
+}
+
+.concept-text {
+  font-family: inherit;
+  font-size: 0.9em;
+  font-weight: 400;
+  color: #ffffff;
+  text-align: center;
+  display: inline-block;
+  opacity: 1;
+  letter-spacing: 0.2px;
+  background: rgba(0,0,0,0.7);
+  padding: 0.4em 1em;
+  border-radius: 15px;
+  border: 1px solid rgba(255,255,255,0.3);
+}
+
+.concept-text::before {
+  content: "📊 ";
+  margin-right: 0.3em;
+}
+
+@media (max-width: 768px) {
+  .concept-image {
+    max-height: 60vh;
+  }
+  .concept-text {
+    font-size: 0.85em;
+    padding: 0.3em 0.8em;
+  }
+}
+
+/* 深色主题适配 */
+@media (prefers-color-scheme: dark) {
+  .concept-text {
+    color: #ffffff;
+    background: rgba(0,0,0,0.8);
+    border-color: rgba(255,255,255,0.4);
+  }
+}
+</style>
+<p>堆用于运行期大小不确定或需跨栈帧存活的数据，如<code>String</code>、<code>Vec</code>。分配/释放有开销，访问经指针间接完成；在Rust中，离开作用域由所有权自动释放，避免了内存泄漏。</p>
+<pre data-lang="rust" style="background-color:#2b303b;color:#6c7079;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#abb2bf;">
+</span><span style="color:#cd74e8;">fn </span><span style="color:#5cb3fa;">heap_example</span><span style="color:#abb2bf;">() {
+</span><span style="color:#abb2bf;">    </span><span style="color:#cd74e8;">let mut</span><span style="color:#abb2bf;"> s1 </span><span style="color:#adb7c9;">= </span><span style="color:#abb2bf;">String::from(</span><span style="color:#9acc76;">&quot;hello&quot;</span><span style="color:#abb2bf;">); </span><span style="font-style:italic;color:#5f697a;">// 在堆上分配内存
+</span><span style="color:#abb2bf;">    s1 </span><span style="color:#adb7c9;">= </span><span style="color:#abb2bf;">format!(</span><span style="color:#9acc76;">&quot;</span><span style="color:#db9d63;">{}</span><span style="color:#9acc76;"> world&quot;</span><span style="color:#abb2bf;">, </span><span style="color:#9acc76;">&quot;hello&quot;</span><span style="color:#abb2bf;">);
+</span><span style="color:#abb2bf;">    </span><span style="font-style:italic;color:#5f697a;">// String 的所有权在 s1 上，当 s1 离开作用域时自动释放堆内存
+</span><span style="color:#abb2bf;">}
+</span></code></pre>
+<h2 id="rustsuo-you-quan-xi-tong">Rust所有权系统</h2>
+<div class="concept-image-container">
+  <img src="https://benx-guo.github.io/cola-tech/ownership.png" alt="Rust所有权示意图" title="Rust所有权示意图" class="concept-image">
+  
+  <div class="concept-caption">
+    <span class="concept-text">图4：Rust所有权机制示意图</span>
+  </div>
+  
+</div>
+
+<style>
+.concept-image-container {
+  width: 100%;
+  max-width: 100%;
+  margin: 1.5em 0;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  position: relative;
+}
+
+.concept-image {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  object-fit: contain;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.concept-image:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+}
+
+.concept-caption {
+  margin-top: 0.8em;
+  text-align: center;
+}
+
+.concept-text {
+  font-family: inherit;
+  font-size: 0.9em;
+  font-weight: 400;
+  color: #ffffff;
+  text-align: center;
+  display: inline-block;
+  opacity: 1;
+  letter-spacing: 0.2px;
+  background: rgba(0,0,0,0.7);
+  padding: 0.4em 1em;
+  border-radius: 15px;
+  border: 1px solid rgba(255,255,255,0.3);
+}
+
+.concept-text::before {
+  content: "📊 ";
+  margin-right: 0.3em;
+}
+
+@media (max-width: 768px) {
+  .concept-image {
+    max-height: 60vh;
+  }
+  .concept-text {
+    font-size: 0.85em;
+    padding: 0.3em 0.8em;
+  }
+}
+
+/* 深色主题适配 */
+@media (prefers-color-scheme: dark) {
+  .concept-text {
+    color: #ffffff;
+    background: rgba(0,0,0,0.8);
+    border-color: rgba(255,255,255,0.4);
+  }
+}
+</style>
+<p>所有权是Rust内存安全的核心机制，确保无需垃圾回收也能安全管理内存：每个值有且只有一个所有者，离开作用域自动释放；配套机制包括移动、拷贝与借用。</p>
+<pre data-lang="rust" style="background-color:#2b303b;color:#6c7079;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#abb2bf;">
+</span><span style="color:#cd74e8;">fn </span><span style="color:#5cb3fa;">main</span><span style="color:#abb2bf;">() {
+</span><span style="color:#abb2bf;">    </span><span style="font-style:italic;color:#5f697a;">// 移动（move）：所有权转移
+</span><span style="color:#abb2bf;">    </span><span style="color:#cd74e8;">let</span><span style="color:#abb2bf;"> s1 </span><span style="color:#adb7c9;">= </span><span style="color:#abb2bf;">String::from(</span><span style="color:#9acc76;">&quot;hi&quot;</span><span style="color:#abb2bf;">);
+</span><span style="color:#abb2bf;">    </span><span style="color:#cd74e8;">let</span><span style="color:#abb2bf;"> s2 </span><span style="color:#adb7c9;">=</span><span style="color:#abb2bf;"> s1;              </span><span style="font-style:italic;color:#5f697a;">// s1 被移动，之后不能再用 s1
+</span><span style="color:#abb2bf;">    </span><span style="font-style:italic;color:#5f697a;">// println!(&quot;{}&quot;, s1);   // 编译错误
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">    </span><span style="font-style:italic;color:#5f697a;">// 拷贝（copy）：栈上小型标量类型实现 Copy，可按位拷贝
+</span><span style="color:#abb2bf;">    </span><span style="color:#cd74e8;">let</span><span style="color:#abb2bf;"> a: </span><span style="color:#cd74e8;">i32 </span><span style="color:#adb7c9;">= </span><span style="color:#db9d63;">10</span><span style="color:#abb2bf;">;
+</span><span style="color:#abb2bf;">    </span><span style="color:#cd74e8;">let</span><span style="color:#abb2bf;"> b </span><span style="color:#adb7c9;">=</span><span style="color:#abb2bf;"> a;                </span><span style="font-style:italic;color:#5f697a;">// a 仍然可用
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">    </span><span style="font-style:italic;color:#5f697a;">// 借用（&amp;T）：只读访问，不获取所有权
+</span><span style="color:#abb2bf;">    </span><span style="color:#cd74e8;">let</span><span style="color:#abb2bf;"> len </span><span style="color:#adb7c9;">= </span><span style="color:#5ebfcc;">len_ref</span><span style="color:#abb2bf;">(</span><span style="color:#adb7c9;">&amp;</span><span style="color:#abb2bf;">s2);
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">    </span><span style="font-style:italic;color:#5f697a;">// 可变借用（&amp;mut T）：独占可写，作用域内不能同时存在其他借用
+</span><span style="color:#abb2bf;">    </span><span style="color:#cd74e8;">let mut</span><span style="color:#abb2bf;"> s3 </span><span style="color:#adb7c9;">= </span><span style="color:#abb2bf;">String::from(</span><span style="color:#9acc76;">&quot;hello&quot;</span><span style="color:#abb2bf;">);
+</span><span style="color:#abb2bf;">    </span><span style="color:#5ebfcc;">push_ref</span><span style="color:#abb2bf;">(</span><span style="color:#adb7c9;">&amp;</span><span style="color:#cd74e8;">mut</span><span style="color:#abb2bf;"> s3);
+</span><span style="color:#abb2bf;">
+</span><span style="color:#abb2bf;">    </span><span style="font-style:italic;color:#5f697a;">// 获取所有权
+</span><span style="color:#abb2bf;">    </span><span style="color:#5ebfcc;">takes_ownership</span><span style="color:#abb2bf;">(s2);  </span><span style="font-style:italic;color:#5f697a;">// s2 被移动，之后不可用
+</span><span style="color:#abb2bf;">    </span><span style="font-style:italic;color:#5f697a;">// println!(&quot;{}&quot;, s2); // 编译错误：s2 已被移动
+</span><span style="color:#abb2bf;">}
+</span><span style="color:#abb2bf;">
+</span><span style="color:#cd74e8;">fn </span><span style="color:#5cb3fa;">len_ref</span><span style="color:#abb2bf;">(</span><span style="color:#eb6772;">s</span><span style="color:#abb2bf;">: </span><span style="color:#adb7c9;">&amp;</span><span style="color:#abb2bf;">String) -&gt; </span><span style="color:#cd74e8;">usize </span><span style="color:#abb2bf;">{
+</span><span style="color:#abb2bf;">    s.</span><span style="color:#5ebfcc;">len</span><span style="color:#abb2bf;">()
+</span><span style="color:#abb2bf;">}
+</span><span style="color:#abb2bf;">
+</span><span style="color:#cd74e8;">fn </span><span style="color:#5cb3fa;">push_ref</span><span style="color:#abb2bf;">(</span><span style="color:#eb6772;">s</span><span style="color:#abb2bf;">: </span><span style="color:#adb7c9;">&amp;</span><span style="color:#cd74e8;">mut</span><span style="color:#abb2bf;"> String) {
+</span><span style="color:#abb2bf;">    s.</span><span style="color:#5ebfcc;">push</span><span style="color:#abb2bf;">(</span><span style="color:#9acc76;">&#39;!&#39;</span><span style="color:#abb2bf;">);
+</span><span style="color:#abb2bf;">}
+</span><span style="color:#abb2bf;">
+</span><span style="color:#cd74e8;">fn </span><span style="color:#5cb3fa;">takes_ownership</span><span style="color:#abb2bf;">(</span><span style="color:#eb6772;">s</span><span style="color:#abb2bf;">: String) {
+</span><span style="color:#abb2bf;">    println!(</span><span style="color:#9acc76;">&quot;Took ownership of: </span><span style="color:#db9d63;">{}</span><span style="color:#9acc76;">&quot;</span><span style="color:#abb2bf;">, s);
+</span><span style="color:#abb2bf;">}
+</span><span style="color:#abb2bf;">
+</span></code></pre>
+<h2 id="xiao-jie">小结</h2>
+<p>今天把栈与堆的区别、进程内存布局，以及所有权/借用的基本回顾一下。</p>
+
+    </div>
+
+    
+        <footer>
+            <hr>
+            <p>
+                
+                    Published by Ben Guo
+                
+                
+                    
+                    in <a href="https://benx-guo.github.io/cola-tech/categories/cao-zuo-xi-tong/">操作系统</a>
+                
+                
+                    and
+                    tagged
+                    
+                        <a href="https://benx-guo.github.io/cola-tech/tags/2025-qiu-dong-ji-kai-yuan-cao-zuo-xi-tong-xun-lian-ying/">2025 秋冬季开源操作系统训练营</a>
+                        
+                            
+                                
+                                    ,
+                                
+                            
+                        
+                    
+                        <a href="https://benx-guo.github.io/cola-tech/tags/rust/">Rust</a>
+                        
+                            
+                                
+                                    ,
+                                
+                            
+                        
+                    
+                        <a href="https://benx-guo.github.io/cola-tech/tags/cao-zuo-xi-tong/">操作系统</a>
+                        
+                            
+                                
+                                    and
+                                
+                            
+                        
+                    
+                        <a href="https://benx-guo.github.io/cola-tech/tags/rustling/">Rustling</a>
+                        
+                            
+                        
+                    
+                
+            </p>
+            
+            
+        </footer>
+    
+</article>
+
+
+
+  <!-- optional scripts -->
+  
+  
+  <script src="https://benx-guo.github.io/cola-tech/js/codeblock.js"></script>
+  
+
+  
+<!-- MathJax script for rendering LaTeX math equations -->
+<script>
+  MathJax = {
+    tex: {
+      inlineMath: [
+        ["$", "$"],
+        ["\\(", "\\)"],
+      ],
+      displayMath: [
+        ["$$", "$$"],
+        ["\\[", "\\]"],
+      ],
+    },
+  };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" async></script>
+
+
+  
+<script type="text/javascript" src="https://benx-guo.github.io/cola-tech/elasticlunr.min.js"></script>
+<script type="text/javascript" src="https://benx-guo.github.io/cola-tech/js/search.js"></script>
+
+
+  
+</body>
+
+</html>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+    <title>Cola Tech - 类型系统</title>
+    <subtitle>A blog about technology</subtitle>
+    <link rel="self" type="application/atom+xml" href="https://benx-guo.github.io/cola-tech/tags/lei-xing-xi-tong/atom.xml"/>
+    <link rel="alternate" type="text/html" href="https://benx-guo.github.io/cola-tech/"/>
+    <generator uri="https://www.getzola.org/">Zola</generator>
+    <updated>2025-08-05T00:00:00+00:00</updated>
+    <id>https://benx-guo.github.io/cola-tech/tags/lei-xing-xi-tong/atom.xml</id>
+    <entry xml:lang="en">
+        <title>PostgreSQL JDBC 中 stringtype=unspecified 背后的设计趣事</title>
+        <published>2025-08-05T00:00:00+00:00</published>
+        <updated>2025-08-05T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Unknown
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://benx-guo.github.io/cola-tech/stringtype-unspecified-design-pgsql/"/>
+        <id>https://benx-guo.github.io/cola-tech/stringtype-unspecified-design-pgsql/</id>
+        
+        <summary type="html">&lt;p&gt;有时候，写代码就像在解谜。你以为一切都按部就班，结果 PostgreSQL 给你来一句：&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#2b303b;color:#6c7079;&quot;&gt;&lt;code&gt;&lt;span style=&quot;color:#abb2bf;&quot;&gt;ERROR: column &amp;quot;meta&amp;quot; is of type jsonb but expression is of type character varying
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;这时候，网上一搜，大家都在说：在 JDBC 连接串里加上 &lt;code&gt;stringtype=unspecified&lt;&#x2F;code&gt; 就好了。&lt;&#x2F;p&gt;
+&lt;p&gt;你试一试，果然，世界安静了。&lt;&#x2F;p&gt;
+&lt;p&gt;这事儿有点意思。明明只是多了一个参数，数据库和驱动之间的气氛就突然变得融洽起来。你有没有好奇过，这背后到底发生了什么？&lt;&#x2F;p&gt;</summary>
+        
+    </entry>
+</feed>

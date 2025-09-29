@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+    <title>Cola Tech - Rust For Linux</title>
+    <subtitle>A blog about technology</subtitle>
+    <link rel="self" type="application/atom+xml" href="https://benx-guo.github.io/cola-tech/categories/rust-for-linux/atom.xml"/>
+    <link rel="alternate" type="text/html" href="https://benx-guo.github.io/cola-tech/"/>
+    <generator uri="https://www.getzola.org/">Zola</generator>
+    <updated>2025-09-02T00:00:00+00:00</updated>
+    <id>https://benx-guo.github.io/cola-tech/categories/rust-for-linux/atom.xml</id>
+    <entry xml:lang="en">
+        <title>Rust 在 Linux Kernel 中 alloc 的链路分析</title>
+        <published>2025-09-02T00:00:00+00:00</published>
+        <updated>2025-09-02T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Unknown
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://benx-guo.github.io/cola-tech/rust-for-linux-alloc/"/>
+        <id>https://benx-guo.github.io/cola-tech/rust-for-linux-alloc/</id>
+        
+        <summary type="html">&lt;p&gt;本文尝试从 &lt;strong&gt;Rust 层调用&lt;&#x2F;strong&gt; → &lt;strong&gt;FFI bindings&lt;&#x2F;strong&gt; → &lt;strong&gt;C helper&lt;&#x2F;strong&gt; → &lt;strong&gt;内核 API 宏&#x2F;函数&lt;&#x2F;strong&gt; → &lt;strong&gt;实际分配器&lt;&#x2F;strong&gt;
+一步步梳理 Rust 在 Linux 内核里的内存分配调用链。
+以 &lt;code&gt;KVec::push&lt;&#x2F;code&gt; 触发扩容为例，串联 &lt;code&gt;krealloc&lt;&#x2F;code&gt; 的全过程。&lt;&#x2F;p&gt;</summary>
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>在Ubuntu 24.04 LTS上编译支持Rust的Linux内核</title>
+        <published>2025-07-13T00:00:00+00:00</published>
+        <updated>2025-07-13T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Unknown
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://benx-guo.github.io/cola-tech/ubuntu-24-04-kernel-rust-compilation/"/>
+        <id>https://benx-guo.github.io/cola-tech/ubuntu-24-04-kernel-rust-compilation/</id>
+        
+        <summary type="html">&lt;p&gt;本文档详细介绍了如何在Ubuntu 24.04 LTS上安装Rust工具链并编译支持Rust的Linux内核。&lt;&#x2F;p&gt;</summary>
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>为什么我开始关注Rust for Linux项目</title>
+        <published>2025-07-01T00:00:00+00:00</published>
+        <updated>2025-07-01T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Unknown
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://benx-guo.github.io/cola-tech/why-focus-on-rust-for-linux/"/>
+        <id>https://benx-guo.github.io/cola-tech/why-focus-on-rust-for-linux/</id>
+        
+        <summary type="html">&lt;p&gt;最近我开始深入关注Rust for Linux项目，这个决定背后有着几个重要的动机。让我分享一下为什么这个项目对我如此有吸引力。&lt;&#x2F;p&gt;</summary>
+        
+    </entry>
+</feed>

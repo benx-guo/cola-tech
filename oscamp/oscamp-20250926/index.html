@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  
+  
+  <meta name="description" content="2025操作系统训练营记录 完成实验Lab3" />
+  
+  
+
+  <title>
+    
+    Day 12 完成实验Lab3
+    
+</title>
+  <link rel="alternate" type="application/atom+xml" title="Cola Tech Atom Feed" href="https://benx-guo.github.io/cola-tech/atom.xml" />
+
+  
+  <link rel="stylesheet" href="https://benx-guo.github.io/cola-tech/site.css">
+  
+
+  
+  
+</head>
+
+<body class="hack dark main container">
+  
+    
+        
+  
+  <header class="nav-header">
+    <nav itemscope itemtype="http://schema.org/SiteNavigationElement" class="navbar">
+      <div class="nav-links">
+        
+        <a itemprop="url"
+          class=""
+          href="https://benx-guo.github.io/cola-tech/">
+          <span itemprop="name">首页</span></a>
+        
+        <a itemprop="url"
+          class=""
+          href="https://benx-guo.github.io/cola-tech//categories">
+          <span itemprop="name">分类</span></a>
+        
+        <a itemprop="url"
+          class=""
+          href="https://benx-guo.github.io/cola-tech//tags">
+          <span itemprop="name">标签</span></a>
+        
+      </div>
+    </nav>
+    
+    <div class="search-container">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" class="search-icon">
+        <path stroke-linecap="round" stroke-linejoin="round"
+          d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+      </svg>
+      <input type="text" id="search" placeholder="Search...">
+      <div class="search-results">
+        <div class="search-results__items"></div>
+      </div>
+    </div>
+    
+
+  </header>
+  
+  
+    
+
+<article itemscope itemtype="http://schema.org/BlogPosting">
+    <header>
+        <h1 itemprop="headline">Day 12 完成实验Lab3</h1>
+        <span class="muted">
+    <svg class="icon i-clock" viewBox="0 0 32 32"
+         width="16" height="16" fill="none" stroke="currentcolor"
+         stroke-linecap="round" stroke-linejoin="round" stroke-width="6.25%">
+        <circle cx="16" cy="16" r="14"/>
+        <path d="M16 8 L16 16 20 20"/>
+    </svg>
+    <span>7 minute read</span>
+    <svg class="icon i-edit" viewBox="0 0 32 32"
+         width="16" height="16" fill="none" stroke="currentcolor"
+         stroke-linecap="round" stroke-linejoin="round" stroke-width="6.25%">
+        <path d="M30 7 L25 2 5 22 3 29 10 27 Z M21 6 L26 11 Z M5 22 L10 27 Z"/>
+    </svg>
+
+    Published: 2025-09-26
+</span>
+    </header>
+    <div itemprop="articleBody">
+      <div class="banner-container" style="width: 100%; margin: 1em 0; text-align: center; position: relative;">
+  
+  <a href="https://opencamp.cn/os2edu/camp/2025fall" target="_blank" rel="noopener noreferrer" style="text-decoration: none; display: block; cursor: pointer; outline: none;">
+  
+    <img src="https://benx-guo.github.io/cola-tech/oscamp_header.png" alt="2025 秋冬季开源操作系统训练营 Day 12" title="2025 秋冬季开源操作系统训练营 Day 12"
+         style="width: 100%; max-width: 100%; height: auto; display: block; margin: 0 auto; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.15); transition: transform 0.3s ease, box-shadow 0.3s ease;">
+    
+    <div class="banner-caption" style="margin-top: 0.5em; text-align: center;">
+      <span class="banner-text">Day 12</span>
+    </div>
+    
+  
+  </a>
+  
+</div>
+
+<style>
+.banner-container {
+  background: linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.02) 100%);
+  border-radius: 16px;
+  padding: 1em;
+  border: 1px solid rgba(255,255,255,0.1);
+}
+
+.banner-container img:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+}
+
+.banner-text {
+  font-family: inherit;
+  font-size: 0.9em;
+  font-weight: 400;
+  color: var(--text-color, #fff);
+  text-align: center;
+  display: inline-block;
+  opacity: 0.8;
+  letter-spacing: 0.5px;
+}
+
+/* 移除链接的所有视觉效果 */
+.banner-container a {
+  outline: none !important;
+  border: none !important;
+  -webkit-tap-highlight-color: transparent;
+  text-decoration: none !important;
+  box-shadow: none !important;
+}
+
+/* 移除外部链接图标 */
+.banner-container a::after {
+  content: none !important;
+  display: none !important;
+}
+
+.banner-container a::before {
+  content: none !important;
+  display: none !important;
+}
+
+/* 移除所有可能的图标和装饰 */
+.banner-container a *::after {
+  content: none !important;
+  display: none !important;
+}
+
+.banner-container a *::before {
+  content: none !important;
+  display: none !important;
+}
+
+/* 移除可能的背景图标 */
+.banner-container a {
+  background-image: none !important;
+  background: none !important;
+}
+
+.banner-container a:focus {
+  outline: none !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.banner-container a:active {
+  outline: none !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.banner-container a:hover {
+  outline: none !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.banner-container a:visited {
+  outline: none !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+@media (max-width: 768px) {
+  .banner-container {
+    padding: 0.8em;
+  }
+  
+  .banner-text {
+    font-size: 0.85em !important;
+  }
+}
+</style>
+<h1 id="gong-neng-shi-xian">功能实现</h1>
+<h2 id="ru-guo-trace-request-wei-0-ze-id-ying-bei-shi-zuo-const-u8-biao-shi-du-qu-dang-qian-ren-wu-id-di-zhi-chu-yi-ge-zi-jie-de-wu-fu-hao-zheng-shu-zhi-ci-shi-ying-hu-lue-data-can-shu-fan-hui-zhi-wei-id-di-zhi-chu-de-zhi">如果 trace_request 为 0，则 id 应被视作 *const u8 ，表示读取当前任务 id 地址处一个字节的无符号整数值。此时应忽略 data 参数。返回值为 id 地址处的值</h2>
+<p>将 <code>id</code> 视为内存地址，使用 <code>*</code> 解引用读取 1 字节。</p>
+<h2 id="ru-guo-trace-request-wei-1-ze-id-ying-bei-shi-zuo-mut-u8-biao-shi-xie-ru-data-zuo-wei-u8-ji-zhi-kao-lu-zui-di-wei-de-yi-ge-zi-jie-dao-gai-yong-hu-cheng-xu-id-di-zhi-chu-fan-hui-zhi-ying-wei-0">如果 trace_request 为 1，则 id 应被视作 *mut u8 ，表示写入 data （作为 u8，即只考虑最低位的一个字节）到该用户程序 id 地址处。返回值应为0。</h2>
+<p>将 <code>id</code> 视为内存地址，使用 <code>write_volatile</code> 写入 1 字节。</p>
+<h2 id="ru-guo-trace-request-wei-2-biao-shi-cha-xun-dang-qian-ren-wu-diao-yong-bian-hao-wei-id-de-xi-tong-diao-yong-de-ci-shu-fan-hui-zhi-wei-zhe-ge-diao-yong-ci-shu-ben-ci-diao-yong-ye-ji-ru-tong-ji">如果 trace_request 为 2，表示查询当前任务调用编号为 id 的系统调用的次数，返回值为这个调用次数。本次调用也计入统计 。</h2>
+<p>统计当前任务的系统调用次数。</p>
+<p><code>task</code> 即 <code>TaskControlBlock</code>。在其中维护字段 <code>syscall_times: [SyscallCounter; SYSCALL_COUNT]</code> 记录各 <code>syscall</code> 的调用次数。</p>
+<p>由于当前没有提供哈希结构，采用定长数组，通过索引与 <code>syscall</code> 编号建立映射。整体流程：</p>
+<ul>
+<li>获取当前 <code>task</code></li>
+<li>在 <code>syscall_times</code> 中定位对应编号的计数器并执行 <code>+1</code></li>
+</ul>
+<h3 id="syscall-yu-suo-yin-ying-she-bu-fen">syscall 与索引映射部分</h3>
+<p>为了避免硬编码，实现思路：</p>
+<p>提供一个 <code>SyscallCounter</code> 查找匹配的能力。</p>
+<ul>
+<li>
+<p><strong>如果不存在和 <code>syscall_id</code> 一样的元素</strong>：匹配到第一个 <code>syscall_id</code> 是 0 的 <code>SyscallCounter</code> 元素，并且把 <code>syscall_id</code> 赋值为当前调用的 <code>syscall_id</code>，执行 +1 操作。</p>
+</li>
+<li>
+<p><strong>如果存在和 <code>syscall_id</code> 一样的元素</strong>：执行 +1 操作。</p>
+</li>
+</ul>
+<h1 id="wen-da-ti">问答题</h1>
+<h2 id="1-yong-hu-tai-cheng-xu-te-zheng-ce-shi">1. 用户态程序特征测试</h2>
+<p><strong>问题：</strong> 正确进入 U 态后，程序的特征还应有：使用 S 态特权指令，访问 S 态寄存器后会报错。请同学们可以自行测试这些内容（运行三个 bad 测例 <code>ch2b_bad_*.rs</code>），描述程序出错行为，同时注意注明你使用的 sbi 及其版本。</p>
+<p><strong>回答：</strong></p>
+<p><strong>使用的 SBI 及其版本：</strong></p>
+<pre data-lang="bash" style="background-color:#2b303b;color:#6c7079;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#abb2bf;">
+</span><span style="color:#eb6772;">[rustsbi]</span><span style="color:#abb2bf;"> RustSBI version 0.3.0-alpha.2, adapting to RISC-V SBI v1.0.0
+</span><span style="color:#eb6772;">.______</span><span style="color:#abb2bf;">       __    __      _______.___________.  _______..______   __
+</span><span style="color:#adb7c9;">|   </span><span style="color:#eb6772;">_  </span><span style="color:#5ebfcc;">\     </span><span style="color:#adb7c9;">|  |  |  |    </span><span style="color:#eb6772;">/       </span><span style="color:#adb7c9;">|           | </span><span style="color:#eb6772;">/       </span><span style="color:#adb7c9;">||   </span><span style="color:#eb6772;">_  </span><span style="color:#5ebfcc;">\ </span><span style="color:#adb7c9;">|  |
+</span><span style="color:#adb7c9;">|  |</span><span style="color:#eb6772;">_</span><span style="color:#abb2bf;">)  </span><span style="color:#adb7c9;">|    |  |  |  |   |   </span><span style="color:#abb2bf;">(</span><span style="color:#eb6772;">----</span><span style="color:#abb2bf;">`</span><span style="color:#eb6772;">---</span><span style="color:#adb7c9;">|  |</span><span style="color:#eb6772;">----</span><span style="color:#abb2bf;">`</span><span style="color:#adb7c9;">|   </span><span style="color:#abb2bf;">(</span><span style="color:#eb6772;">----</span><span style="color:#abb2bf;">`</span><span style="color:#adb7c9;">|  |</span><span style="color:#eb6772;">_</span><span style="color:#abb2bf;">)  </span><span style="color:#adb7c9;">||  |
+</span><span style="color:#adb7c9;">|      </span><span style="color:#eb6772;">/     </span><span style="color:#adb7c9;">|  |  |  |    </span><span style="color:#5ebfcc;">\   \       </span><span style="color:#adb7c9;">|  |      </span><span style="color:#5ebfcc;">\   \    </span><span style="color:#adb7c9;">|   </span><span style="color:#eb6772;">_  </span><span style="color:#adb7c9;">&lt; |  |
+</span><span style="color:#adb7c9;">|  |</span><span style="color:#5ebfcc;">\  \-</span><span style="color:#eb6772;">---.</span><span style="color:#adb7c9;">|  </span><span style="color:#abb2bf;">`--</span><span style="color:#9acc76;">&#39;  |.----)   |      |  |  .----)   |   |  |_)  ||  |
+</span><span style="color:#9acc76;">| _| `._____| \______/ |_______/       |__|  |_______/    |______/ |__|
+</span><span style="color:#9acc76;">[rustsbi] Implementation     : RustSBI-QEMU Version 0.2.0-alpha.2
+</span></code></pre>
+<p><strong>测试 <code>ch2b_bad_register</code> 的错误行为：</strong></p>
+<p>用户态程序无法访问 S 态特权寄存器（如 <code>sstatus</code>），同样会触发 <code>IllegalInstruction</code> 异常。</p>
+<p><strong>测试 <code>ch2b_bad_instructions</code> 的错误行为：</strong></p>
+<p>用户态程序无法执行 S 态特权指令（如 <code>sret</code>），会触发 <code>IllegalInstruction</code> 异常。</p>
+<p><strong>测试 <code>ch2b_bad_address</code> 的错误行为：</strong></p>
+<p>用户态程序无法访问无效地址，会触发 <code>PageFault</code> 异常。</p>
+<h2 id="2-shen-ru-li-jie-trap-s-zhong-liang-ge-han-shu-de-zuo-yong">2. 深入理解 trap.S 中两个函数的作用</h2>
+<p><strong>问题：</strong> 深入理解 <code>trap.S</code> 中两个函数 <code>__alltraps</code> 和 <code>__restore</code> 的作用，并回答如下问题：</p>
+<h3 id="2-1-l40-wen-ti">2.1 L40 问题</h3>
+<p><strong>问题：</strong> 刚进入 <code>__restore</code> 时，<code>sp</code> 代表了什么值。请指出 <code>__restore</code> 的两种使用情景。</p>
+<p><strong>回答：</strong></p>
+<ul>
+<li><code>sp</code> 指向内核栈</li>
+<li>两种使用情景：
+<ol>
+<li>从内核态返回用户态</li>
+<li>从 switch 任务进入用户态</li>
+</ol>
+</li>
+</ul>
+<h3 id="2-2-l43-l48-ji-cun-qi-chu-li">2.2 L43-L48 寄存器处理</h3>
+<p><strong>问题：</strong> 这几行汇编代码特殊处理了哪些寄存器？这些寄存器的值对于进入用户态有何意义？请分别解释。</p>
+<pre data-lang="asm" style="background-color:#2b303b;color:#6c7079;" class="language-asm "><code class="language-asm" data-lang="asm"><span style="color:#5cb3fa;">ld t0</span><span style="color:#abb2bf;">, </span><span style="color:#db9d63;">32</span><span style="color:#abb2bf;">*</span><span style="color:#db9d63;">8</span><span style="color:#5cb3fa;">(</span><span style="color:#eb6772;">sp</span><span style="color:#5cb3fa;">)
+</span><span style="color:#5cb3fa;">ld t1</span><span style="color:#abb2bf;">, </span><span style="color:#db9d63;">33</span><span style="color:#abb2bf;">*</span><span style="color:#db9d63;">8</span><span style="color:#5cb3fa;">(</span><span style="color:#eb6772;">sp</span><span style="color:#5cb3fa;">)
+</span><span style="color:#5cb3fa;">ld t2</span><span style="color:#abb2bf;">, </span><span style="color:#db9d63;">2</span><span style="color:#abb2bf;">*</span><span style="color:#db9d63;">8</span><span style="color:#5cb3fa;">(</span><span style="color:#eb6772;">sp</span><span style="color:#5cb3fa;">)
+</span><span style="color:#5cb3fa;">csrw sstatus</span><span style="color:#abb2bf;">, </span><span style="color:#5cb3fa;">t0
+</span><span style="color:#5cb3fa;">csrw sepc</span><span style="color:#abb2bf;">, </span><span style="color:#5cb3fa;">t1
+</span><span style="color:#5cb3fa;">csrw sscratch</span><span style="color:#abb2bf;">, </span><span style="color:#5cb3fa;">t2
+</span></code></pre>
+<p><strong>回答：</strong></p>
+<ul>
+<li><strong>sstatus</strong>: 设置用户模式，确保 <code>sret</code> 指令返回用户态</li>
+<li><strong>sepc</strong>: 中断/异常时的 PC 或者任务切换时，用户程序的入口地址，确保 <code>sret</code> 指令跳转到用户程序地址</li>
+<li><strong>sscratch</strong>: 用户栈 SP</li>
+</ul>
+<h3 id="2-3-l50-l56-tiao-guo-ji-cun-qi">2.3 L50-L56 跳过寄存器</h3>
+<p><strong>问题：</strong> 为何跳过了 <code>x2</code> 和 <code>x4</code>？</p>
+<pre data-lang="asm" style="background-color:#2b303b;color:#6c7079;" class="language-asm "><code class="language-asm" data-lang="asm"><span style="color:#5cb3fa;">ld x1</span><span style="color:#abb2bf;">, </span><span style="color:#db9d63;">1</span><span style="color:#abb2bf;">*</span><span style="color:#db9d63;">8</span><span style="color:#5cb3fa;">(</span><span style="color:#eb6772;">sp</span><span style="color:#5cb3fa;">)
+</span><span style="color:#5cb3fa;">ld x3</span><span style="color:#abb2bf;">, </span><span style="color:#db9d63;">3</span><span style="color:#abb2bf;">*</span><span style="color:#db9d63;">8</span><span style="color:#5cb3fa;">(</span><span style="color:#eb6772;">sp</span><span style="color:#5cb3fa;">)
+</span><span style="color:#5cb3fa;">.set n</span><span style="color:#abb2bf;">, </span><span style="color:#db9d63;">5
+</span><span style="color:#5cb3fa;">.rept </span><span style="color:#db9d63;">27
+</span><span style="color:#5cb3fa;">    LOAD_GP %n
+</span><span style="color:#5cb3fa;">    .set n</span><span style="color:#abb2bf;">, </span><span style="color:#5cb3fa;">n</span><span style="color:#abb2bf;">+</span><span style="color:#db9d63;">1
+</span><span style="color:#5cb3fa;">.endr
+</span></code></pre>
+<p><strong>回答：</strong></p>
+<ul>
+<li><strong>x2</strong>: 当前指向内核栈，如果在恢复其他寄存器之前，恢复 x2 的话，后续都会基于用户栈</li>
+<li><strong>x4</strong>: 应用程序不使用</li>
+</ul>
+<h3 id="2-4-l60-zhi-ling-yi-yi">2.4 L60 指令意义</h3>
+<p><strong>问题：</strong> 该指令之后，<code>sp</code> 和 <code>sscratch</code> 中的值分别有什么意义？</p>
+<pre data-lang="asm" style="background-color:#2b303b;color:#6c7079;" class="language-asm "><code class="language-asm" data-lang="asm"><span style="color:#5cb3fa;">csrrw </span><span style="color:#eb6772;">sp</span><span style="color:#abb2bf;">, </span><span style="color:#5cb3fa;">sscratch</span><span style="color:#abb2bf;">, </span><span style="color:#eb6772;">sp
+</span></code></pre>
+<p><strong>回答：</strong></p>
+<ul>
+<li><code>sp</code> 指向用户栈</li>
+<li><code>sscratch</code> 指向内核栈</li>
+</ul>
+<h3 id="2-5-zhuang-tai-qie-huan">2.5 状态切换</h3>
+<p><strong>问题：</strong> <code>__restore</code> 中发生状态切换在哪一条指令？为何该指令执行之后会进入用户态？</p>
+<p><strong>回答：</strong></p>
+<p><code>sret</code> 指令。</p>
+<ul>
+<li>特权切换到用户态</li>
+<li>PC 跳到 <code>sepc</code> 指向的地方</li>
+<li>SP 已经指向用户栈</li>
+</ul>
+<h3 id="2-6-l13-zhi-ling-yi-yi">2.6 L13 指令意义</h3>
+<p><strong>问题：</strong> 该指令之后，<code>sp</code> 和 <code>sscratch</code> 中的值分别有什么意义？</p>
+<pre data-lang="asm" style="background-color:#2b303b;color:#6c7079;" class="language-asm "><code class="language-asm" data-lang="asm"><span style="color:#5cb3fa;">csrrw </span><span style="color:#eb6772;">sp</span><span style="color:#abb2bf;">, </span><span style="color:#5cb3fa;">sscratch</span><span style="color:#abb2bf;">, </span><span style="color:#eb6772;">sp
+</span></code></pre>
+<p><strong>回答：</strong></p>
+<ul>
+<li><code>sp</code> 指向用户栈</li>
+<li><code>sscratch</code> 指向内核栈</li>
+</ul>
+<h3 id="2-7-u-tai-dao-s-tai-qie-huan">2.7 U 态到 S 态切换</h3>
+<p><strong>问题：</strong> 从 U 态进入 S 态是哪一条指令发生的？</p>
+<p><strong>回答：</strong></p>
+<p><code>ecall</code> 指令。</p>
+<h1 id="rong-yu-zhun-ze">荣誉准则</h1>
+<h2 id="1-jiao-liu-ji-lu">1. 交流记录</h2>
+<p>在完成本次实验的过程（含此前学习的过程）中，我曾分别与以下各位就（与本次实验相关的）以下方面做过交流，还在代码中对应的位置以注释形式记录了具体的交流对象及内容：</p>
+<blockquote>
+<p>暂无</p>
+</blockquote>
+<h2 id="2-can-kao-zi-liao">2. 参考资料</h2>
+<p>此外，我也参考了以下资料，还在代码中对应的位置以注释形式记录了具体的参考来源及内容：</p>
+<blockquote>
+<p>暂无</p>
+</blockquote>
+<h2 id="3-du-li-wan-cheng-sheng-ming">3. 独立完成声明</h2>
+<p>我独立完成了本次实验除以上方面之外的所有工作，包括代码与文档。我清楚地知道，从以上方面获得的信息在一定程度上降低了实验难度，可能会影响起评分。</p>
+<h2 id="4-dai-ma-shi-yong-sheng-ming">4. 代码使用声明</h2>
+<p>我从未使用过他人的代码，不管是原封不动地复制，还是经过了某些等价转换。我未曾也不会向他人（含此后各届同学）复制或公开我的实验代码，我有义务妥善保管好它们。我提交至本实验的评测系统的代码，均无意于破坏或妨碍任何计算机系统的正常运转。我清楚地知道，以上情况均为本课程纪律所禁止，若违反，对应的实验成绩将按"-100"分计。</p>
+
+    </div>
+
+    
+        <footer>
+            <hr>
+            <p>
+                
+                    Published by Ben Guo
+                
+                
+                    
+                    in <a href="https://benx-guo.github.io/cola-tech/categories/cao-zuo-xi-tong/">操作系统</a>
+                
+                
+                    and
+                    tagged
+                    
+                        <a href="https://benx-guo.github.io/cola-tech/tags/2025-qiu-dong-ji-kai-yuan-cao-zuo-xi-tong-xun-lian-ying/">2025 秋冬季开源操作系统训练营</a>
+                        
+                            
+                                
+                                    ,
+                                
+                            
+                        
+                    
+                        <a href="https://benx-guo.github.io/cola-tech/tags/rust/">Rust</a>
+                        
+                            
+                                
+                                    ,
+                                
+                            
+                        
+                    
+                        <a href="https://benx-guo.github.io/cola-tech/tags/cao-zuo-xi-tong/">操作系统</a>
+                        
+                            
+                                
+                                    ,
+                                
+                            
+                        
+                    
+                        <a href="https://benx-guo.github.io/cola-tech/tags/xue-xi-ji-hua/">学习计划</a>
+                        
+                            
+                                
+                                    and
+                                
+                            
+                        
+                    
+                        <a href="https://benx-guo.github.io/cola-tech/tags/lab3/">Lab3</a>
+                        
+                            
+                        
+                    
+                
+            </p>
+            
+            
+        </footer>
+    
+</article>
+
+
+
+  <!-- optional scripts -->
+  
+  
+  <script src="https://benx-guo.github.io/cola-tech/js/codeblock.js"></script>
+  
+
+  
+<!-- MathJax script for rendering LaTeX math equations -->
+<script>
+  MathJax = {
+    tex: {
+      inlineMath: [
+        ["$", "$"],
+        ["\\(", "\\)"],
+      ],
+      displayMath: [
+        ["$$", "$$"],
+        ["\\[", "\\]"],
+      ],
+    },
+  };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" async></script>
+
+
+  
+<script type="text/javascript" src="https://benx-guo.github.io/cola-tech/elasticlunr.min.js"></script>
+<script type="text/javascript" src="https://benx-guo.github.io/cola-tech/js/search.js"></script>
+
+
+  
+</body>
+
+</html>

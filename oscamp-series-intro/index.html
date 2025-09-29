@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  
+  
+  <meta name="description" content="2025 秋冬季开源操作系统训练营系列文章，包含学习路线、每日记录导航和资源汇总" />
+  
+  
+
+  <title>
+    
+    2025 秋冬季开源操作系统训练营
+    
+</title>
+  <link rel="alternate" type="application/atom+xml" title="Cola Tech Atom Feed" href="https://benx-guo.github.io/cola-tech/atom.xml" />
+
+  
+  <link rel="stylesheet" href="https://benx-guo.github.io/cola-tech/site.css">
+  
+
+  
+  
+</head>
+
+<body class="hack dark main container">
+  
+    
+        
+  
+  <header class="nav-header">
+    <nav itemscope itemtype="http://schema.org/SiteNavigationElement" class="navbar">
+      <div class="nav-links">
+        
+        <a itemprop="url"
+          class=""
+          href="https://benx-guo.github.io/cola-tech/">
+          <span itemprop="name">首页</span></a>
+        
+        <a itemprop="url"
+          class=""
+          href="https://benx-guo.github.io/cola-tech//categories">
+          <span itemprop="name">分类</span></a>
+        
+        <a itemprop="url"
+          class=""
+          href="https://benx-guo.github.io/cola-tech//tags">
+          <span itemprop="name">标签</span></a>
+        
+      </div>
+    </nav>
+    
+    <div class="search-container">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" class="search-icon">
+        <path stroke-linecap="round" stroke-linejoin="round"
+          d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+      </svg>
+      <input type="text" id="search" placeholder="Search...">
+      <div class="search-results">
+        <div class="search-results__items"></div>
+      </div>
+    </div>
+    
+
+  </header>
+  
+  
+    
+
+<article itemscope itemtype="http://schema.org/BlogPosting">
+    <header>
+        <h1 itemprop="headline">2025 秋冬季开源操作系统训练营</h1>
+        <span class="muted">
+    <svg class="icon i-clock" viewBox="0 0 32 32"
+         width="16" height="16" fill="none" stroke="currentcolor"
+         stroke-linecap="round" stroke-linejoin="round" stroke-width="6.25%">
+        <circle cx="16" cy="16" r="14"/>
+        <path d="M16 8 L16 16 20 20"/>
+    </svg>
+    <span>4 minute read</span>
+    <svg class="icon i-edit" viewBox="0 0 32 32"
+         width="16" height="16" fill="none" stroke="currentcolor"
+         stroke-linecap="round" stroke-linejoin="round" stroke-width="6.25%">
+        <path d="M30 7 L25 2 5 22 3 29 10 27 Z M21 6 L26 11 Z M5 22 L10 27 Z"/>
+    </svg>
+
+    Published: 2025-09-13
+</span>
+    </header>
+    <div itemprop="articleBody">
+      <div class="banner-container" style="width: 100%; margin: 1em 0; text-align: center; position: relative;">
+  
+  <a href="https://opencamp.cn/os2edu/camp/2025fall" target="_blank" rel="noopener noreferrer" style="text-decoration: none; display: block; cursor: pointer; outline: none;">
+  
+    <img src="https://benx-guo.github.io/cola-tech/oscamp_header.png" alt="2025 秋冬季开源操作系统训练营" title="2025 秋冬季开源操作系统训练营"
+         style="width: 100%; max-width: 100%; height: auto; display: block; margin: 0 auto; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.15); transition: transform 0.3s ease, box-shadow 0.3s ease;">
+    
+    <div class="banner-caption" style="margin-top: 0.5em; text-align: center;">
+      <span class="banner-text">开启你的操作系统学习之旅</span>
+    </div>
+    
+  
+  </a>
+  
+</div>
+
+<style>
+.banner-container {
+  background: linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.02) 100%);
+  border-radius: 16px;
+  padding: 1em;
+  border: 1px solid rgba(255,255,255,0.1);
+}
+
+.banner-container img:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+}
+
+.banner-text {
+  font-family: inherit;
+  font-size: 0.9em;
+  font-weight: 400;
+  color: var(--text-color, #fff);
+  text-align: center;
+  display: inline-block;
+  opacity: 0.8;
+  letter-spacing: 0.5px;
+}
+
+/* 移除链接的所有视觉效果 */
+.banner-container a {
+  outline: none !important;
+  border: none !important;
+  -webkit-tap-highlight-color: transparent;
+  text-decoration: none !important;
+  box-shadow: none !important;
+}
+
+/* 移除外部链接图标 */
+.banner-container a::after {
+  content: none !important;
+  display: none !important;
+}
+
+.banner-container a::before {
+  content: none !important;
+  display: none !important;
+}
+
+/* 移除所有可能的图标和装饰 */
+.banner-container a *::after {
+  content: none !important;
+  display: none !important;
+}
+
+.banner-container a *::before {
+  content: none !important;
+  display: none !important;
+}
+
+/* 移除可能的背景图标 */
+.banner-container a {
+  background-image: none !important;
+  background: none !important;
+}
+
+.banner-container a:focus {
+  outline: none !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.banner-container a:active {
+  outline: none !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.banner-container a:hover {
+  outline: none !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.banner-container a:visited {
+  outline: none !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+@media (max-width: 768px) {
+  .banner-container {
+    padding: 0.8em;
+  }
+  
+  .banner-text {
+    font-size: 0.85em !important;
+  }
+}
+</style>
+<p>欢迎来到 <strong><a href="https://opencamp.cn/os2edu/camp/2025fall">2025 秋冬季开源操作系统训练营</a></strong>！</p>
+<p>这个系列将记录我在参加开源操作系统训练营过程中的学习历程、技术收获和实践经验。</p>
+<span id="continue-reading"></span>
+<p>通过这个系列，我希望能够：</p>
+<ul>
+<li>系统化记录学习过程</li>
+<li>分享技术难点和解决方案</li>
+<li>总结学习方法和经验</li>
+<li>与同样在学习的朋友们交流</li>
+</ul>
+<h2 id="xue-xi-lu-xian-tu">学习路线图</h2>
+<h3 id="di-ling-zhou-dao-xue-jie-duan-rust-bian-cheng-2025-09-08-2025-09-14">第零周：导学阶段 - Rust 编程（2025.09.08 - 2025.09.14）</h3>
+<ul>
+<li><input disabled="" type="checkbox" checked=""/>
+<strong>Day 0 (2025.09.14)</strong>: <a href="../oscamp/oscamp-20250914/">Day 0 为什么参加训练营</a></li>
+</ul>
+<h3 id="di-yi-zhou-ji-chu-jie-duan-rust-bian-cheng-2025-09-15-2025-09-21">第一周：基础阶段 - Rust 编程（2025.09.15 - 2025.09.21）</h3>
+<ul>
+<li><input disabled="" type="checkbox" checked=""/>
+<strong>Day 1 (2025.09.15)</strong>: <a href="../oscamp/oscamp-20250915/">Day 1 rustlings 100/110</a></li>
+<li><input disabled="" type="checkbox" checked=""/>
+<strong>Day 2 (2025.09.16)</strong>: <a href="../oscamp/oscamp-20250916/">[WIP]Day 2 rustlings 105/110</a></li>
+<li><input disabled="" type="checkbox" checked=""/>
+<strong>Day 3 (2025.09.17)</strong>: <a href="../oscamp/oscamp-20250917/">[WIP]Day 3 rustlings 110/110</a></li>
+<li><input disabled="" type="checkbox" checked=""/>
+<strong>Day 4 (2025.09.18)</strong>: <a href="../oscamp/oscamp-20250918/">[WIP]Day 4 搭建rCore Ubuntu 20.04 环境</a></li>
+<li><input disabled="" type="checkbox"/>
+<strong>Day 5 (2025.09.19)</strong>: 待补充</li>
+<li><input disabled="" type="checkbox"/>
+<strong>Day 6 (2025.09.20)</strong>: 待补充</li>
+<li><input disabled="" type="checkbox"/>
+<strong>Day 7 (2025.09.21)</strong>: 第一周总结与下周计划</li>
+</ul>
+<h3 id="di-er-zhou-ji-chu-jie-duan-rust-bian-cheng-2025-09-22-2025-09-28">第二周：基础阶段 - Rust 编程（2025.09.22 - 2025.09.28）</h3>
+<ul>
+<li><input disabled="" type="checkbox"/>
+<strong>Day 8 (2025.09.22)</strong>: 待补充</li>
+<li><input disabled="" type="checkbox"/>
+<strong>Day 9 (2025.09.23)</strong>: 待补充</li>
+<li><input disabled="" type="checkbox"/>
+<strong>Day 10 (2025.09.24)</strong>: 待补充</li>
+<li><input disabled="" type="checkbox"/>
+<strong>Day 11 (2025.09.25)</strong>: 待补充</li>
+<li><input disabled="" type="checkbox" checked=""/>
+<strong>Day 12 (2025.09.26)</strong>: <a href="../oscamp/oscamp-20250926/">Day 12 完成实验Lab3</a></li>
+<li><input disabled="" type="checkbox"/>
+<strong>Day 13 (2025.09.27)</strong>: 待补充</li>
+<li><input disabled="" type="checkbox" checked=""/>
+<strong>Day 14 (2025.09.28)</strong>: <a href="../oscamp/oscamp-20250928/">Day 14 下周计划</a></li>
+</ul>
+<h3 id="di-san-zhou-zhuan-ye-jie-duan-2025-09-29-2025-10-05">第三周：专业阶段（2025.09.29 - 2025.10.05）</h3>
+<ul>
+<li><input disabled="" type="checkbox"/>
+<strong>Day 15 (2025.09.29)</strong>: 待补充</li>
+<li><input disabled="" type="checkbox"/>
+<strong>Day 16 (2025.09.30)</strong>: 待补充</li>
+<li><input disabled="" type="checkbox"/>
+<strong>Day 17 (2025.10.01)</strong>: 待补充</li>
+<li><input disabled="" type="checkbox"/>
+<strong>Day 18 (2025.10.02)</strong>: 待补充</li>
+<li><input disabled="" type="checkbox"/>
+<strong>Day 19 (2025.10.03)</strong>: 待补充</li>
+<li><input disabled="" type="checkbox"/>
+<strong>Day 20 (2025.10.04)</strong>: 待补充</li>
+<li><input disabled="" type="checkbox"/>
+<strong>Day 21 (2025.10.05)</strong>: 第三周总结与下周计划</li>
+</ul>
+<h2 id="xue-xi-xin-de-fen-xiang">学习心得分享</h2>
+<h3 id="xue-xi-fang-fa">学习方法</h3>
+<ol>
+<li><strong>理论与实践结合</strong>: 每学习一个概念，立即通过实验验证</li>
+<li><strong>记录与总结</strong>: 及时记录学习过程中的问题和解决方案</li>
+<li><strong>社区交流</strong>: 积极参与讨论，向他人学习</li>
+</ol>
+<h3 id="zhu-yi-shi-xiang">注意事项</h3>
+<ul>
+<li>遇到问题及时记录，避免重复踩坑</li>
+<li>定期回顾和总结，巩固学习成果</li>
+</ul>
+<h2 id="xi-lie-wen-zhang-dao-hang">系列文章导航</h2>
+<h3 id="wen-zhang-fen-lei">文章分类</h3>
+<ul>
+<li><strong>学习记录</strong>: 每日学习心得和技术收获</li>
+<li><strong>技术分享</strong>: 难点解析和解决方案</li>
+<li><strong>项目实践</strong>: 实验过程和代码分析</li>
+<li><strong>总结反思</strong>: 阶段性总结和学习反思</li>
+</ul>
+<h2 id="jie-yu">结语</h2>
+<p>这个系列文章将伴随我整个训练营的学习过程。希望通过详细的记录和分享，不仅能够帮助自己更好地学习和成长，也能够为同样在学习操作系统和 Rust 的朋友们提供一些参考和帮助。</p>
+
+    </div>
+
+    
+        <footer>
+            <hr>
+            <p>
+                
+                    Published by Ben Guo
+                
+                
+                    
+                    in <a href="https://benx-guo.github.io/cola-tech/categories/cao-zuo-xi-tong/">操作系统</a>
+                
+                
+                    and
+                    tagged
+                    
+                        <a href="https://benx-guo.github.io/cola-tech/tags/2025-qiu-dong-ji-kai-yuan-cao-zuo-xi-tong-xun-lian-ying/">2025 秋冬季开源操作系统训练营</a>
+                        
+                            
+                                
+                                    ,
+                                
+                            
+                        
+                    
+                        <a href="https://benx-guo.github.io/cola-tech/tags/rust/">Rust</a>
+                        
+                            
+                                
+                                    ,
+                                
+                            
+                        
+                    
+                        <a href="https://benx-guo.github.io/cola-tech/tags/cao-zuo-xi-tong/">操作系统</a>
+                        
+                            
+                                
+                                    ,
+                                
+                            
+                        
+                    
+                        <a href="https://benx-guo.github.io/cola-tech/tags/xi-lie-wen-zhang/">系列文章</a>
+                        
+                            
+                                
+                                    and
+                                
+                            
+                        
+                    
+                        <a href="https://benx-guo.github.io/cola-tech/tags/dao-xue/">导学</a>
+                        
+                            
+                        
+                    
+                
+            </p>
+            
+            
+        </footer>
+    
+</article>
+
+
+
+  <!-- optional scripts -->
+  
+  
+  <script src="https://benx-guo.github.io/cola-tech/js/codeblock.js"></script>
+  
+
+  
+<!-- MathJax script for rendering LaTeX math equations -->
+<script>
+  MathJax = {
+    tex: {
+      inlineMath: [
+        ["$", "$"],
+        ["\\(", "\\)"],
+      ],
+      displayMath: [
+        ["$$", "$$"],
+        ["\\[", "\\]"],
+      ],
+    },
+  };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" async></script>
+
+
+  
+<script type="text/javascript" src="https://benx-guo.github.io/cola-tech/elasticlunr.min.js"></script>
+<script type="text/javascript" src="https://benx-guo.github.io/cola-tech/js/search.js"></script>
+
+
+  
+</body>
+
+</html>

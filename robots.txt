@@ -1,0 +1,4 @@
+User-agent: *
+Disallow:
+Allow: /
+Sitemap: https://benx-guo.github.io/cola-tech/sitemap.xml

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+    <title>Cola Tech - kmalloc</title>
+    <subtitle>A blog about technology</subtitle>
+    <link rel="self" type="application/atom+xml" href="https://benx-guo.github.io/cola-tech/tags/kmalloc/atom.xml"/>
+    <link rel="alternate" type="text/html" href="https://benx-guo.github.io/cola-tech/"/>
+    <generator uri="https://www.getzola.org/">Zola</generator>
+    <updated>2025-09-02T00:00:00+00:00</updated>
+    <id>https://benx-guo.github.io/cola-tech/tags/kmalloc/atom.xml</id>
+    <entry xml:lang="en">
+        <title>Rust 在 Linux Kernel 中 alloc 的链路分析</title>
+        <published>2025-09-02T00:00:00+00:00</published>
+        <updated>2025-09-02T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Unknown
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://benx-guo.github.io/cola-tech/rust-for-linux-alloc/"/>
+        <id>https://benx-guo.github.io/cola-tech/rust-for-linux-alloc/</id>
+        
+        <summary type="html">&lt;p&gt;本文尝试从 &lt;strong&gt;Rust 层调用&lt;&#x2F;strong&gt; → &lt;strong&gt;FFI bindings&lt;&#x2F;strong&gt; → &lt;strong&gt;C helper&lt;&#x2F;strong&gt; → &lt;strong&gt;内核 API 宏&#x2F;函数&lt;&#x2F;strong&gt; → &lt;strong&gt;实际分配器&lt;&#x2F;strong&gt;
+一步步梳理 Rust 在 Linux 内核里的内存分配调用链。
+以 &lt;code&gt;KVec::push&lt;&#x2F;code&gt; 触发扩容为例，串联 &lt;code&gt;krealloc&lt;&#x2F;code&gt; 的全过程。&lt;&#x2F;p&gt;</summary>
+        
+    </entry>
+</feed>
