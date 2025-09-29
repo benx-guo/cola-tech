@@ -1,10 +1,16 @@
 <div class="banner-container" style="width: 100%; margin: 1em 0; text-align: center; position: relative;">
-  <img src="{{ get_url(path=src) | safe }}" alt="{{ alt | safe }}" title="{{ alt | safe }}"
-       style="width: 100%; max-width: 100%; height: auto; display: block; margin: 0 auto; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.15); transition: transform 0.3s ease, box-shadow 0.3s ease;">
-  {% if caption %}
-  <div class="banner-caption" style="margin-top: 0.5em; text-align: center;">
-    <span class="banner-text">{{ caption | safe }}</span>
-  </div>
+  {% if link %}
+  <a href="{{ link | safe }}" target="_blank" rel="noopener noreferrer" style="text-decoration: none; display: block; cursor: pointer; outline: none;">
+  {% endif %}
+    <img src="{{ get_url(path=src) | safe }}" alt="{{ alt | safe }}" title="{{ alt | safe }}"
+         style="width: 100%; max-width: 100%; height: auto; display: block; margin: 0 auto; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.15); transition: transform 0.3s ease, box-shadow 0.3s ease;">
+    {% if caption %}
+    <div class="banner-caption" style="margin-top: 0.5em; text-align: center;">
+      <span class="banner-text">{{ caption | safe }}</span>
+    </div>
+    {% endif %}
+  {% if link %}
+  </a>
   {% endif %}
 </div>
 
@@ -30,6 +36,67 @@
   display: inline-block;
   opacity: 0.8;
   letter-spacing: 0.5px;
+}
+
+/* 移除链接的所有视觉效果 */
+.banner-container a {
+  outline: none !important;
+  border: none !important;
+  -webkit-tap-highlight-color: transparent;
+  text-decoration: none !important;
+  box-shadow: none !important;
+}
+
+/* 移除外部链接图标 */
+.banner-container a::after {
+  content: none !important;
+  display: none !important;
+}
+
+.banner-container a::before {
+  content: none !important;
+  display: none !important;
+}
+
+/* 移除所有可能的图标和装饰 */
+.banner-container a *::after {
+  content: none !important;
+  display: none !important;
+}
+
+.banner-container a *::before {
+  content: none !important;
+  display: none !important;
+}
+
+/* 移除可能的背景图标 */
+.banner-container a {
+  background-image: none !important;
+  background: none !important;
+}
+
+.banner-container a:focus {
+  outline: none !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.banner-container a:active {
+  outline: none !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.banner-container a:hover {
+  outline: none !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.banner-container a:visited {
+  outline: none !important;
+  border: none !important;
+  box-shadow: none !important;
 }
 
 @media (max-width: 768px) {
